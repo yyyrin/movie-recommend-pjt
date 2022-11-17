@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login Page</h1>
-    <form @submit.prevent="login">
+    <form @submit.prevent="LogIn">
       <label for="username">username: </label>
       <input type="text" id="username" v-model="username"><br>
 
