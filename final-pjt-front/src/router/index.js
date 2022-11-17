@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import LogInView from '@/views/LogInView'
 import SignUpView from '@/views/SignUpView'
 import HomeView from '@/views/HomeView'
+import GenreView from '@/views/GenreView'
 import CommunityView from '@/views/CommunityView'
 import SearchView from '@/views/SearchView'
 
@@ -29,6 +30,13 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+
+  // 장르
+  {
+    path: '/genre',
+    name: 'genre',
+    component: GenreView
   },
 
   // Community
