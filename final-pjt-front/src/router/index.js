@@ -7,6 +7,7 @@ import HomeView from '@/views/HomeView'
 import GenreView from '@/views/GenreView'
 import CommunityView from '@/views/CommunityView'
 import SearchView from '@/views/SearchView'
+import ProfileView from '@/views/ProfileView'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,13 @@ const routes = [
     path: '/search',
     name: 'search',
     component: SearchView
+  },
+
+  // 프로필
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfileView
   },
 ]
 

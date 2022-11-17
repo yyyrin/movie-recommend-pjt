@@ -1,14 +1,21 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link :to="{ name: 'home' }">HomeView</router-link> |
-      <router-link :to="{ name: 'community' }">CommunityView</router-link> |
-      <router-link :to="{ name: 'login' }">LogInView</router-link> |
-      <router-link :to="{ name: 'signup' }">SignUpView</router-link> |
-    </nav>
+    <nav-bar></nav-bar>
     <router-view/>
   </div>
 </template>
+
+<script>
+import NavBar from '@/components/templates/NavBar'
+
+export default {
+  name: 'App',
+  components: {
+    NavBar
+  },
+}
+</script>
+
 
 <style>
 #app {
@@ -16,7 +23,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: black;
 }
 
 nav {
@@ -29,6 +36,6 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #FF6800;
 }
 </style>
