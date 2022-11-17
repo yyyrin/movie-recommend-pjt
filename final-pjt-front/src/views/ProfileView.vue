@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>SearchView</h1>
+    <h1>ProfileView</h1>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'SearchView',
+  name: 'ProfileView',
 }
 </script>
 
