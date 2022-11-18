@@ -23,3 +23,15 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = '__all__'
+
+class ActorProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Actor
+        fields = '__all__'
+
+class DirectorProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Director
+        fields = '__all__'
