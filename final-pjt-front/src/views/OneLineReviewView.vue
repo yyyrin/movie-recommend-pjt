@@ -14,6 +14,14 @@ export default {
   components: {
     OneLineReviewList
   },
+  created() {
+    this.getReviews()
+  },
+  methods: {
+    getReviews() {
+      this.$store.dispatch('getReviews')
+    }
+  }
 }
 </script>
 
