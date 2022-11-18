@@ -18,11 +18,11 @@ export default new Vuex.Store({
     movies: [],
     reviews: [
       {
-        id: 1,
+        rate: 5,
         content: "한줄리뷰 content 예시", 
       },
       {
-        id: 2,
+        rate: 3,
         content: "한줄리뷰 content 예시2",
       }
     ],
