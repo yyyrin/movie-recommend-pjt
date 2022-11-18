@@ -14,15 +14,6 @@ export default {
   components: {
     OneLineReviewList
   },
-  // 작성 중
-  // created() {
-  //   this.getReviews()
-  // },
-  // methods: {
-  //   getReviews() {
-  //     this.$store.dispatch('getReviews')
-  //   }
-  // }
 }
 </script>
 

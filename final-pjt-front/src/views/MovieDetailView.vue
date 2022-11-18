@@ -45,7 +45,7 @@ export default {
         url: `${API_URL}/api/v1/movies/${this.$route.params.id}`
       })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           this.movie = res.data
         })
         .catch((err) => {
