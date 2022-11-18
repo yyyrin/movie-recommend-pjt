@@ -4,7 +4,7 @@
       <div class="col">
         <div class="card h-100">
           <img :src="movieURL" class="card-img-top" alt="...">
-          <!-- 마우스 오버시 title 보이게..
+          <!-- 마우스 오버시 title 보이게 할 계획
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
           </div> -->
