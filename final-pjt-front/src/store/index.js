@@ -44,6 +44,7 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
+        // console.log(res)
         context.commit('SAVE_TOKEN', res.data.key)
       })
       .catch(err => console.log(err))
@@ -61,6 +62,7 @@ export default new Vuex.Store({
         // console.log(res)
         context.commit('SAVE_TOKEN', res.data.key)
       })
+      .catch(err => console.log(err))
     },
     getMovies(context) {
       axios({
