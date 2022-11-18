@@ -42,6 +42,9 @@ export default new Vuex.Store({
       state.movies = movies
       // console.log(state.movies)
     },
+    GET_REVIEWS(state, reviews) {
+      state.reviews = reviews
+    }
   },
   actions: {
     signUp(context, payload) {
@@ -91,6 +94,23 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    getReviews(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/reviews/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then((res) => {
+        // console.log(res)
+        // console.log(res.data)
+        context.commit('GET_REVIEWS', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
   },
   modules: {
   }

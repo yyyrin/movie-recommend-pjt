@@ -67,8 +67,8 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((res) => {
-        console.log(res)
+      .then(() => {
+        // console.log(res)
         this.$router.push({ name: 'movie_detail' })
       })
       .catch((err) => {
