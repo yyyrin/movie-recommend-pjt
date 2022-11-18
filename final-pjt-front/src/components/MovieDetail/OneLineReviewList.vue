@@ -1,22 +1,23 @@
 <template>
-  <div>
-    <h1>OneLineReviewList</h1>
+  <div class="one-line-reveiw-list">
     <OneLineReviewItem
-      v-for="review in reviews"
+      v-for="(review, index) in reviews"
       :review="review"
-      :key="review.id"
+      :key="index"
     />
-    <!-- 리뷰 쓰는 form도 생성하기! -->
+    <CreateOneLineReview/>
   </div>
 </template>
 
 <script>
 import OneLineReviewItem from '@/components/MovieDetail/OneLineReviewItem'
+import CreateOneLineReview from '@/components/MovieDetail/CreateOneLineReview'
 
 export default {
   name: 'OneLineReviewList',
   components: {
     OneLineReviewItem,
+    CreateOneLineReview,
   },
   computed: {
     reviews() {
