@@ -7,6 +7,7 @@
     <p>제목 : {{ movie?.title }}</p>
     <p>개봉일: {{ movie?.release_date }}</p>
     <p>내용 : {{ movie?.overview }}</p>
+    <p>포스터 : {{ movie?.poster_path }}</p>
   </div>
 </template>
 

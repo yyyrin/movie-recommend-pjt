@@ -25,6 +25,7 @@ export default {
   computed: {
     movieURL() {
       const posterPath = this.movie.poster_path
+      // console.log(this.movie.id)
       return `https://image.tmdb.org/t/p/w500/${posterPath}`
     }
   }
