@@ -30,13 +30,14 @@ export default new Vuex.Store({
     },
     GET_MOVIES(state, movies) {
       state.movies = movies
+      // console.log(state.movies)
     },
   },
   actions: {
     signUp(context, payload) {
       axios({
         method: 'post',
-        url: `${API_URL}/accounts/signup/`,
+        url: `${API_URL}/accounts/`,
         data: {
           username: payload.username,
           password1: payload.password1,
@@ -69,10 +70,11 @@ export default new Vuex.Store({
         method: 'get',
         url: `${API_URL}/api/v1/movies/`,
         headers: {
-          Authorization: `Token ${context.state.token}`
+          Authorization: `Token ${ context.state.token }`
         }
       })
       .then((res) => {
+        // console.log(context)
         context.commit('GET_MOVIES', res.data)
       })
       .catch((err) => {
@@ -83,17 +85,3 @@ export default new Vuex.Store({
   modules: {
   }
 })
-
-
-// import Vue from 'vue'
-// import Vuex from 'vuex'
-
-// import accounts from '@/store/modules/accounts'
-
-// Vue.use(Vuex)
-
-// export default new Vuex.Store({
-//   modules: {
-//     accounts,
-//   }
-// })
