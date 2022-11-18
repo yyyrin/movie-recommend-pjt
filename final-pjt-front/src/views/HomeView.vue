@@ -2,7 +2,6 @@
   <div>
     <nav-bar></nav-bar>
     <MovieCards/>
-    <h1>HomeView</h1>
   </div>
 </template>
 
