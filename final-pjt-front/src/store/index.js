@@ -16,6 +16,16 @@ export default new Vuex.Store({
   state: {
     token: null,
     movies: [],
+    reviews: [
+      {
+        id: 1,
+        content: "한줄리뷰 content 예시", 
+      },
+      {
+        id: 2,
+        content: "한줄리뷰 content 예시2",
+      }
+    ],
   },
   getters: {
     isLogIn(state) {
@@ -80,7 +90,9 @@ export default new Vuex.Store({
       .catch((err) => {
         console.log(err)
       })
-    }
+    },
+    // 작성중
+    // getReviews(context) {},
   },
   modules: {
   }
