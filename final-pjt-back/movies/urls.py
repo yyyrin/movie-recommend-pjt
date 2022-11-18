@@ -3,4 +3,6 @@ from . import views
 
 app_name = 'movies'
 
-urlpatterns = []
+urlpatterns = [
+    path('movies/', views.movie_list, name='movie_list'),
+]
