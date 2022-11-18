@@ -16,7 +16,11 @@ export default new Vuex.Store({
   state: {
     token: null,
     movies: [],
-    reviews: [],
+    reviews: [
+      {
+        context: "한줄리뷰 context 예시", 
+      }
+    ],
   },
   getters: {
     isLogIn(state) {
