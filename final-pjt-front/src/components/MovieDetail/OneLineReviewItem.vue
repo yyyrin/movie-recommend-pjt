@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>별점 : {{ reivew.rate }}</p>
+    <p>별점 : {{ review.rate }}</p>
     <p>한줄 리뷰 : {{ review.content }}</p>
   </div>
 </template>
