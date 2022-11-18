@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import LogInView from '@/views/LogInView'
 import SignUpView from '@/views/SignUpView'
 import HomeView from '@/views/HomeView'
+import MovieDetailView from '@/views/MovieDetailView'
 import GenreView from '@/views/GenreView'
 import CommunityView from '@/views/CommunityView'
 import SearchView from '@/views/SearchView'
@@ -31,6 +32,13 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+
+  // 영화 detail
+  {
+    path: 'detail/:id',
+    name: 'movie_detail',
+    component: MovieDetailView,
   },
 
   // 장르
