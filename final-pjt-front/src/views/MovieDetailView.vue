@@ -8,7 +8,9 @@
       <p>제목 : {{ movie?.title }}</p>
       <p>개봉일: {{ movie?.release_date }}</p>
       <p>내용 : {{ movie?.overview }}</p>
-      <p>포스터 : {{ movie?.poster_path }}</p>
+      <div>
+        <img :src="movieURL" alt="movie_poster">
+      </div>
     </div>
     <!-- 한줄리뷰 리스트 -->
     <div class="one-line-review-list">
@@ -51,6 +53,17 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+    }
+  },
+  computed: {
+    movieURL() {
+      const posterPath = this.movie?.poster_path
+      // null값 check
+      if (!posterPath && typeof posterPath === 'object') {
+        return '@/assets/basic_profile.png'
+      } else {
+        return `https://image.tmdb.org/t/p/w500/${posterPath}`
+      }
     }
   }
 }
