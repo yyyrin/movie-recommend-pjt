@@ -62,7 +62,7 @@ export default {
         data: {
           rate: rate,
           content: content,
-        },
+          },
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }

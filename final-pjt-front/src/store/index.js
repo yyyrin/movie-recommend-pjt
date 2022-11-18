@@ -18,11 +18,11 @@ export default new Vuex.Store({
     movies: [],
     reviews: [
       {
-        rate: 5,
+        // rate: "5",
         content: "한줄리뷰 content 예시", 
       },
       {
-        rate: 3,
+        // rate: 6,
         content: "한줄리뷰 content 예시2",
       }
     ],
@@ -91,8 +91,6 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // 작성중
-    // getReviews(context) {},
   },
   modules: {
   }
