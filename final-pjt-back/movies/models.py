@@ -1,4 +1,8 @@
 from django.db import models
+from django.conf import settings
+
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=50)
 
@@ -22,3 +26,16 @@ class Movie(models.Model):
     trailer = models.CharField(max_length=100)
     actors = models.ManyToManyField(Actor)
     director = models.ManyToManyField(Director)
+
+
+class Review(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    rate = models.IntegerField()
+
+class Preference_movies(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    movie = models.ManyToManyField(Movie)
