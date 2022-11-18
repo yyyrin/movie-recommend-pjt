@@ -16,6 +16,19 @@ export default {
     NavBar,
     MovieCards
   },
+  computed: {
+    isLogIn() {
+      return this.$store.getters.isLogIn
+    }
+  },
+  created() {
+    this.getMovies()
+  },
+  methods: {
+    getMovies() {
+      this.$store.dispatch('getMovies')
+    }
+  }
 }
 </script>
 
