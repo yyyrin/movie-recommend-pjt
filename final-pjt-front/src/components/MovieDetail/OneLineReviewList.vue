@@ -2,9 +2,9 @@
   <div>
     <h1>OneLineReviewList</h1>
     <OneLineReviewItem
-      v-for="(review, index) in reviews"
+      v-for="review in reviews"
       :review="review"
-      :key="index"
+      :key="review.id"
     />
     <!-- 리뷰 쓰는 form도 생성하기! -->
   </div>
