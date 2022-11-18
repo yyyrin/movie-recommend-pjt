@@ -18,6 +18,8 @@
             <!-- <p>제목 : {{ movie?.title }}</p>
             <p>포스터 : {{ movie?.poster_path }}</p> -->
             <p>별점 넣을 공간</p>
+            <label for="text">별점 : </label>
+            <input type="text" id="rate" v-model="rate">
             <div class="mb-3">
               <label for="message-text" class="col-form-label">한줄리뷰</label>
               <textarea class="form-control" id="message-text" v-model.trim="content"></textarea>
@@ -42,11 +44,13 @@ export default {
   name: 'CreateOneLineReview',
   data() {
     return {
+      rate: null,
       content: null,
     }
   },
   methods: {
     createReview() {
+      const rate = this.rate
       const content = this.content
       if (!content) {
         alert('내용을 입력해주세요')
@@ -56,6 +60,7 @@ export default {
         method: 'post',
         url: `${API_URL}/api/v1/movies/${this.$route.params.id}/reviews/`,
         data: {
+          rate: rate,
           content: content,
         },
         headers: {
