@@ -1,19 +1,26 @@
 <template>
   <div>
     <nav-bar></nav-bar>
-    <h1>Detail</h1>
-    <p>영화 번호 : {{ movie?.id }}</p> 
-    <!-- <p>장르 : {{ movie?.genre }}</p> -->
-    <p>제목 : {{ movie?.title }}</p>
-    <p>개봉일: {{ movie?.release_date }}</p>
-    <p>내용 : {{ movie?.overview }}</p>
-    <p>포스터 : {{ movie?.poster_path }}</p>
+    <div>
+      <h1>Detail</h1>
+      <p>영화 번호 : {{ movie?.id }}</p> 
+      <!-- <p>장르 : {{ movie?.genre }}</p> -->
+      <p>제목 : {{ movie?.title }}</p>
+      <p>개봉일: {{ movie?.release_date }}</p>
+      <p>내용 : {{ movie?.overview }}</p>
+      <p>포스터 : {{ movie?.poster_path }}</p>
+    </div>
+    <!-- 한줄리뷰 리스트 -->
+    <div class="one-line-review-list">
+    <OneLineReviewView/>
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/templates/NavBar'
 import axios from 'axios'
+import OneLineReviewView from '@/views/OneLineReviewView'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -21,6 +28,7 @@ export default {
   name: 'MovieDetailView',
   components: {
     NavBar,
+    OneLineReviewView
   },
   data() {
     return {
