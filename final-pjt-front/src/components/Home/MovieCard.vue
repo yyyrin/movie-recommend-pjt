@@ -1,7 +1,15 @@
 <template>
   <div>
     <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
-      <!-- card -->
+      <div class="col">
+        <div class="card h-100">
+          <img :src="movieURL" class="card-img-top" alt="...">
+          <!-- 마우스 오버시 title 보이게..
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+          </div> -->
+        </div>
+      </div>
     </router-link>
   </div>
 </template>
@@ -14,6 +22,12 @@ export default {
   props: {
     movie: Object,
   },
+  computed: {
+    movieURL() {
+      const posterPath = this.movie.poster_path
+      return `https://image.tmdb.org/t/p/w500/${posterPath}`
+    }
+  }
 }
 </script>
 

@@ -26,7 +26,12 @@ export default {
   },
   methods: {
     getMovies() {
-      this.$store.dispatch('getMovies')
+      if (this.isLogIn) {
+        this.$store.dispatch('getMovies')
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'login' })
+      }
     }
   }
 }
