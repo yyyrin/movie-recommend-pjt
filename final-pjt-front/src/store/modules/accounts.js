@@ -15,10 +15,9 @@ export default new Vuex.Store({
   ],
   state: {
     token: null,
-    movies: [],
   },
   getters: {
-    isLogIn(state) {
+    isLogin(state) {
       return state.token ? true : false
     }
   },
@@ -27,10 +26,7 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({ name: 'home' })
-    },
-    GET_MOVIES(state, movies) {
-      state.movies = movies
-    },
+    }
   },
   actions: {
     signUp(context, payload) {
@@ -61,37 +57,8 @@ export default new Vuex.Store({
         // console.log(res)
         context.commit('SAVE_TOKEN', res.data.key)
       })
-    },
-    getMovies(context) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/movies/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        }
-      })
-      .then((res) => {
-        context.commit('GET_MOVIES', res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
     }
   },
   modules: {
   }
 })
-
-
-// import Vue from 'vue'
-// import Vuex from 'vuex'
-
-// import accounts from '@/store/modules/accounts'
-
-// Vue.use(Vuex)
-
-// export default new Vuex.Store({
-//   modules: {
-//     accounts,
-//   }
-// })

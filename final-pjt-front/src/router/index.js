@@ -36,7 +36,7 @@ const routes = [
 
   // 영화 detail
   {
-    path: 'detail/:id',
+    path: '/detail/:id',
     name: 'movie_detail',
     component: MovieDetailView,
   },
