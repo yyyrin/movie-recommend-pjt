@@ -19,9 +19,8 @@ export default new Vuex.Store({
     reviews: [],
     communities: [
       {
-        id: 1,
-        thumbnail: '짱구 이미지',
         name: '짱구팬카페',
+        thumbnail: '짱구 이미지',
       }
     ],
   },
