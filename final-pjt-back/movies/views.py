@@ -16,7 +16,6 @@ from django.conf import settings
 def movie_list(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
-        print(movies)
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
 
@@ -44,7 +43,6 @@ def review_create(request, movie_pk):
     serializer = ReviewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user, movie=movie)
-        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
@@ -88,7 +86,6 @@ def search(request, query):
 #@permission_classes([IsAuthenticated])
 def profile(request, query):
     if Actor.objects.filter(name=query):
-        print(Actor.objects.filter(name=query)[0])
         serializer = ActorProfileSerializer(Actor.objects.filter(name=query)[0])
         return Response(serializer.data)
     elif Director.objects.filter(name=query):
