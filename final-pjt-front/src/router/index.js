@@ -7,6 +7,7 @@ import HomeView from '@/views/HomeView'
 import MovieDetailView from '@/views/MovieDetailView'
 import GenreView from '@/views/GenreView'
 import CommunityView from '@/views/CommunityView'
+import CommunityArticleView from '@/views/CommunityArticleView'
 import SearchView from '@/views/SearchView'
 import ProfileView from '@/views/ProfileView'
 
@@ -53,6 +54,11 @@ const routes = [
     path: '/community',
     name: 'community',
     component: CommunityView,
+  },
+  {
+    path: '/community/:name',
+    name: 'community_article',
+    component: CommunityArticleView,
   },
 
   // 검색
