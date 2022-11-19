@@ -66,9 +66,8 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((res) => {
-        console.log(res)
-        this.$router.push({ name: 'community' })
+      .then(() => {
+        this.$router.go(this.$router.currentRoute)
       })
       .catch((err) => {
         console.log(err)
