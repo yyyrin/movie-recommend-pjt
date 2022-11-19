@@ -16,14 +16,12 @@ export default new Vuex.Store({
   state: {
     token: null,
     movies: [],
-    reviews: [
+    reviews: [],
+    communities: [
       {
-        // rate: "5",
-        content: "한줄리뷰 content 예시", 
-      },
-      {
-        // rate: 6,
-        content: "한줄리뷰 content 예시2",
+        id: 1,
+        thumbnail: '짱구 이미지',
+        name: '짱구팬카페',
       }
     ],
   },
@@ -44,6 +42,9 @@ export default new Vuex.Store({
     },
     GET_REVIEWS(state, reviews) {
       state.reviews = reviews
+    },
+    GET_COMMUNITIES(state, communities) {
+      state.communities = communities
     }
   },
   actions: {
@@ -106,6 +107,21 @@ export default new Vuex.Store({
         // console.log(res)
         // console.log(res.data)
         context.commit('GET_REVIEWS', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    getCommunities(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/community/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then((res) => {
+        context.commit('GET_COMMUNITIES', res.data)
       })
       .catch((err) => {
         console.log(err)
