@@ -35,7 +35,11 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     rate = models.IntegerField()
+    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_review')
 
 class Preference_movies(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    movie = models.ManyToManyField(Movie)
+    user_id = models.IntegerField()
+    movie1 = models.IntegerField()
+    movie2 = models.IntegerField()
+    movie3 = models.IntegerField()
+    movie4 = models.IntegerField()
