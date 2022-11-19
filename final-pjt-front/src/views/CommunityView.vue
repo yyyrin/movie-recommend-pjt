@@ -5,7 +5,7 @@
     <CommunityCards/>
   </div>
 </template>
-
+                 
 <script>
 import NavBar from '@/components/templates/NavBar'
 import CommunityCards from '@/components/Community/CommunityCards'
