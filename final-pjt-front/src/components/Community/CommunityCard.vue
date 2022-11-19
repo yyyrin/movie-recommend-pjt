@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>CommunityCard</h1>  
     <p>{{ community.name }}</p>
     <p>{{ community.thumbnail }}</p>
   </div>
