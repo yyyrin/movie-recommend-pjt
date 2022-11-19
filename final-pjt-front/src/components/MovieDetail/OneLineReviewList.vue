@@ -1,9 +1,10 @@
 <template>
   <div class="one-line-reveiw-list">
+    {{ reviews }}
     <OneLineReviewItem
-      v-for="(review, index) in reviews"
+      v-for="review in reviews"
       :review="review"
-      :key="index"
+      :key="review.id"
     />
     <CreateOneLineReview/>
   </div>
@@ -19,9 +20,16 @@ export default {
     OneLineReviewItem,
     CreateOneLineReview,
   },
+  props: {
+    movie_id: Number
+  },
   computed: {
     reviews() {
-      return this.$store.state.reviews
+      // return this.$store.state.reviews
+      // 영화 id와 일치하는 리뷰만 필터링 하는 방법 연구 중
+      return this.$store.state.reviews.filter((review) => {
+        return review.movie === this.movie_id;
+      })
     }
   }
 }

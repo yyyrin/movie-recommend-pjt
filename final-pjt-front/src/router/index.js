@@ -8,6 +8,7 @@ import MovieDetailView from '@/views/MovieDetailView'
 import GenreView from '@/views/GenreView'
 import CommunityView from '@/views/CommunityView'
 import CommunityArticleView from '@/views/CommunityArticleView'
+import CommunityArticleDetail from '@/views/CommunityArticleDetail'
 import SearchView from '@/views/SearchView'
 import ProfileView from '@/views/ProfileView'
 
@@ -59,6 +60,11 @@ const routes = [
     path: '/community/:name',
     name: 'community_article',
     component: CommunityArticleView,
+  },
+  {
+    path: '/community/:name/article/:id',
+    name: 'community_article_detail',
+    component: CommunityArticleDetail,
   },
 
   // 검색

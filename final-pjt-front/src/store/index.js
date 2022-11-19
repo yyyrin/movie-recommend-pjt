@@ -18,11 +18,25 @@ export default new Vuex.Store({
     movies: [],
     reviews: [],
     communities: [],
+    articles: [
+      {
+        id: 1,
+        title: '대충 짱구 찬양한다는 제목',
+        content: '짱구 존잼 이걸 왜 안 봐?',
+        community_id: 1,
+      },
+      {
+        id: 2,
+        title: '훈이 최고',
+        content: '훈이 민초머리 아님',
+        community_id: 2,
+      },
+    ],
   },
   getters: {
     isLogIn(state) {
       return state.token ? true : false
-    }
+    },
   },
   mutations: {
     // 회원가입 && 로그인
@@ -120,7 +134,7 @@ export default new Vuex.Store({
       .catch((err) => {
         console.log(err)
       })
-    }
+    },
   },
   modules: {
   }
