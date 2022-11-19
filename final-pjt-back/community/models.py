@@ -14,7 +14,7 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     imagepath = models.TextField(null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    #like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_article')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_article')
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
 
 class Comment(models.Model):
