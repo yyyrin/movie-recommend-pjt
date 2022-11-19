@@ -68,8 +68,8 @@ export default {
         }
       })
       .then(() => {
-        // console.log(res)
-        this.$router.push({ name: 'movie_detail' })
+        // 현재 경로에서 새로고침할 때 아래 코드 사용!
+        this.$router.go(this.$router.currentRoute)
       })
       .catch((err) => {
         console.log(err)

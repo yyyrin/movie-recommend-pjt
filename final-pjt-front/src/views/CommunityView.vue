@@ -19,6 +19,9 @@ export default {
     CreateCommunity,
     CommunityCards,
   },
+  created() {
+    this.getCommunities()
+  },
   methods: {
     getCommunities() {
       this.$store.dispatch('getCommunities')

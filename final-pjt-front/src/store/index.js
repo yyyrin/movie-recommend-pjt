@@ -17,12 +17,7 @@ export default new Vuex.Store({
     token: null,
     movies: [],
     reviews: [],
-    communities: [
-      {
-        name: '짱구팬카페',
-        thumbnail: '짱구 이미지',
-      }
-    ],
+    communities: [],
   },
   getters: {
     isLogIn(state) {
