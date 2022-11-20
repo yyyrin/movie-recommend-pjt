@@ -56,11 +56,11 @@ def article_detail(request, community_pk, article_pk):
         serializer = ArticleSerializer(article)
         return Response(serializer.data)
 
-    elif request.method == 'DELETE' and (article.user == request.user or communtiy.user == article.user):
+    elif request.method == 'DELETE' and (article.user == request.user or communtiy.user == request.user):
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    elif request.method == 'PUT' and (article.user == request.user or communtiy.user == article.user):
+    elif request.method == 'PUT' and (article.user == request.user or communtiy.user == request.user):
         serializer = ArticleSerializer(article, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
@@ -110,11 +110,11 @@ def comment_detail(request, community_pk, article_pk, comment_pk):
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
 
-    elif request.method == 'DELETE' and (comment.user == request.user or communtiy.user == comment.user):
+    elif request.method == 'DELETE' and (comment.user == request.user or communtiy.user == request.user):
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    elif request.method == 'PUT' and (comment.user == request.user or communtiy.user == comment.user):
+    elif request.method == 'PUT' and (comment.user == request.user or communtiy.user == request.user):
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()

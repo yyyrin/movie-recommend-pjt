@@ -8,7 +8,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .serializers import MovieListSerializer, ReviewSerializer, MovieDetailSerializer, ActorProfileSerializer, DirectorProfileSerializer
 from .models import Movie, Review, Genre, Actor, Director, Preference_movies
-from django.conf import settings
+from django.contrib.auth import get_user_model
 
 
 @api_view(['GET'])
@@ -140,3 +140,69 @@ def preference(request, query):
     Preference_movies.objects.create(user_id=request.user.pk, movie1=arr[0],movie2=arr[1],movie3=arr[2],movie4=arr[3],)
 
     return Response({'reseult':1}, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+#@permission_classes([IsAuthenticated])
+def recommand(request):
+    if request.method == 'GET':
+        movies = get_list_or_404(Movie)
+        reviews = get_list_or_404(Review)
+        users = get_list_or_404(get_user_model())
+        preferences = get_list_or_404(Preference_movies)
+        movie_id_arr =[]
+        user_id_arr =  []
+        for movie in movies:
+            movie_id_arr.append(movie.pk)
+        for user in users:
+            user_id_arr.append(user.pk)
+        N = len(users)
+        M = len(movies)
+        #선호 영화에서 점수 반영
+        relation_table = [[0] *M for _ in range(N)]
+        for preference in preferences:
+            n = user_id_arr.index(preference.user_id)
+            m = movie_id_arr.index(preference.movie1)
+            relation_table[n][m] = 1
+            m = movie_id_arr.index(preference.movie2)
+            relation_table[n][m] = 1
+            m = movie_id_arr.index(preference.movie3)
+            relation_table[n][m] = 1
+            m = movie_id_arr.index(preference.movie4)
+            relation_table[n][m] = 1
+        #리뷰에서 점수 반영
+        for review in reviews:
+            n = user_id_arr.index(review.user.pk)
+            m = movie_id_arr.index(review.movie.pk)
+            relation_table[n][m] = review.rate - review.movie.vote_average
+        #내적ㄱㄱ
+        origin = user_id_arr.index(request.user.pk)
+        ratio_table = [0]*N
+        for n in range(N):
+            temp = 0
+            vec1 = 0
+            vec2 = 0
+            for m in range(M):
+                temp += relation_table[n][m]*relation_table[origin][m]
+                if relation_table[origin][m]:
+                    vec1 += relation_table[n][m]**2
+                    vec2 += relation_table[origin][m]**2
+            ratio_table[n] = (temp/((vec1**0.5)*(vec2**0.5)))/2 +0.5
+        #예상점수 계산
+        predict = [0] * M
+        for m in range(M):
+            if not relation_table[origin][m]:
+                weight_sum = 0
+                weight_rating = 0
+                for n in range(N):
+                    if relation_table[n][m]:
+                        weight_rating += relation_table[n][m]*ratio_table[n]
+                        weight_sum += ratio_table[n]
+                if weight_sum:
+                    predict[m] = weight_rating/weight_sum
+        print(relation_table[0])
+        print(relation_table[1])
+        print(ratio_table)
+        print(predict)
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
