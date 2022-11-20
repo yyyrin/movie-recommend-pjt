@@ -2,16 +2,19 @@
   <div id="ProfileView">
     <nav-bar></nav-bar>
     <h1>MY PROFILE</h1>
+    <ProfileInto/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/templates/NavBar'
+import ProfileInto from '@/components/Profile/ProfileInto'
 
 export default {
   name: 'ProfileView',
   components: {
-    NavBar
+    NavBar,
+    ProfileInto,
   },
 }
 </script>
