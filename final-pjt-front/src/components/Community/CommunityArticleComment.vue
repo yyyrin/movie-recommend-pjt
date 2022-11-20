@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h1>CommunityArticleComment</h1>
-    <p>댓글 내용: {{ comment.context }}</p>
-    <p>작성자 id: {{ comment.user_id }}</p>
+    <p>댓글 내용: {{ comment.content }}</p>
+    <p>작성자 id: {{ comment.user }}</p>
+    <p>comment id: {{ comment.id }}</p>
+    <p>article id: {{ comment.article }}</p>
+    <hr>
   </div>
 </template>
 

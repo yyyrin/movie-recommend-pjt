@@ -19,11 +19,7 @@ export default new Vuex.Store({
     reviews: [],
     communities: [],
     articles: [],
-    comments: [
-      {
-        content: '짱구 좋아! 댓글'
-      },
-    ],
+    comments: [],
   },
   getters: {
     isLogIn(state) {
@@ -149,17 +145,18 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    // 여기 막힘!!! 
     getComments(context, payload) {
-      // console.log(community_id)
+      // console.log(payload[0])
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/community/${payload[0]}/article/${payload[1]}/comments/`,
+        url: `${API_URL}/api/v1/community/${payload[0]}/article/${payload[1]}/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         context.commit('GET_COMMENTS', res.data)
       })
       .catch((err) => {
