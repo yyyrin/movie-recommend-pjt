@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-bar></nav-bar>
-    <h1>CommunityArticleCreateView</h1>
+    <h1>CreateCommunityArticleView</h1>
     <form @submit.prevent="createArticle">
       <label for="title">제목 : </label>
       <input type="text" id="title" v-model.trim="title"><br>
@@ -21,9 +21,12 @@ import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'CommunityArticleCreateView',
+  name: 'CreateCommunityArticleView',
   components: {
     NavBar,
+  },
+  props: {
+    community_id: Number,
   },
   data() {
     return {

@@ -3,7 +3,7 @@
     <nav-bar></nav-bar>
     <p>이름: {{ community?.name }}</p>
     <p>썸네일 넣을 자리: {{ community?.thumbnail }}</p>
-    <router-link :to="{ name: 'community_article_create' }">
+    <router-link :to="{ name: 'create_community_article' }">
       [CREATE]
     </router-link>
     <ul class="list-group list-group-flush">
