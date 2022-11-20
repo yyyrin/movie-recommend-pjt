@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     getReviews() {
-      this.$store.dispatch('getReviews')  // this.movieId
+      this.$store.dispatch('getReviews')
     }
   }
 }
