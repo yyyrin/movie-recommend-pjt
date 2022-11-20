@@ -18,20 +18,7 @@ export default new Vuex.Store({
     movies: [],
     reviews: [],
     communities: [],
-    articles: [
-      {
-        id: 1,
-        title: '대충 짱구 찬양한다는 제목',
-        content: '짱구 존잼 이걸 왜 안 봐?',
-        community_id: 1,
-      },
-      {
-        id: 2,
-        title: '훈이 최고',
-        content: '훈이 민초머리 아님',
-        community_id: 2,
-      },
-    ],
+    articles: [],
   },
   getters: {
     isLogIn(state) {
@@ -53,7 +40,10 @@ export default new Vuex.Store({
     },
     GET_COMMUNITIES(state, communities) {
       state.communities = communities
-    }
+    },
+    GET_ARTICLES(state, articles) {
+      state.articles = articles
+    },
   },
   actions: {
     signUp(context, payload) {
@@ -135,6 +125,23 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    getArticles(context, community_id) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/community/${community_id}/`,
+        // data: { community_id: community_id },
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then((res) => {
+        // console.log(res.data)
+        context.commit('GET_ARTICLES', res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
   },
   modules: {
   }
