@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="row row-cols-1 row-cols-md-3 g-5 center p-5">
+  <div id="movie-cards">
+    <div class="row row-cols-1 row-cols-md-5 g-3 center p-5">
       <MovieCard
         v-for="movie in movies"
         :key="movie.id"
@@ -27,5 +27,9 @@ export default {
 </script>
 
 <style>
-
+#movie-cards {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>

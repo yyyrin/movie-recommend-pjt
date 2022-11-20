@@ -1,19 +1,22 @@
 <template>
-  <div>
+  <div id="home">
     <nav-bar></nav-bar>
+    <MovieSlide/>
     <MovieCards/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/templates/NavBar'
+import MovieSlide from '@/components/Home/MovieSlide'
 import MovieCards from '@/components/Home/MovieCards'
 
 export default {
   name: 'HomeView',
   components: {
     NavBar,
-    MovieCards
+    MovieSlide,
+    MovieCards,
   },
   computed: {
     isLogIn() {
@@ -37,5 +40,4 @@ export default {
 </script>
 
 <style>
-
 </style>
