@@ -29,8 +29,6 @@ export default {
   },
   methods: {
     getComments() {
-      // const ids = {community_id: this.community_id, article_id: this.article_id}
-      // console.log(ids)
       const community_id = this.$route.params.community_id
       const article_id = this.$route.params.article_id
       const payload = [Number(community_id), Number(article_id)]
