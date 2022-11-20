@@ -1,8 +1,8 @@
 <template>
   <div class="community-article-list">
     <CommunityArticleItem
-        v-for="(article, index) in articles"
-        :key="index"
+        v-for="article in articles"
+        :key="article.id"
         :article="article"
         :community_id="community_id"
       />
@@ -24,7 +24,7 @@ export default {
     articles() {
       // return this.$store.state.articles.article_set
       return this.$store.state.articles.article_set.filter((article) => {
-        return article.id === this.community_id;
+        return article.community.id === this.community_id;
       })
     }
   },
