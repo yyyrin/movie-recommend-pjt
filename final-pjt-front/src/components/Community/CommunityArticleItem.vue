@@ -1,6 +1,8 @@
 <template>
   <div>
-    <router-link :to="{ name: 'community_article_detail', params: { community_id: 'community_id', article_id: 'article.id' } }">
+    <router-link
+      :to="{ name: 'community_article_detail',
+      params: { community_id: community_id, article_id: article.id } }">
       <li class="list-group-item">
         <p>{{ article.title }}</p>
       </li>
