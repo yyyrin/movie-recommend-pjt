@@ -14,7 +14,10 @@
     </div>
     <!-- 한줄리뷰 리스트 -->
     <div class="one-line-review-list">
-    <OneLineReviewView/>
+    <OneLineReviewView
+      :movie_id = "movie?.id"
+    />
+    <!-- :movieId="movie?.id" -->
     </div>
   </div>
 </template>

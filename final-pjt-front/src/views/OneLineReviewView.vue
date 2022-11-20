@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h1>OneLineReviewView</h1>
     <hr>
-    <OneLineReviewList/>
+    <OneLineReviewList
+      :movie_id="movie_id"
+    />
+    <!-- <p>{{ movieId }}</p> -->
   </div>
 </template>
 
@@ -11,6 +13,9 @@ import OneLineReviewList from '@/components/MovieDetail/OneLineReviewList'
 
 export default {
   name: 'OneLineReviewView',
+  props: {
+    movie_id: Number,
+  },
   components: {
     OneLineReviewList
   },
@@ -19,7 +24,7 @@ export default {
   },
   methods: {
     getReviews() {
-      this.$store.dispatch('getReviews')
+      this.$store.dispatch('getReviews')  // this.movieId
     }
   }
 }
