@@ -41,6 +41,7 @@ export default {
         }
       })
       .then(() => {
+        // console.log(content)
         this.$router.go(this.$router.currentRoute)
       })
       .catch((err) => {

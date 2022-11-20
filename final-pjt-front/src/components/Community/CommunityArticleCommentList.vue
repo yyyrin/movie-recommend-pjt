@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>CommunityArticleCommentList</h1>
-    {{ comments }}
     <CommunityArticleComment
       v-for="comment in comments"
       :comment="comment"
@@ -23,10 +21,10 @@ export default {
   },
   computed: {
     comments() {
-      return this.$store.state.comments
-      // return this.$store.state.comments.filter((comment) => {
-      //   return comment.article_id === this.article_id;
-      // })
+      // console.log(this.$store.state.comments.comment_set)
+      return this.$store.state.comments.comment_set.filter((comment) => {
+        return comment.article === this.article_id;
+      })
     }
   }
 }
