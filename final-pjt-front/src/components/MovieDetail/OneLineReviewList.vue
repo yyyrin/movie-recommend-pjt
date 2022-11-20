@@ -1,6 +1,5 @@
 <template>
   <div class="one-line-reveiw-list">
-    {{ reviews }}
     <OneLineReviewItem
       v-for="review in reviews"
       :review="review"
@@ -25,10 +24,10 @@ export default {
   },
   computed: {
     reviews() {
-      // return this.$store.state.reviews
       // 영화 id와 일치하는 리뷰만 필터링 하는 방법 연구 중
+      // console.log(this.$store.state.reviews)
       return this.$store.state.reviews.filter((review) => {
-        return review.movie === this.movie_id;
+        return review.movie.id === this.movie_id;
       })
     }
   }
