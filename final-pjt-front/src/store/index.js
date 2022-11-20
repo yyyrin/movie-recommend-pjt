@@ -149,11 +149,11 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getComments(context, community_id, article_id) {
-      console.log(community_id)
+    getComments(context, payload) {
+      // console.log(community_id)
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/community/${community_id}/article/${article_id}/comments/`,
+        url: `${API_URL}/api/v1/community/${payload[0]}/article/${payload[1]}/comments/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }

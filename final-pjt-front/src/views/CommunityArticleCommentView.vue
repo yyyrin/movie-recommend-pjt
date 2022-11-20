@@ -36,7 +36,8 @@ export default {
       // console.log(ids)
       const community_id = this.community_id
       const article_id = this.article_id
-      this.$store.dispatch('getComments', community_id, article_id)
+      // console.log(community_id)
+      this.$store.dispatch('getComments', {community_id, article_id})
     }
   }
 }
