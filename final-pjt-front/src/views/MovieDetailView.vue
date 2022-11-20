@@ -17,7 +17,6 @@
     <OneLineReviewView
       :movie_id = "movie?.id"
     />
-    <!-- :movieId="movie?.id" -->
     </div>
   </div>
 </template>

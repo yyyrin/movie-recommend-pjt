@@ -6,12 +6,18 @@
     <p>제목: {{ article?.title }}</p>
     <p>내용: {{ article?.content }}</p>
     <p>이미지: {{ article?.imagepath }}</p>
+    <hr>
+    <CommunityArticleCommentView
+      :article_id="article?.id"
+      :community_id="article?.community.id"
+    />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/templates/NavBar'
 import axios from 'axios'
+import CommunityArticleCommentView from '@/views/CommunityArticleCommentView'
 
 const API_URL = 'http://127.0.0.1:8000' 
 
@@ -19,6 +25,7 @@ export default {
   name: 'CommunityArticleDetail',
   components: {
     NavBar,
+    CommunityArticleCommentView,
   },
   data() {
     return {
