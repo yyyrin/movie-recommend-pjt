@@ -16,6 +16,7 @@ import ProfileView from '@/views/ProfileView'
 Vue.use(VueRouter)
 
 const routes = [
+
   // Login
   {
     path: '/login',
@@ -30,7 +31,7 @@ const routes = [
     component: SignUpView
   },
 
-  // 홈 및 기초화면
+  // 홈
   {
     path: '/',
     name: 'home',
