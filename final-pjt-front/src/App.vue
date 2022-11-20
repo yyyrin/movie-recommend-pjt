@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <router-link :to="{ name: 'signup' }">Signup First~~</router-link> -->
     <router-view/>
   </div>
 </template>
