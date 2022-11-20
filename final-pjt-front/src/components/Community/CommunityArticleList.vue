@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>CommunityArticle</h1>
-    {{ id }}
     <CommunityArticleItem
         v-for="article in articles"
         :key="article.id"
