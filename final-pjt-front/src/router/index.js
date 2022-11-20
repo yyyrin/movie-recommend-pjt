@@ -8,6 +8,7 @@ import MovieDetailView from '@/views/MovieDetailView'
 import GenreView from '@/views/GenreView'
 import CommunityView from '@/views/CommunityView'
 import CommunityArticleView from '@/views/CommunityArticleView'
+import CommunityArticleCreateView from '@/views/CommunityArticleCreateView'
 import CommunityArticleDetail from '@/views/CommunityArticleDetail'
 import SearchView from '@/views/SearchView'
 import ProfileView from '@/views/ProfileView'
@@ -57,12 +58,17 @@ const routes = [
     component: CommunityView,
   },
   {
-    path: '/community/:name',
+    path: '/community/:community_id',
     name: 'community_article',
     component: CommunityArticleView,
   },
   {
-    path: '/community/:name/article/:id',
+    path: '/community/:community_id/article/create',
+    name: 'community_article_create',
+    component: CommunityArticleCreateView,
+  },
+  {
+    path: '/community/:community_id/article/:article_id',
     name: 'community_article_detail',
     component: CommunityArticleDetail,
   },

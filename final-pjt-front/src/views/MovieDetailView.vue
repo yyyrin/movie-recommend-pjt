@@ -65,7 +65,7 @@ export default {
       if (!posterPath && typeof posterPath === 'object') {
         return '@/assets/basic_profile.png'
       } else {
-        return `https://image.tmdb.org/t/p/w500/${posterPath}`
+        return `https://image.tmdb.org/t/p/w500/${posterPath}`  // 여기서 get 오류가 나는데..?
       }
     }
   }
