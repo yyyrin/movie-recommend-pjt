@@ -17,13 +17,14 @@ export default {
     OneLineReviewItem,
   },
   props: {
-    movie_id: Number
+    movie_id: Number,
+    reviews: Array
   },
   computed: {
-    reviews() {
+    getreviews() {
       // 영화 id와 일치하는 리뷰만 필터링 하는 방법 연구 중
-      // console.log(this.$store.state.reviews)
-      return this.$store.state.reviews.filter((review) => {
+      // console.log(this.reviews)
+      return this.reviews.filter((review) => {
         return review.movie.id === this.movie_id;
       })
     }
