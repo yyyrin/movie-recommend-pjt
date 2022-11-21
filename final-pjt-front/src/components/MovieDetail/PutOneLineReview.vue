@@ -1,12 +1,12 @@
-<template id="fetch-one-line-review">
+<template id="put-one-line-review">
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#put-one-line-review-modal">
       수정
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="put-one-line-review-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -77,17 +77,19 @@ export default {
     },
     getOriginalReview() {
       this.rate = this.review.rate
+      // console.log(this.rate)
       this.content = this.review.content
     }
   },
   created() {
     this.getOriginalReview()
+    // console.log('created!')
   }
 }
 </script>
 
 <style>
-#create-one-line-review {
+#put-one-line-review {
   color: black;
 }
 </style>

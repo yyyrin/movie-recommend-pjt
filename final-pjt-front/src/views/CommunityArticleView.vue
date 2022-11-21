@@ -6,6 +6,12 @@
     <router-link :to="{ name: 'create_community_article' }">
       [CREATE]
     </router-link>
+
+    <!-- community 수정 및 삭제 modal -->
+    <EditCommunity
+      :community="community"
+    />
+
     <ul class="list-group list-group-flush">
       <CommunityArticleList
         :community_id="community?.id"
@@ -16,6 +22,7 @@
 
 <script>
 import NavBar from '@/components/templates/NavBar'
+import EditCommunity from '@/components/Community/EditCommunity'
 import CommunityArticleList from '@/components/Community/CommunityArticleList'
 import axios from 'axios'
 
@@ -25,6 +32,7 @@ export default {
   name: 'CommunityArticleView',
   components: {
     NavBar,
+    EditCommunity,
     CommunityArticleList,
   },
   data() {
