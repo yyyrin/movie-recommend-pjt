@@ -1,4 +1,4 @@
-<template>
+<template id="create-one-line-review">
   <div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -80,5 +80,7 @@ export default {
 </script>
 
 <style>
-
+#create-one-line-review {
+  color: black;
+}
 </style>
