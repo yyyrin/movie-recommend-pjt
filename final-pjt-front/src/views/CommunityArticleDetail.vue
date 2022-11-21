@@ -6,16 +6,23 @@
     <p>제목: {{ article?.title }}</p>
     <p>작성시간: {{ articleCreatedAt }}</p>
     <p>수정시간: {{ articleUpdatedAt }}</p>
+
+    <button class="btn btn-outline-danger waves-effect mb-4" @click="deleteArticle">삭제</button>
+
     <p>내용: {{ article?.content }}</p>
     <p>이미지: {{ article?.imagepath }}</p>
-    <hr>
-    <!-- {{ article }} -->
+
+    <!-- 좋아요 button -->
     <div style="float: right; margin-top:15px;">
       <button class=" btn btn-outline-danger waves-effect mb-4" @click="likeArticle">
         <!-- {{ count }} 이렇게 하면 값이 안 나옴.. 왜지 -->
         좋아요 ♥ {{ this.article?.like_users.length }}
       </button>
     </div>
+    <br><br><br>
+    <hr>
+    <hr>
+
     <CommunityArticleCommentView
       :article_id="article?.id"
       :community_id="article?.community.id"
@@ -56,6 +63,24 @@ export default {
         this.article = res.data
       })
       .catch(err => console.log(err))
+    },
+    deleteArticle() { 
+      // this.$store.commit('DELETE_ARTICLE', this.article?.id)
+      // this.$router.push({ name: 'community_article' })
+      axios({
+        method: 'delete',
+        url: `${API_URL}/api/v1/community/${this.$route.params.community_id}/article/${this.$route.params.article_id}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then(() => {
+        alert('삭제가 완료되었습니다.')
+        this.$router.push({ name: 'community_article' })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     likeArticle() {
       axios({

@@ -75,8 +75,8 @@ export default {
 </script>
 
 <style>
- #movie-detail-view {
+ /* #movie-detail-view {
   background-color: black;
   color: white;
- }
+ } */
 </style>
