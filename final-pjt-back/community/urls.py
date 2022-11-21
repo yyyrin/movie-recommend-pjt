@@ -11,5 +11,4 @@ urlpatterns = [
     path('community/<int:community_pk>/article/<int:article_pk>/comments/', views.comment_create),
     path('community/<int:community_pk>/article/<int:article_pk>/comments/<int:comment_pk>/', views.comment_detail),
     path('community/<int:community_pk>/article/', views.article_create),
-    
 ]
