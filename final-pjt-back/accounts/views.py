@@ -39,9 +39,10 @@ def img_change(request, user_pk):
         serializer = ImgSerializer(user)
         return Response(serializer.data)
     elif request.method == 'DELETE' and request.user == user:
-        user.img_path = ''
-        serializer = ImgSerializer(user)
-        return Response(serializer.data)
+        serializer = ImgSerializer(user, data={'img_path':''})
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PUT' and request.user == user:
         serializer = ImgSerializer(user, data=request.data)
         if serializer.is_valid(raise_exception=True):
