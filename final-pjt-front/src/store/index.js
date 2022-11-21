@@ -114,15 +114,15 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    likeReview(context, payload) {
-      axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/movies/${payload[0]}/reviews/${payload[1]}/like/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        }
-      })
-    },
+    // likeReview(context, payload) {
+    //   axios({
+    //     method: 'post',
+    //     url: `${API_URL}/api/v1/movies/${payload[0]}/reviews/${payload[1]}/like/`,
+    //     headers: {
+    //       Authorization: `Token ${context.state.token}`
+    //     }
+    //   })
+    // },
     getCommunities(context) {
       axios({
         method: 'get',
