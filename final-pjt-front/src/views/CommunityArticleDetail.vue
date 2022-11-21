@@ -7,6 +7,13 @@
     <p>내용: {{ article?.content }}</p>
     <p>이미지: {{ article?.imagepath }}</p>
     <hr>
+    <!-- {{ article }} -->
+    <div style="float: right; margin-top:15px;">
+      <button class=" btn btn-outline-danger waves-effect mb-4" @click="likeArticle">
+        <!-- {{ count }} 이렇게 하면 값이 안 나옴.. 왜지 -->
+        좋아요 ♥ {{ this.article?.like_users.length }}
+      </button>
+    </div>
     <CommunityArticleCommentView
       :article_id="article?.id"
       :community_id="article?.community.id"
@@ -29,7 +36,8 @@ export default {
   },
   data() {
     return {
-      article: null
+      article: null,
+      count: this.article?.like_users.length,
     }
   },
   created() {
@@ -46,6 +54,23 @@ export default {
         this.article = res.data
       })
       .catch(err => console.log(err))
+    },
+    likeArticle() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/community/${this.$route.params.community_id}/article/${this.$route.params.article_id}/like/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then((res) => {
+        if (res.data === 1) {
+          this.count += 1
+        } else if (res.data === 0) {
+          this.count -= 1
+        }
+        this.$router.go(this.$router.currentRoute)
+      })
     }
   }
 }
