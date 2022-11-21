@@ -3,6 +3,7 @@
     <hr>
     <OneLineReviewList
       :movie_id="movie_id"
+      :reviews="reviews"
     />
     <CreateOneLineReview/>
   </div>
@@ -11,11 +12,19 @@
 <script>
 import OneLineReviewList from '@/components/MovieDetail/OneLineReviewList'
 import CreateOneLineReview from '@/components/MovieDetail/CreateOneLineReview'
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'OneLineReviewView',
   props: {
     movie_id: Number,
+  },
+  data() {
+    return {
+      reviews: null,
+    }
   },
   components: {
     OneLineReviewList,
@@ -26,7 +35,15 @@ export default {
   },
   methods: {
     getReviews() {
-      this.$store.dispatch('getReviews')
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/reviews/`,
+      })
+      .then((res) => {
+        // console.log(res)
+        this.reviews = res.data
+      })
+      .catch(err => console.log(err))
     }
   }
 }

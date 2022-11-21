@@ -16,7 +16,7 @@ export default new Vuex.Store({
   state: {
     token: null,
     movies: [],
-    reviews: [],
+    // reviews: [],
     communities: [],
     articles: [],
     comments: [],
@@ -36,9 +36,9 @@ export default new Vuex.Store({
       state.movies = movies
       // console.log(state.movies)
     },
-    GET_REVIEWS(state, reviews) {
-      state.reviews = reviews
-    },
+    // GET_REVIEWS(state, reviews) {
+    //   state.reviews = reviews
+    // },
     GET_COMMUNITIES(state, communities) {
       state.communities = communities
     },
@@ -97,23 +97,23 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getReviews(context) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/api/v1/reviews/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        }
-      })
-      .then((res) => {
-        // console.log(res)
-        // console.log(res.data)
-        context.commit('GET_REVIEWS', res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    },
+    // getReviews(context) {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/api/v1/reviews/`,
+    //     headers: {
+    //       Authorization: `Token ${context.state.token}`
+    //     }
+    //   })
+    //   .then((res) => {
+    //     // console.log(res)
+    //     // console.log(res.data)
+    //     context.commit('GET_REVIEWS', res.data)
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
+    // },
     // likeReview(context, payload) {
     //   axios({
     //     method: 'post',
