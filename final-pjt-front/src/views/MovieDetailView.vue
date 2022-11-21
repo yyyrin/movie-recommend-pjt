@@ -4,8 +4,11 @@
     <div>
       <h1>Detail</h1>
       <p>영화 번호 : {{ movie?.id }}</p> 
-      <!-- <p>장르 : {{ movie?.genre }}</p> -->
+      <p>장르 번호 : {{ movie?.genres }}</p>
+      <p>배우 번호 : {{ movie?.actors }}</p>
+      <p>감독 번호 : {{ movie?.director }}</p>
       <p>제목 : {{ movie?.title }}</p>
+      <p>런타임 : {{ movie?.runtime }}</p>
       <p>개봉일: {{ movie?.release_date }}</p>
       <p>내용 : {{ movie?.overview }}</p>
       <div>
