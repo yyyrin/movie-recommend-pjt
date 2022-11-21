@@ -1,8 +1,8 @@
-<template id="create-one-line-review">
+<template id="fetch-one-line-review">
   <div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      리뷰 등록
+      수정
     </button>
 
     <!-- Modal -->
@@ -10,7 +10,6 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">한줄리뷰</h1> -->
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -27,7 +26,7 @@
           </div>
           <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <button type="button" class="btn btn-primary" @click="createReview">등록</button>
+            <button type="button" class="btn btn-primary" @click="fetchReview">등록</button>
           </div>
         </div>
       </div>
@@ -37,11 +36,13 @@
 
 <script>
 import axios from 'axios'
-
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'CreateOneLineReview',
+  name: 'PutOneLineReview',
+  props: {
+    review: Object,
+  },
   data() {
     return {
       rate: null,
@@ -49,7 +50,7 @@ export default {
     }
   },
   methods: {
-    createReview() {
+    fetchReview() {
       const rate = this.rate
       const content = this.content
       if (!content) {
@@ -57,8 +58,8 @@ export default {
         return
       }
       axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/movies/${this.$route.params.id}/reviews/`,
+        method: 'put',
+        url: `${API_URL}/api/v1/movies/${this.$route.params.id}/reviews/${this.review.id}/`,
         data: {
           rate: rate,
           content: content,
@@ -68,13 +69,19 @@ export default {
         }
       })
       .then(() => {
-        // 현재 경로에서 새로고침할 때 아래 코드 사용!
         this.$router.go(this.$router.currentRoute)
       })
       .catch((err) => {
         console.log(err)
       })
+    },
+    getOriginalReview() {
+      this.rate = this.review.rate
+      this.content = this.review.content
     }
+  },
+  created() {
+    this.getOriginalReview()
   }
 }
 </script>

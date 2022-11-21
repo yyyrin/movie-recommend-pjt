@@ -4,12 +4,13 @@
     <OneLineReviewList
       :movie_id="movie_id"
     />
-    <!-- <p>{{ movieId }}</p> -->
+    <CreateOneLineReview/>
   </div>
 </template>
 
 <script>
 import OneLineReviewList from '@/components/MovieDetail/OneLineReviewList'
+import CreateOneLineReview from '@/components/MovieDetail/CreateOneLineReview'
 
 export default {
   name: 'OneLineReviewView',
@@ -17,7 +18,8 @@ export default {
     movie_id: Number,
   },
   components: {
-    OneLineReviewList
+    OneLineReviewList,
+    CreateOneLineReview,
   },
   created() {
     this.getReviews()

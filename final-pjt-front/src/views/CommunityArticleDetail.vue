@@ -7,6 +7,7 @@
     <p>작성시간: {{ articleCreatedAt }}</p>
     <p>수정시간: {{ articleUpdatedAt }}</p>
 
+    <!-- 삭제 -->
     <button class="btn btn-outline-danger waves-effect mb-4" @click="deleteArticle">삭제</button>
 
     <p>내용: {{ article?.content }}</p>
@@ -14,9 +15,9 @@
 
     <!-- 좋아요 button -->
     <div style="float: right; margin-top:15px;">
-      <button class=" btn btn-outline-danger waves-effect mb-4" @click="likeArticle">
+      <button class=" btn btn-outline-danger waves-effect mb-4" :count= count @click="likeArticle">
         <!-- {{ count }} 이렇게 하면 값이 안 나옴.. 왜지 -->
-        좋아요 ♥ {{ this.article?.like_users.length }}
+        좋아요 ♥ {{ count }}
       </button>
     </div>
     <br><br><br>
@@ -46,7 +47,7 @@ export default {
   data() {
     return {
       article: null,
-      count: this.article?.like_users.length,
+      count: 0,
     }
   },
   created() {
@@ -61,6 +62,7 @@ export default {
       .then((res) => {
         // console.log(res)
         this.article = res.data
+        this.count = this.article?.like_users.length
       })
       .catch(err => console.log(err))
     },
@@ -91,12 +93,12 @@ export default {
         }
       })
       .then((res) => {
-        if (res.data === 1) {
+        if (res.data.result === 1) {
           this.count += 1
-        } else if (res.data === 0) {
+        } else if (res.data.result === 0) {
           this.count -= 1
         }
-        this.$router.go(this.$router.currentRoute)
+        // this.$router.go(this.$router.currentRoute)
       })
     }
   },

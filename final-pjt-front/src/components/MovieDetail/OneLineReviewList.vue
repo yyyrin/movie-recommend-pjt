@@ -5,19 +5,16 @@
       :review="review"
       :key="review.id"
     />
-    <CreateOneLineReview/>
   </div>
 </template>
 
 <script>
 import OneLineReviewItem from '@/components/MovieDetail/OneLineReviewItem'
-import CreateOneLineReview from '@/components/MovieDetail/CreateOneLineReview'
 
 export default {
   name: 'OneLineReviewList',
   components: {
     OneLineReviewItem,
-    CreateOneLineReview,
   },
   props: {
     movie_id: Number
