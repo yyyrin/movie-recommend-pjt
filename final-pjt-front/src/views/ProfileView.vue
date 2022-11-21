@@ -16,6 +16,24 @@ export default {
     NavBar,
     ProfileInto,
   },
+  computed: {
+    isLogIn() {
+      return this.$store.getters.isLogIn
+    }
+  },
+  created() {
+    this.getAccounts()
+  },
+  methods: {
+    getAccounts() {
+      if (this.isLogIn === true) {
+        this.$store.dispatch('getAccounts')
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'signup' })
+      }
+    }
+  }
 }
 </script>
 

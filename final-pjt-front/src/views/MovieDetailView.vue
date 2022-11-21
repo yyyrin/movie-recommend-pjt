@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="movie-detail-view">
     <nav-bar></nav-bar>
     <div>
       <h1>Detail</h1>
@@ -75,5 +75,8 @@ export default {
 </script>
 
 <style>
-
+ #movie-detail-view {
+  background-color: black;
+  color: white;
+ }
 </style>

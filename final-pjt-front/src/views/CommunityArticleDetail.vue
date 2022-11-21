@@ -4,6 +4,8 @@
     <h1>CommunityArticleDetail</h1>
     <p>글 번호: {{ article?.id }}</p>
     <p>제목: {{ article?.title }}</p>
+    <p>작성시간: {{ articleCreatedAt }}</p>
+    <p>수정시간: {{ articleUpdatedAt }}</p>
     <p>내용: {{ article?.content }}</p>
     <p>이미지: {{ article?.imagepath }}</p>
     <hr>
@@ -72,7 +74,17 @@ export default {
         this.$router.go(this.$router.currentRoute)
       })
     }
-  }
+  },
+  computed: {
+    articleCreatedAt() {
+      const createdAt = new Date(this.article?.created_at).toLocaleString()
+      return createdAt
+    },
+    articleUpdatedAt() {
+      const updatedAt = new Date(this.article?.updated_at).toLocaleString()
+      return updatedAt
+    }
+  },
 }
 </script>
 

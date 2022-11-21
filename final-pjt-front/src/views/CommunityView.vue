@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="community-view">
     <nav-bar></nav-bar>
     <h1>CommunityView</h1>
     <CreateCommunity/>
@@ -31,5 +31,8 @@ export default {
 </script>
 
 <style>
-
+#community-view {
+  background-color: black;
+  color: white;
+}
 </style>

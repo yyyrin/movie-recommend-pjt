@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="genre-view">
     <nav-bar></nav-bar>
     <h1>GenreView</h1>
   </div>
@@ -17,5 +17,8 @@ export default {
 </script>
 
 <style>
-
+ #genre-view {
+  background-color: black;
+  color: white;
+ }
 </style>
