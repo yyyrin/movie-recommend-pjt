@@ -40,4 +40,8 @@ export default {
 </script>
 
 <style>
+#home {
+  background-color: black;
+  color: white;
+}
 </style>
