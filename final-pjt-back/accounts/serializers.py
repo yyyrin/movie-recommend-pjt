@@ -15,8 +15,7 @@ class UserSerializer(RegisterSerializer):
 class ImgSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = '__all__'
-        read_only_fields = ('username', 'password')
+        fields = ('img_path',)
 
 class ProfileSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
@@ -30,3 +29,14 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = '__all__'
+
+
+class ReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('reported',)
+
+class StopSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('is_active',)

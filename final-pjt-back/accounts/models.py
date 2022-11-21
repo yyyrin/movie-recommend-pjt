@@ -6,6 +6,7 @@ from community.models import Article
 
 class User(AbstractUser):
     img_path = models.CharField(max_length=100, null=True)
+    reported = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='reporting')
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
