@@ -15,6 +15,7 @@ export default new Vuex.Store({
   ],
   state: {
     token: null,
+    username: null,
     movies: [],
     // reviews: [],
     communities: [],
@@ -28,8 +29,9 @@ export default new Vuex.Store({
   },
   mutations: {
     // 회원가입 && 로그인
-    SAVE_TOKEN(state, token) {
-      state.token = token
+    SAVE_TOKEN(state, data) {
+      state.username = data.username
+      state.token = data.token
       router.push({ name: 'home' })
     },
     GET_MOVIES(state, movies) {
@@ -77,9 +79,12 @@ export default new Vuex.Store({
       })
       .then((res) => {
         // console.log(res)
-        context.commit('SAVE_TOKEN', res.data.key)
+        const data = { token: res.data.key, username: payload.username }
+        context.commit('SAVE_TOKEN', data)
       })
-      .catch(err => console.log(err))
+      .catch(() => {
+        alert('일치하지 않는 회원 정보입니다.')
+      })
     },
     getMovies(context) {
       axios({
