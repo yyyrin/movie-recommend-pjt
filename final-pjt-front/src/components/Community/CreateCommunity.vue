@@ -55,23 +55,34 @@ export default {
         alert('썸네일을 넣어주세요')
         return
       }
-      axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/community/`,
-        data: {
-          name: name,
-          thumbnail: thumbnail,
-        },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
+      const badwords = this.$store.state.bad
+      let flag = 1 
+      badwords.forEach(word=>{
+        if (name.indexOf(`${word}`) > -1 ){
+          alert('바르고 고운말!')
+          flag = 0
+          return
         }
       })
-      .then(() => {
-        this.$router.go(this.$router.currentRoute)
-      })
-      .catch((err) => {
-        console.log(err)
-      }) 
+      if (flag === 1){
+        axios({
+          method: 'post',
+          url: `${API_URL}/api/v1/community/`,
+          data: {
+            name: name,
+            thumbnail: thumbnail,
+          },
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          }
+        })
+        .then(() => {
+          this.$router.go(this.$router.currentRoute)
+        })
+        .catch((err) => {
+          console.log(err)
+        }) 
+      }
     }
   }
 }
