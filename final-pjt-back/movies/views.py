@@ -117,20 +117,32 @@ def search(request, query):
                 for movie in temp:
                     movies.append(movie)
                 temp = []
-
+        movies = list(set(movies))
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
 
 
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
-def profile(request, query):
-    if Actor.objects.filter(name=query):
-        serializer = ActorProfileSerializer(Actor.objects.filter(name=query)[0])
-        return Response(serializer.data)
-    elif Director.objects.filter(name=query):
-        serializer = DirectorProfileSerializer(Director.objects.filter(name=query)[0])
-        return Response(serializer.data)
+def director_profile(request, query):
+    directors = get_list_or_404(Director)
+    result = []
+    for director in directors:
+        if query in director.name:
+            result.append(director)
+    serializer = ActorProfileSerializer(result, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+#@permission_classes([IsAuthenticated])
+def actor_profile(request, query):
+    actors = get_list_or_404(Actor)
+    result = []
+    for actor in actors:
+        if query in actor.name:
+            result.append(actor)
+    serializer = ActorProfileSerializer(result, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
