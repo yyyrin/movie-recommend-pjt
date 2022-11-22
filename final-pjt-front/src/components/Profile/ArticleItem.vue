@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'MyArticleItem',
+  name: 'ArticleItem',
   props: {
     article: Object,
   },

@@ -1,9 +1,9 @@
 <template>
-  <div class="my-article-list">
-    <h1>My Article List</h1>
+  <div class="article-list">
+    <h1>Article List</h1>
     <!-- <router-link :to="{ name: my_profile }"><h1>My ArticleList</h1></router-link> -->
     <ol class="list-group list-group-numbered">
-      <MyArticleItem
+      <ArticleItem
         v-for="article in articles"
         :key="article.id"
         :article="article"
@@ -13,19 +13,19 @@
 </template>
 
 <script>
-import MyArticleItem from '@/components/Profile/MyArticleItem'
+import ArticleItem from '@/components/Profile/ArticleItem'
 
 export default {
-  name: 'MyArticleList',
+  name: 'ArticleList',
   props: {
-    myInfo: Object,
+    userInfo: Object,
   },
   components: {
-    MyArticleItem,
+    ArticleItem,
   },
   computed: {
     articles() {
-      return this.myInfo?.articles
+      return this.userInfo?.articles
     }
   },
 }
