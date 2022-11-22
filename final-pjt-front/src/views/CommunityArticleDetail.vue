@@ -1,12 +1,13 @@
 <template>
   <div>
     <nav-bar></nav-bar>
+    <!-- {{ article }} -->
     <h1>CommunityArticleDetail</h1>
     <p>글 번호: {{ article?.id }}</p>
     <p>제목: {{ article?.title }}</p>
     <p>작성시간: {{ articleCreatedAt }}</p>
     <p>수정시간: {{ articleUpdatedAt }}</p>
-    <p>작성자: {{ article?.user.username }}</p>
+    <p>작성자: <router-link :to="{ name: 'profile' }">{{ article?.user.username }}</router-link></p>
 
     <!-- 삭제 -->
     <button class="btn btn-outline-danger waves-effect mb-4" @click="deleteArticle">삭제</button>
