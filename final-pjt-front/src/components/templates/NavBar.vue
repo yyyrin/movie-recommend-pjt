@@ -15,9 +15,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <!-- 장르 -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'genre' }">장르</router-link>
-          </li>
+          </li> -->
           <!-- 커뮤니티 -->
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'community' }">커뮤니티</router-link>
@@ -40,7 +40,7 @@
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
               <!-- MY 프로필 이동 -->
               <li class="dropdown-item">
-                <router-link class="nav-link" :to="{ name: 'profile' }">MY</router-link>
+                <router-link class="nav-link" :to="{ name: 'my_profile' }">MY</router-link>
               </li>
               <!-- 로그아웃 -->
               <li class="dropdown-item">
