@@ -11,9 +11,9 @@ import CommunityArticleView from '@/views/CommunityArticleView'
 import CreateCommunityArticleView from '@/views/CreateCommunityArticleView'
 import CommunityArticleDetail from '@/views/CommunityArticleDetail'
 import SearchView from '@/views/SearchView'
-import MyProfileView from '@/views/MyProfileView'
+import ProfileView from '@/views/ProfileView'
 // import MyArticleList from '@/components/Profile/MyArticleList'
-import YourProfileView from '@/views/YourProfileView'
+// import YourProfileView from '@/views/YourProfileView'
 
 Vue.use(VueRouter)
 
@@ -83,23 +83,18 @@ const routes = [
     component: SearchView
   },
 
-  // 내 프로필
+  // 프로필
   {
-    path: '/my_profile',
-    name: 'my_profile',
-    component: MyProfileView
-  },
-  // {
-  //   path: '/my_profile/my_article',
-  //   name: 'my_article',
-  //   components: MyArticleList
-  // },
-  // 타인 프로필
-  {
-    path: '/profile',
+    path: '/profile/:username',
     name: 'profile',
-    component: YourProfileView
+    component: ProfileView
   },
+  // 타인 프로필
+  // {
+  //   path: '/profile',
+  //   name: 'profile',
+  //   component: YourProfileView
+  // },
 ]
 
 const router = new VueRouter({
