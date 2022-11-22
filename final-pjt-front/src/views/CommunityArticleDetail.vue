@@ -7,7 +7,7 @@
     <p>제목: {{ article?.title }}</p>
     <p>작성시간: {{ articleCreatedAt }}</p>
     <p>수정시간: {{ articleUpdatedAt }}</p>
-    <p>작성자: <router-link :to="{ name: 'my_profile' }">{{ article?.user.username }}</router-link></p>
+    <p>작성자: <router-link :to="{ name: 'profile', params: { username: article?.user.username } }">{{ article?.user.username }}</router-link></p>
 
     <!-- 삭제 -->
     <button class="btn btn-outline-danger waves-effect mb-4" @click="deleteArticle">삭제</button>

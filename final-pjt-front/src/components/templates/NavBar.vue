@@ -48,7 +48,7 @@
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
               <!-- MY 프로필 이동 -->
               <li class="dropdown-item">
-                <router-link class="nav-link" :to="{ name: 'my_profile' }">MY</router-link>
+                <router-link class="nav-link" :to="{ name: 'profile', params: { username: $store.state.username } }">MY</router-link>
               </li>
               <!-- 로그아웃 -->
               <li class="dropdown-item">

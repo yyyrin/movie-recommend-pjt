@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'MyReviewItem',
+  name: 'ReviewItem',
   props: {
     review: Object,
   },

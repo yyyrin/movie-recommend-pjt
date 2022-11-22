@@ -1,10 +1,10 @@
 <template>
-  <div class="my-review-list">
-    <h1>My Review List</h1>
+  <div class="review-list">
+    <h1>Review List</h1>
     <hr>
     <!-- {{ myInfo }} -->
     <ol class="list-group list-group-numbered">
-      <MyReviewItem
+      <ReviewItem
         v-for="review in reviews"
         :key="review.id"
         :review="review"
@@ -14,19 +14,19 @@
 </template>
 
 <script>
-import MyReviewItem from '@/components/Profile/MyReviewItem'
+import ReviewItem from '@/components/Profile/ReviewItem'
 
 export default {
-  name: 'MyArticleList',
+  name: 'ArticleList',
   props: {
-    myInfo: Object,
+    userInfo: Object,
   },
   components: {
-    MyReviewItem,
+    ReviewItem,
   },
   computed: {
     reviews() {
-      return this.myInfo?.reviews
+      return this.userInfo?.reviews
     }
   },
 }
