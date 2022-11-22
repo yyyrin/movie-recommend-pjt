@@ -1,67 +1,60 @@
-<template id="movie-slide">
-  <swiper class="swiper" ref="mySwiper2"
-    :options="swiperOptions"
-    @slideChange="slideChangeTransitionStart"
-  >
-    <MovieSlideItem v-for="movie in movies" :key="movie.id" :movie="movie" 
-      :image-source="movie.poster_path"
-      background-size="100% 100%"
-    />
-  </swiper>
-  <!-- <div>
-    <carousel-3d  :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :clickable="true">
-      <slide></slide>
-      <MovieSlideItem v-for="movie in movies" :key="movie.id" :movie="movie"/>
-    </carousel-3d>
-  </div> -->
+<template>
+  <div>
+    <Flicking :options="{ renderOnlyVisible: true }">
+        <div v-for="idx in list" class="flicking-panel" :key="idx">{{ idx }}</div>
+      </Flicking>
+      <!-- <MovieSlideItem
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"
+      /> -->
+      <!-- <div class="card-panel">1</div>
+      <div class="card-panel">2</div>
+      <div class="card-panel">3</div>
+      <div class="card-panel">4</div>
+      <div class="card-panel">5</div>
+      <div class="card-panel">6</div>
+    </Flicking> -->
+    <!-- <carousel-3d> -->
+      <!-- <slide> -->
+      <!-- <slide v-for="movie in movies" :key="movie.id"> -->
+      <!-- <slide v-for="movie in movies" :key="movie.id">
+        <span class="title">You know</span> -->
+        <!-- <MovieSlideItem v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
+        <!-- <template slot-scope="{ index, isCurrent, leftIndex, rightIndex }">
+            <img :data-index="index" :class="{ current: isCurrent, onLeft: (leftIndex >= 0), onRight: (rightIndex >= 0) }" :src="movieURL">
+        </template> -->
+      <!-- </slide> -->
+    <!-- </carousel-3d> -->
+  </div>
 </template>
 
 <script>
-import {Swiper, } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
-import MovieSlideItem from '@/components/Home/MovieSlideItem'
+import { Flicking } from "@egjs/vue-flicking";
+import "@egjs/flicking-plugins/dist/flicking-plugins.css";
+// import { Perspective } from "@egjs/flicking-plugins";
+// import MovieSlideItem from '@/components/Home/MovieSlideItem'
 
 export default {
   name: 'MovieSlide',
   components: {
-    // Carousel3d,
-    Swiper,
-    MovieSlideItem
+    Flicking,
+    // MovieSlideItem,
   },
   data() {
     return {
-      swiperOptions: {
-        slidesPerView: 3,
-        spaceBetween: 10,
-        freeMode: true,
-        mousewheel : true,
-      },
+      list: [0, 1, 2, 3, 4]
     }
-  },
-  computed: {
-    swiper : function() {
-				return this.$refs.mySwiper2.$swiper
-    },
-    movies() {
-      return this.$store.state.movies
-    }
-  },
-  methods : {
-    slideChangeTransitionStart : function() {
-      //console.log(this.swiper.activeIndex); //현재 index값 얻기
-    }
-  },
-  filters : {
-    styleSwiper : function(movie){
-      return "background:url("+"https://image.tmdb.org/t/p/w500"+movie.poster_path+") no-repeat; background-position: center center;"
-    },
-  },
-  mounted() {
-			//console.log('Current Swiper instance object', this.swiper)
-		this.swiper.slideTo(1, 1000, false)
   }
+  // computed: {
+  //   movies() {
+  //     return this.$store.state.movies
+  //   }
+  // },
 }
 </script>
 
 <style>
+/* @import url("node_modules/@egjs/vue-flicking/dist/flicking.css"); */
+
 </style>
