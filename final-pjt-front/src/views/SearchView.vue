@@ -3,9 +3,21 @@
     <nav-bar></nav-bar>
     <h1>SearchView</h1>
     <input type="text"  @input="search" v-model="keyword">
-    <p>{{movies}}</p>
     <p>{{actors}}</p>
     <p>{{director}}</p>
+    <p>{{movies}}</p>
+    <hr>
+      <div v-for="(actor, index) in actors" :key="`a-${index}`">
+        <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">{{actor.name}}</router-link>
+      </div>
+    <hr>
+      <div v-for="(direct, index) in director" :key="`d-${index}`">
+        <router-link :to="{ name: 'search', params: {keyword: `${direct.name}`} }">{{direct.name}}</router-link>
+      </div>
+    <hr>
+    <div v-for="(movie, index) in movies" :key="`m-${index}`">
+      <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">{{movie.title}}</router-link>
+    </div>
   </div>
 </template>
 

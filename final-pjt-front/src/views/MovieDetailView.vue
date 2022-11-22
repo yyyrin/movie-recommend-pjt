@@ -23,12 +23,13 @@
       <div>
         <img :src="movieURL" alt="movie_poster">
       </div>
+      <div v-show=movie.trailer>
+        <iframe :src=movie?.trailer frameborder="0"></iframe> 
+      </div>
     </div>
     <!-- 한줄리뷰 리스트 -->
     <div class="one-line-review-list">
-    <OneLineReviewView
-      :movie_id = "movie?.id"
-    />
+    <OneLineReviewView :movie_id = "movie?.id"/>
     </div>
   </div>
 </template>
@@ -39,6 +40,8 @@ import axios from 'axios'
 import OneLineReviewView from '@/views/OneLineReviewView'
 
 const API_URL = 'http://127.0.0.1:8000'
+//const API_KEY = 'API_KEY 입력 필요'
+//const API_URL = 'https://www.googleapis.com/youtube/v3/search'
 
 export default {
   name: 'MovieDetailView',
