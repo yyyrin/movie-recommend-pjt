@@ -8,13 +8,14 @@
           {{ article.title }}
         </router-link>
       </p>
+      <p>좋아요 수: {{ article?.like_users.length }}</p>
     </li>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MyArticleItem',
+  name: 'ArticleItem',
   props: {
     article: Object,
   },
