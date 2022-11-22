@@ -1,114 +1,67 @@
 <template id="movie-slide">
-  <div>
-    <h1>slide 넣을 자리</h1>
-    <!-- <swiper
-      :effect="'coverflow'"
-      :grabCursor="true"
-      :centeredSlides="true"
-      :slidesPerView="'auto'"
-      :coverflowEffect="{
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: true,
-      }"
-      :pagination="true"
-      :modules="modules"
-      class="mySwiper"
-    >
-      <swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img
-          src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-      ><swiper-slide
-        ><img src="https://swiperjs.com/demos/images/nature-9.jpg"
-      /></swiper-slide>
-    </swiper> -->
-  </div>
+  <swiper class="swiper" ref="mySwiper2"
+    :options="swiperOptions"
+    @slideChange="slideChangeTransitionStart"
+  >
+    <MovieSlideItem v-for="movie in movies" :key="movie.id" :movie="movie" 
+      :image-source="movie.poster_path"
+      background-size="100% 100%"
+    />
+  </swiper>
+  <!-- <div>
+    <carousel-3d  :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :clickable="true">
+      <slide></slide>
+      <MovieSlideItem v-for="movie in movies" :key="movie.id" :movie="movie"/>
+    </carousel-3d>
+  </div> -->
 </template>
 
 <script>
-// // Import Swiper Vue.js components
-// import { Swiper, SwiperSlide } from "swiper/vue";
-
-// // Import Swiper styles
-// import "swiper/css";
-
-// import "swiper/css/effect-coverflow";
-// import "swiper/css/pagination";
-
-// import "./style.css";
-
-// // import required modules
-// import { EffectCoverflow, Pagination } from "swiper";
+import {Swiper, } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+import MovieSlideItem from '@/components/Home/MovieSlideItem'
 
 export default {
   name: 'MovieSlide',
-  // components: {
-  //   Swiper,
-  //   SwiperSlide,
-  // },
-  // setup() {
-  //   return {
-  //     modules: [EffectCoverflow, Pagination],
-  //   };
-  // },
+  components: {
+    // Carousel3d,
+    Swiper,
+    MovieSlideItem
+  },
+  data() {
+    return {
+      swiperOptions: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        freeMode: true,
+        mousewheel : true,
+      },
+    }
+  },
+  computed: {
+    swiper : function() {
+				return this.$refs.mySwiper2.$swiper
+    },
+    movies() {
+      return this.$store.state.movies
+    }
+  },
+  methods : {
+    slideChangeTransitionStart : function() {
+      //console.log(this.swiper.activeIndex); //현재 index값 얻기
+    }
+  },
+  filters : {
+    styleSwiper : function(movie){
+      return "background:url("+"https://image.tmdb.org/t/p/w500"+movie.poster_path+") no-repeat; background-position: center center;"
+    },
+  },
+  mounted() {
+			//console.log('Current Swiper instance object', this.swiper)
+		this.swiper.slideTo(1, 1000, false)
+  }
 }
 </script>
 
 <style>
-/* #movie-slide { height: 100% }
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
-
-.swiper {
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-.swiper-slide {
-  background-position: center;
-  background-size: cover;
-  width: 300px;
-  height: 300px;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-} */
 </style>
