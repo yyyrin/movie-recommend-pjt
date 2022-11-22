@@ -1,6 +1,7 @@
 <template>
   <div class="my-article-list">
-    <h1>My ArticleList</h1>
+    <h1>My Article List</h1>
+    <!-- <router-link :to="{ name: my_profile }"><h1>My ArticleList</h1></router-link> -->
     <ol class="list-group list-group-numbered">
       <MyArticleItem
         v-for="article in articles"

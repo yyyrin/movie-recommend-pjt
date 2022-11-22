@@ -1,21 +1,22 @@
 <template>
   <div id="MyProfileView">
     <nav-bar></nav-bar>
-    <h1>MY PROFILE</h1>
-    <MyProfileInto
-      :myInfo="myInfo"
-    />
+    <img src="@/assets/basic_profile.png" alt="my-profile" height="100">
+    <!-- <p>유저 이미지 변경 나중에 : {{ userInfo?.user.img_path }}</p> -->
+    <p>사용자: {{ myInfo?.user.username }}</p>
+    <button>회원정보 수정</button>
     <hr>
-    <MyArticleList
-      :myInfo="myInfo"
-    />
+    <!-- <router-link :to="{ name: 'my_article' }"><h3>My Article List</h3></router-link> -->
+    <MyArticleList :myInfo="myInfo"/>
+    <MyReviewList :myInfo="myInfo"/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/templates/NavBar'
-import MyProfileInto from '@/components/Profile/MyProfileInto'
 import MyArticleList from '@/components/Profile/MyArticleList'
+import MyReviewList from '@/components/Profile/MyReviewList'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000'
@@ -24,8 +25,8 @@ export default {
   name: 'ProfileView',
   components: {
     NavBar,
-    MyProfileInto,
-    MyArticleList
+    MyArticleList,
+    MyReviewList,
   },
   data() {
     return {
@@ -39,7 +40,7 @@ export default {
     getUserInfo() {
       axios({
         method: 'get',
-        url: `${API_URL}/accounts/profile/my/`,
+        url: `${API_URL}/accounts/profile/${this.$store.state.username}/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }
@@ -47,7 +48,7 @@ export default {
       .then((res) => {
         // console.log(res)
         this.myInfo = res.data
-        // console.log(this.myInfo)
+        // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
         console.log(err)
