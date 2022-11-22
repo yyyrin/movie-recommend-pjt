@@ -9,10 +9,10 @@
       <div v-for="(genre, index) in genres" :key="index">
         <p> {{genre.name}}</p>
       </div>
-      <div v-for="(actor, index) in actors" :key="index">
+      <div v-for="(actor, index1) in actors" :key="index1">
         <p> {{actor.name}}</p>
       </div>
-      <div v-for="(director, index) in directors" :key="index">
+      <div v-for="(director, index2) in directors" :key="index2">
         <p> {{director.name}}</p>
       </div>
       <p>감독 번호 : {{ movie?.director }}</p>
