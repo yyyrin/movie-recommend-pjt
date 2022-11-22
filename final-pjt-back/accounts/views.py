@@ -62,5 +62,8 @@ def report(request, user_pk):
                 if serializer.is_valid(raise_exception=True):
                     serializer.save()
                     return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                user.reported.add(request.user)
+                return Response({'reported!':1}, status=status.HTTP_201_CREATED)
         else:
-            return Response({'is_active': 1}, status=status.HTTP_201_CREATED)
+            return Response({'reported!': 0}, status=status.HTTP_201_CREATED)
