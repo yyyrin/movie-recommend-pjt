@@ -37,11 +37,10 @@ export default {
     getReviews() {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/reviews/`,
+        url: `${API_URL}/api/v1/movies/${this.$route.params.id}/`,
       })
       .then((res) => {
-        // console.log(res)
-        this.reviews = res.data
+        this.reviews = res.data.review_set
       })
       .catch(err => console.log(err))
     }

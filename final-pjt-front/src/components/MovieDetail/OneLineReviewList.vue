@@ -16,19 +16,25 @@ export default {
   components: {
     OneLineReviewItem,
   },
+  data() {
+    return {
+      local : []
+    }
+  },
   props: {
     movie_id: Number,
     reviews: Array
   },
-  computed: {
-    getreviews() {
-      // 영화 id와 일치하는 리뷰만 필터링 하는 방법 연구 중
-      // console.log(this.reviews)
-      return this.reviews.filter((review) => {
-        return review.movie.id === this.movie_id;
-      })
-    }
-  }
+/*   computed: {
+    getreviews(){
+        // 영화 id와 일치하는 리뷰만 필터링 하는 방법 연구 중
+        console.log(this.reviews)
+        return this.reviews.filter((review) => {
+          console.log(review)
+          return review.movie.id === this.movie_id;
+        })
+      }
+  } */
 }
 </script>
 
