@@ -30,23 +30,34 @@ export default {
         alert('내용을 입력해주세요')
         return
       }
-      axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/community/${this.$route.params.community_id}/article/${this.$route.params.article_id}/comments/`,
-        data: {
-          content: content,
-        },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
+      const badwords = this.$store.state.bad
+      let flag = 1 
+      badwords.forEach(word=>{
+        if (content.indexOf(`${word}`) > -1 ){
+          alert('바르고 고운말!')
+          flag = 0
+          return
         }
       })
-      .then(() => {
-        // console.log(content)
-        this.$router.go(this.$router.currentRoute)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      if (flag === 1){
+        axios({
+          method: 'post',
+          url: `${API_URL}/api/v1/community/${this.$route.params.community_id}/article/${this.$route.params.article_id}/comments/`,
+          data: {
+            content: content,
+          },
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          }
+        })
+        .then(() => {
+          // console.log(content)
+          this.$router.go(this.$router.currentRoute)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
     }
   }
 }

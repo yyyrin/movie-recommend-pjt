@@ -80,23 +80,34 @@ export default {
         alert('커뮤니티명을 입력해주세요')
         return
       }
-      axios({
-        method: 'put',
-        url: `${API_URL}/api/v1/community/${this.$route.params.id}/`,
-        data: {
-          thumbnail: thumbnail,
-          name: name,
-        },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
+      const badwords = this.$store.state.bad
+      let flag = 1 
+      badwords.forEach(word=>{
+        if (name.indexOf(`${word}`) > -1 ){
+          alert('바르고 고운말!')
+          flag = 0
+          return
         }
       })
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      if (flag === 1){
+        axios({
+          method: 'put',
+          url: `${API_URL}/api/v1/community/${this.$route.params.id}/`,
+          data: {
+            thumbnail: thumbnail,
+            name: name,
+          },
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          }
+        })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
     },
     getOriginalCommunity() {
       this.thumbnail = this.community.thumbnail

@@ -38,9 +38,18 @@ export default {
         password1: password1,
         password2: password2,
       }
-
-      this.$store.dispatch('signUp', payload)
-
+      const badwords = this.$store.state.bad
+      let flag = 1 
+      badwords.forEach(word=>{
+        if (username.indexOf(`${word}`) > -1 ){
+          alert('바르고 고운말!')
+          flag = 0
+          return
+        }
+      })
+      if (flag === 1){
+        this.$store.dispatch('signUp', payload)
+      }
     },
   }
 }
