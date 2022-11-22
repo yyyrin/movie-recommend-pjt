@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <!-- 로고 - 홈 연결 -->
       <router-link class="nav-link active" :to="{ name: 'home' }">
-        <img src="@/assets/LOGO.png" alt="logo" height="35">
+        <img src="@/assets/LOGO.png" alt="logo" height="50">
       </router-link>
       <!-- toggler -->
       <div class="navbar-dark bg-dark">
