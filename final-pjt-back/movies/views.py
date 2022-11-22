@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
-from .serializers import MovieListSerializer, ReviewSerializer, MovieDetailSerializer, ActorProfileSerializer, DirectorProfileSerializer
+from .serializers import MovieListSerializer, ReviewSerializer, MovieDetailSerializer, ActorProfileSerializer, DirectorProfileSerializer, GerneSerializer
 from .models import Movie, Review, Genre, Actor, Director, Preference_movies
 from django.contrib.auth import get_user_model
 
@@ -209,3 +209,27 @@ def recommand(request):
                 recommand.append(get_object_or_404(Movie, pk=movie_id_arr[m]))
         serializer = MovieListSerializer(recommand, many=True)
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+#@permission_classes([IsAuthenticated])
+def urname(request, unknown):
+    if request.method == 'GET':
+        all_movies = get_list_or_404(Movie)
+        gernes = get_list_or_404(Genre)
+        actors = get_list_or_404(Actor)
+        directors = get_list_or_404(Director)
+        movies = []
+        for gerne in gernes:
+            if gerne.id == unknown:
+               serializer = GerneSerializer(gerne)
+               return Response(serializer.data)
+        for actor in actors:
+            if actor.id == unknown:
+               serializer = ActorProfileSerializer(actor)
+               return Response(serializer.data)
+
+        for director in directors:
+            if director.id == unknown:
+               serializer = DirectorProfileSerializer(director)
+               return Response(serializer.data)

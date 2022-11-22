@@ -44,3 +44,8 @@ class DirectorProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class GerneSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Genre
+        fields = '__all__'

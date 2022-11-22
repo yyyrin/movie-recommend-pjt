@@ -6,6 +6,15 @@
       <p>영화 번호 : {{ movie?.id }}</p> 
       <p>장르 번호 : {{ movie?.genres }}</p>
       <p>배우 번호 : {{ movie?.actors }}</p>
+      <div v-for="(genre, index) in genres" :key="index">
+        <p> {{genre.name}}</p>
+      </div>
+      <div v-for="(actor, index) in actors" :key="index">
+        <p> {{actor.name}}</p>
+      </div>
+      <div v-for="(director, index) in directors" :key="index">
+        <p> {{director.name}}</p>
+      </div>
       <p>감독 번호 : {{ movie?.director }}</p>
       <p>제목 : {{ movie?.title }}</p>
       <p>런타임 : {{ movie?.runtime }}</p>
@@ -40,6 +49,9 @@ export default {
   data() {
     return {
       movie: null,
+      genres: [],
+      actors: [],
+      directors: [],
     }
   },
   created() {
@@ -54,6 +66,57 @@ export default {
         .then((res) => {
           // console.log(res)
           this.movie = res.data
+          for (const id of res.data.genres){
+            axios({
+              method: 'get',
+              url: `${API_URL}/api/v1/urname/${Number(id)}`
+            })
+              .then((res) => {
+                this.genres.push(res.data)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+            }
+            for (const id of res.data.actors){
+            axios({
+              method: 'get',
+              url: `${API_URL}/api/v1/urname/${Number(id)}`
+            })
+              .then((res) => {
+                this.actors.push(res.data)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+            }
+            for (const id of res.data.director){
+            axios({
+              method: 'get',
+              url: `${API_URL}/api/v1/urname/${Number(id)}`
+            })
+              .then((res) => {
+                this.directors.push(res.data)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+            }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+      
+    },
+    getGenre(query) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/urname/${Number(query)}`
+      })
+        .then((res) => {
+          console.log(res.data)
+          this.genres.push(res.data)
+          console.log(this.genres)
         })
         .catch((err) => {
           console.log(err)
