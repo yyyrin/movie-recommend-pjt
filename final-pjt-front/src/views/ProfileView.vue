@@ -5,7 +5,7 @@
     <!-- <p>유저 이미지 변경 나중에 : {{ userInfo?.user.img_path }}</p> -->
     <p>사용자: {{ userInfo?.user.username }}</p>
     <button>회원정보 수정</button><br>
-    <button class="btn btn-outline-danger waves-effect mb-4">신고</button>
+    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="report">신고</button>
     <hr>
     <!-- <router-link :to="{ name: 'my_article' }"><h3>My Article List</h3></router-link> -->
     <ArticleList :userInfo="userInfo"/>
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       userInfo: null,
+      is_active: 1,
     }
   },
   created() {
@@ -49,12 +50,32 @@ export default {
       .then((res) => {
         // console.log(res)
         this.userInfo = res.data
+        if (this.userInfo.user.username === this.$store.state.username) {
+          this.is_active = 0
+        }
         // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
         console.log(err)
       })
     },
+    report() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/report/${this.userInfo.user.id}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then((res) => {
+        // console.log(res)
+        console.log(res.data)
+        // console.log(this.myInfo.reviews)
+      })
+      .catch((err) => {
+        console.log(err)
+      })      
+    }
   },
 }
 </script>
