@@ -18,19 +18,27 @@
           <!-- <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'genre' }">장르</router-link>
           </li> -->
+          <!-- 영화 -->
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'home' }">영화</router-link>
+          </li>
           <!-- 커뮤니티 -->
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'community' }">커뮤니티</router-link>
           </li>
+          <!-- 검색 -->
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'search' }">검색</router-link>
+          </li>
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0"> 
-          <!-- 검색 버튼 -->
+          <!-- 검색 버튼
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'search' }">
               <img src="@/assets/search_button.png" alt="search_button" height="30">
             </router-link>
-          </li>
+          </li> -->
 
           <!-- 프로필 dropdown -->
           <li class="nav-item dropdown">     
@@ -45,6 +53,10 @@
               <!-- 로그아웃 -->
               <li class="dropdown-item">
                 <router-link class="nav-link" :to="{ name: 'login' }">로그아웃</router-link>
+              </li>
+              <!-- 회원가입 -->
+              <li class="dropdown-item">
+                <router-link class="nav-link" :to="{ name: 'signup' }">회원가입</router-link>
               </li>
             </ul>
           </li>
