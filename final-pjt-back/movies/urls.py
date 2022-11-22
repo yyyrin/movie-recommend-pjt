@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/<query>/', views.profile),
     path('preference/<query>/', views.preference),
     path('movies/recommand/', views.recommand),
+    path('urname/<int:unknown>/',views.urname),
 ]
