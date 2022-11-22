@@ -15,7 +15,7 @@
 
     <!-- 좋아요 기능 -->
     <div style="float: right; margin-top:15px;">
-      <button class=" btn btn-outline-danger waves-effect mb-4" @click="likeReview">
+      <button class=" btn btn-outline-danger waves-effect mb-4" :count = count @click="likeReview">
         좋아요 ♥ {{ count }}
       </button>
     </div>
@@ -75,12 +75,12 @@ export default {
         }
       })
       .then((res) => {
-        if (res.data === 1) {
+        if (res.data.result === 1) {
           this.count += 1
-        } else if (res.data === 0) {
+        } else if (res.data.result === 0) {
           this.count -= 1
         }
-        this.$router.go(this.$router.currentRoute)
+        // this.$router.go(this.$router.currentRoute)
       })
     },
   }

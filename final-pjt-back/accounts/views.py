@@ -13,32 +13,16 @@ from community.models import Article
 from django.contrib.auth import get_user_model
 
 
-@api_view(['GET'])
-#@permission_classes([IsAuthenticated])
-def myprofile(request):
-    if request.method == 'GET':
-        reviews = get_list_or_404(Review, user=request.user)
-        articles = get_list_or_404(Article, user=request.user)
-        print(reviews)
-        print(articles)
-        user = get_object_or_404(get_user_model(), pk=request.user.pk)
-        print(user.pk)
-        print(request.data)
-        serializer = ProfileSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user=user, reviews=reviews,articles=articles)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
-def profile(request, user_pk):
+def profile(request, username):
     if request.method == 'GET':
-        reviews = get_list_or_404(Review, user=request.user)
-        articles = get_list_or_404(Article, user=request.user)
+        user = get_object_or_404(get_user_model(), username=username)
+        reviews = get_list_or_404(Review, user=user)
+        articles = get_list_or_404(Article, user=user)
         print(reviews)
         print(articles)
-        user = get_object_or_404(get_user_model(), pk=user_pk)
         print(user.pk)
         print(request.data)
         serializer = ProfileSerializer(data=request.data)
