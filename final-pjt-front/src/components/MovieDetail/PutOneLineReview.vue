@@ -57,23 +57,34 @@ export default {
         alert('내용을 입력해주세요')
         return
       }
-      axios({
-        method: 'put',
-        url: `${API_URL}/api/v1/movies/${this.$route.params.id}/reviews/${this.review.id}/`,
-        data: {
-          rate: rate,
-          content: content,
-          },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
+      const badwords = this.$store.state.bad
+      let flag = 1 
+      badwords.forEach(word=>{
+        if (content.indexOf(`${word}`) > -1 ){
+          alert('바르고 고운말!')
+          flag = 0
+          return
         }
       })
-      .then(() => {
-        this.$router.go(this.$router.currentRoute)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      if (flag === 1){
+        axios({
+          method: 'put',
+          url: `${API_URL}/api/v1/movies/${this.$route.params.id}/reviews/${this.review.id}/`,
+          data: {
+            rate: rate,
+            content: content,
+            },
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          }
+        })
+        .then(() => {
+          this.$router.go(this.$router.currentRoute)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
     },
     getOriginalReview() {
       this.rate = this.review.rate

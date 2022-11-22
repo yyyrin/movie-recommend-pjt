@@ -19,12 +19,8 @@ from django.contrib.auth import get_user_model
 def profile(request, username):
     if request.method == 'GET':
         user = get_object_or_404(get_user_model(), username=username)
-        reviews = get_list_or_404(Review, user=user)
-        articles = get_list_or_404(Article, user=user)
-        print(reviews)
-        print(articles)
-        print(user.pk)
-        print(request.data)
+        reviews = Review.objects.filter(user=user)
+        articles = Article.objects.filter(user=user)
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=user, reviews=reviews,articles=articles)
