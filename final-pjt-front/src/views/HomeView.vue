@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <nav-bar></nav-bar>
-    <!-- <MovieSlide/> -->
+    <MovieSlide/>
 
     <!-- 1. 추천영화 -->
     <section>
@@ -36,7 +36,7 @@
 
 <script>
 import NavBar from '@/components/templates/NavBar'
-// import MovieSlide from '@/components/Home/MovieSlide'
+import MovieSlide from '@/components/Home/MovieSlide'
 import MovieCards from '@/components/Home/MovieCards'
 import MovieGenreCards from '@/components/Home/MovieGenreCards'
 
@@ -44,7 +44,7 @@ export default {
   name: 'HomeView',
   components: {
     NavBar,
-    // MovieSlide,
+    MovieSlide,
     MovieCards,
     MovieGenreCards,
   },
@@ -74,7 +74,8 @@ export default {
 
 <style>
 #home {
-  background-color: black;
+  background-image: url("../assets/lionking.png");
+  /* background-color: black; */
   color: white;
 }
 

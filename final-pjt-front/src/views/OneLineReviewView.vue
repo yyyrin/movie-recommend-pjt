@@ -1,6 +1,5 @@
 <template>
   <div>
-    <hr>
     <OneLineReviewList
       :movie_id="movie_id"
       :reviews="reviews"

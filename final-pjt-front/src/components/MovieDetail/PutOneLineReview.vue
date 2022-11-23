@@ -1,9 +1,9 @@
 <template id="put-one-line-review">
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#put-one-line-review-modal">
+    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#put-one-line-review-modal">
       수정
-    </button>
+    </a>
 
     <!-- Modal -->
     <div class="modal fade" id="put-one-line-review-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
