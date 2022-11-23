@@ -1,10 +1,9 @@
 <template>
   <div id="ProfileView">
     <nav-bar></nav-bar>
-    <img src="@/assets/basic_profile.png" alt="my-profile" height="100">
+    <img :src="userInfo?.user.img_path" @error="replacing"  height="100">
     <!-- <p>유저 이미지 변경 나중에 : {{ userInfo?.user.img_path }}</p> -->
     <p>사용자: {{ userInfo?.user.username }}</p>
-
     <!-- 회원정보수정 -->
     <EditProfile
       :userInfo="userInfo"
@@ -84,6 +83,10 @@ export default {
       .catch((err) => {
         console.log(err)
       })      
+    },
+      replacing() {
+      console.log('잘못된 링크')
+      this.imgpath = '/img/basic_profile.398bf1a4.png'
     }
   },
 }

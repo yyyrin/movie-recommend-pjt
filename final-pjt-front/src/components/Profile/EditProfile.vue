@@ -17,9 +17,13 @@
             <!-- <p>{{ userInfo }}</p> -->
             <p>사용자 프로필 사진 넣을 자리</p>
             <!-- <p>{{ userInfo?.user.img_path }}</p> -->
-            <label for="text">pw : </label>
-            <input type="text" id="password" v-model.trim="password">
+            <label for="text">새로운 이미지 경로 : </label>
+            <input type="text" id="img_path" v-model.trim="img_path">
             <!-- <p>username: {{ userInfo?.user.username }}</p> -->
+          </div>
+          <div>
+            <p>미리보기</p>
+            <img :src="img_path" alt="img_path" height="100">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" @click="editProfile">저장</button>
@@ -43,25 +47,24 @@ export default {
   data() {
     return {
       // img_path: null,
-      password: null,
+      img_path: null,
     }
   },
   methods: {
     editProfile() {
       // const img_path = this.user.img_path
-      // console.log(this.password)
+      // console.log(this.img_path)
 
-      const password = this.userInfo.user.password
-      if (!password) {
-        alert('비밀번호를 입력해주세요')
-        return
+      let img_path = this.img_path
+      if (!img_path) {
+        img_path = 123
       }
       axios({
         method: 'put',
-        url: `${API_URL}/accounts/profile/${this.$route.params.username}/`,
+        url: `${API_URL}/accounts/profile/${this.userInfo.user.id}/img/`,
         data: {
           // img_path: img_path,
-          password: password,
+          img_path: img_path,
           },
         headers: {
           Authorization: `Token ${this.$store.state.token}`
@@ -69,6 +72,7 @@ export default {
       })
       .then(() => {
         alert('회원정보 수정 완료')
+        this.$store.commit('GET_IMG_PATH', img_path)
         this.$router.go(this.$router.currentRoute)
       })
       .catch((err) => {
@@ -77,11 +81,13 @@ export default {
     },
     getOriginalProfile() {
       // this.img_path = this.user.img_path
-      this.password = this.userInfo?.user.password
+      this.img_path = this.userInfo?.user.img_path
+      console.log(this.img_path)
     },
   },
   created() {
   this.getOriginalProfile()
+  console.log(this.img_path)
   }
 }
 </script>

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>{{ review }}</p>
+    <router-link  :to="{ name: 'profile', params: { username: review?.user.username } }">
+        <img :src=review?.user.img_path @error="replacing" height="50"></router-link>
+    <p>작성자: <router-link :to="{ name: 'profile', params: { username: review?.user.username } }">{{ review?.user.username }}</router-link></p>
     <p>별점 : {{ review.rate }}</p>
     <p>한줄 리뷰 : {{ review.content }}</p>
     <!-- <p>좋아요한 사람들 수: {{ like_count }}</p> -->
@@ -83,6 +85,10 @@ export default {
         // this.$router.go(this.$router.currentRoute)
       })
     },
+    replacing() {
+    console.log('잘못된링크')
+    this.imgpath = '/img/basic_profile.398bf1a4.png'
+    }
   }
 }
 </script>
