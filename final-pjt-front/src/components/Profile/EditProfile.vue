@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-profile-modal">
+    <button v-show="is_active1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-profile-modal">
       회원정보 수정
     </button>
 
@@ -43,10 +43,10 @@ export default {
   name: 'EditProfile',
   props: {
     userInfo: Object,
+    is_active1: Number
   },
   data() {
     return {
-      // img_path: null,
       img_path: null,
     }
   },

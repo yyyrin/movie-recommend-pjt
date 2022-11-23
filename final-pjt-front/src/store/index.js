@@ -16,7 +16,8 @@ export default new Vuex.Store({
   state: {
     token: null,
     username: null,
-    imgpath: '/img/basic_profile.398bf1a4.png',
+    pk: null,
+    imgpath: null,
     movies: [],
     // reviews: [],
     communities: [],
@@ -52,9 +53,10 @@ export default new Vuex.Store({
     GET_COMMENTS(state, comments) {
       state.comments = comments
     },
-    GET_IMG_PATH(state, img_path) {
-      console.log(img_path)
-      state.imgpath = img_path
+    GET_IMG_PATH(state, userdata) {
+      console.log(userdata)
+      state.imgpath = userdata[0]
+      state.pk = userdata[1]
     }
   },
   actions: {
@@ -98,7 +100,7 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-        context.commit('GET_IMG_PATH', res.data.user.img_path)
+        context.commit('GET_IMG_PATH', [res.data.user.img_path, res.data.user.id])
         // console.log(this.myInfo.reviews)
       })
       .catch((err) => {

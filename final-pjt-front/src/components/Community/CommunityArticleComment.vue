@@ -3,9 +3,9 @@
     <!-- {{ comment }} -->
     <p>댓글 내용: {{ comment.content }}</p>
     <p>작성자 id: {{ comment.user }}</p>
-    <p>comment id: {{ comment.id }}</p>
-    <p>article id: {{ comment.article }}</p>
-    <button class="btn btn-outline-danger waves-effect mb-4" @click="deleteComment">삭제</button>
+
+    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="deleteComment">삭제</button>
+    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active1" @click="reportComment">신고</button>
     <hr>
   </div>
 </template>
@@ -19,6 +19,18 @@ export default {
   name: 'CommunityArticleComment',
   props: {
     comment: Object,
+  },
+  data() {
+    return {
+     is_active: 1,
+     is_active1: 0
+    }
+  },
+  created() {
+    if (this.comment.user != this.$store.state.pk) {
+          this.is_active = 0
+          this.is_active1 = 1
+    }
   },
   methods: {
     deleteComment() {
@@ -36,7 +48,24 @@ export default {
       .catch((err) => {
         console.log(err)
       })
-    }
+    },
+    reportComment() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/report/${this.comment.user}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then((res) => {
+        // console.log(res)
+        console.log(res.data)
+        // console.log(this.myInfo.reviews)
+      })
+      .catch((err) => {
+        console.log(err)
+      })      
+    },
   },
 }
 </script>
