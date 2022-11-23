@@ -47,5 +47,7 @@ export default {
 }
 .movie-card {
   min-width: 200px;
+  border-style: none;
+  border: 0px;
 }
 </style>

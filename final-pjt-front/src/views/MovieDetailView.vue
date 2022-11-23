@@ -1,36 +1,78 @@
 <template>
   <div id="movie-detail-view">
     <nav-bar></nav-bar>
-    <div>
-      <h1>Detail</h1>
-      <p>영화 번호 : {{ movie?.id }}</p> 
-      <p>장르 번호 : {{ movie?.genres }}</p>
-      <p>배우 번호 : {{ movie?.actors }}</p>
-      <div v-for="(genre, index) in genres" :key="`g-${index}`">
-        <router-link :to="{ name: 'search', params: {keyword: `${genre.name}`} }">{{genre.name}}</router-link>
-      </div>
-      <div v-for="(actor, index) in actors" :key="`a-${index}`">
-        <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">{{actor.name}}</router-link>
-      </div>
-      <div v-for="(director, index) in directors" :key="`d-${index}`">
-        <router-link :to="{ name: 'search', params: {keyword: `${director.name}`} }">{{director.name}}</router-link>
-      </div>
-      <p>감독 번호 : {{ movie?.director }}</p>
-      <p>제목 : {{ movie?.title }}</p>
-      <p>런타임 : {{ movie?.runtime }}</p>
-      <p>개봉일: {{ movie?.release_date }}</p>
-      <p>내용 : {{ movie?.overview }}</p>
-      <div>
-        <img :src="movieURL" alt="movie_poster">
-      </div>
+    <section class="movie-detail">
+
+      <!-- movie detail -->
+      <article class="d-flex justify-content-between mx-5 my-4 px-5 py-3">
+        <!-- 포스터 제외 -->
+        <br>
+        <div style="margin:80px; text-align:left;">
+          <div style="font-size: 60px">{{ movie?.title }}</div>
+          <br><br><br>
+          <!-- tag button -->
+          <span>
+            <button type="button" class="btn btn-outline-secondary btn-sm" disabled>{{ movie?.release_date.substr(0, 4) }}</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" disabled>{{ movie?.runtime }}분</button>
+            <span v-for="(genre, index) in genres" :key="`g-${index}`">
+              <router-link :to="{ name: 'search', params: {keyword: `${genre.name}`} }">
+                <button type="button" class="btn btn-outline-secondary btn-sm">
+                  {{genre?.name}}
+                </button>
+              </router-link>
+            </span>
+          </span>
+
+          <br><br>
+          <!-- director, actor info -->
+          <div>
+            감독 &nbsp; &nbsp;
+            <span v-for="(director, index) in directors" :key="`d-${index}`">
+                <router-link :to="{ name: 'search', params: {keyword: `${director.name}`} }">
+                  {{director?.name}} &nbsp;
+                </router-link>
+              </span>
+          </div>
+          <div>
+            출연 &nbsp; &nbsp;
+            <span v-for="(actor, index) in actors" :key="`a-${index}`">
+              <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">
+                {{ actor?.name }} &nbsp;
+              </router-link>
+            </span>
+          </div>
+          <br>
+          <!-- 줄거리 -->
+          <p style="width:600px; word-break:keep-all;">
+            {{ movie?.overview }}
+          </p>
+        </div>
+        <!-- movie poster -->
+        <div>
+          <img :src="movieURL" alt="movie_poster" style="height: 80">
+        </div>
+        
+      </article>
+        <!-- <div v-for="(genre, index) in genres" :key="`g-${index}`">
+          <router-link :to="{ name: 'search', params: {keyword: `${genre.name}`} }">{{genre.name}}</router-link>
+        </div> -->
+        <!-- <div v-for="(actor, index) in actors" :key="`a-${index}`">
+          <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">{{actor.name}}</router-link>
+        </div> -->
+        <!-- <div v-for="(director, index) in directors" :key="`d-${index}`">
+          <router-link :to="{ name: 'search', params: {keyword: `${director.name}`} }">{{director.name}}</router-link>
+        </div> -->
+      
+      <hr>
       <div v-show=movie.trailer>
         <iframe :src=movie?.trailer frameborder="0"></iframe> 
       </div>
-    </div>
-    <!-- 한줄리뷰 리스트 -->
-    <div class="one-line-review-list">
-    <OneLineReviewView :movie_id = "movie?.id"/>
-    </div>
+
+      <!-- 한줄리뷰 리스트 -->
+      <div class="one-line-review-list">
+      <OneLineReviewView :movie_id = "movie?.id"/>
+      </div>
+    </section> 
   </div>
 </template>
 
@@ -141,8 +183,23 @@ export default {
 </script>
 
 <style>
- /* #movie-detail-view {
+#movie-detail-view {
   background-color: black;
   color: white;
- } */
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: #FF6800;
+}
+img {
+  border-style: none;
+}
+hr {
+  width:85%;
+  text-align: center;
+  margin:auto;
+}
 </style>

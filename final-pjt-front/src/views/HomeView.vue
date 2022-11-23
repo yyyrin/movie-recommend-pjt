@@ -2,6 +2,7 @@
   <div id="home">
     <nav-bar></nav-bar>
     <!-- <MovieSlide/> -->
+
     <!-- 1. 추천영화 -->
     <section>
       <div id="recommend-cards" style="background-color: rgb(27, 27, 27)">
@@ -9,22 +10,24 @@
           <h1 tabindex="0" class="title-area">
             <span class="label">추천 영화</span>
           </h1>
-          <a href="">더보기</a>
+          <router-link :to="{ name: 'search' }">더보기 ></router-link>
         </div>
         <MovieCards/>
       </div>
     </section>
 
-    <!-- 2.  -->
-    <section>
+    <!-- 2. 장르별 추천 영화 -->
+    <section v-for="(genre, index) in genres" :key="index">
       <div id="recommend-cards" style="background-color: rgb(27, 27, 27)">
         <div class="title d-flex justify-content-between mx-5">
           <h1 tabindex="0" class="title-area">
-            <span class="label">추천 영화</span>
+            <span class="label">{{ genre }} 추천 영화</span>
           </h1>
-          <a href="">더보기</a>
+          <router-link :to="{ name: 'search' }">더보기 ></router-link>
         </div>
-        <MovieCards/>
+        <MovieGenreCards
+          :genre="genre"
+        />
       </div>
     </section>
 
@@ -35,6 +38,7 @@
 import NavBar from '@/components/templates/NavBar'
 // import MovieSlide from '@/components/Home/MovieSlide'
 import MovieCards from '@/components/Home/MovieCards'
+import MovieGenreCards from '@/components/Home/MovieGenreCards'
 
 export default {
   name: 'HomeView',
@@ -42,11 +46,15 @@ export default {
     NavBar,
     // MovieSlide,
     MovieCards,
+    MovieGenreCards,
   },
   computed: {
     isLogIn() {
       return this.$store.getters.isLogIn
-    }
+    },
+    genres() {
+      return this.$store.state.genres
+    },
   },
   created() {
     this.getMovies()
@@ -78,5 +86,8 @@ export default {
 .title {
   padding-left: 50;
   padding-right: 50;
+}
+.label {
+  font-size: 23px;
 }
 </style>
