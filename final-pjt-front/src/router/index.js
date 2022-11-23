@@ -26,13 +26,6 @@ const routes = [
     name: 'login',
     component: LogInView
   },
-  // 선호 영화 check
-  {
-    path: '/ckeck',
-    name: 'check',
-    components: CheckPreferenceView
-  },
-
   // Signup
   {
     path: '/signup',
@@ -42,7 +35,7 @@ const routes = [
 
   // 홈
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView
   },

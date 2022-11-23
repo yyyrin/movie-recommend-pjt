@@ -4,8 +4,10 @@
         v-for="article in articles"
         :key="article.id"
         :article="article"
-        :community_id="community_id"
+        :community_id="community.id"
+        :community_user_id="community.user.pk"
       />
+
   </div>
 </template>
 
@@ -18,13 +20,13 @@ export default {
     CommunityArticleItem,
   },
   props: {
-    community_id: Number,
+    community: Object,
   },
   computed: {
     articles() {
       // return this.$store.state.articles.article_set
       return this.$store.state.articles.article_set.filter((article) => {
-        return article.community.id === this.community_id;
+        return article.community.id === this.community?.id
       })
     }
   },

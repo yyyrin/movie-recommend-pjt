@@ -14,7 +14,7 @@
 
     <ul class="list-group list-group-flush">
       <CommunityArticleList
-        :community_id="community?.id"
+        :community="community"
       />
     </ul>
   </div>
