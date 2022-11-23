@@ -1,5 +1,5 @@
 <template id="movie-slide">
-  <swiper class="swiper" ref="mySwiper2"
+  <!-- <swiper class="swiper" ref="mySwiper2"
     :options="swiperOptions"
     @slideChange="slideChangeTransitionStart"
   >
@@ -7,23 +7,24 @@
       :image-source="movie.poster_path"
       background-size="100% 100%"
     />
-  </swiper>
+  </swiper> -->
   <!-- <div>
     <carousel-3d  :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :clickable="true">
       <slide></slide>
       <MovieSlideItem v-for="movie in movies" :key="movie.id" :movie="movie"/>
     </carousel-3d>
   </div> -->
+  <div></div>
 </template>
 
 <script>
-import {Swiper, } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
-import MovieSlideItem from '@/components/Home/MovieSlideItem'
+//import {Swiper, } from 'vue-awesome-swiper'
+//import 'swiper/dist/css/swiper.css'
+//import MovieSlideItem from '@/components/Home/MovieSlideItem'
 
 export default {
   name: 'MovieSlide',
-  components: {
+/*   components: {
     // Carousel3d,
     Swiper,
     MovieSlideItem
@@ -59,7 +60,7 @@ export default {
   mounted() {
 			//console.log('Current Swiper instance object', this.swiper)
 		this.swiper.slideTo(1, 1000, false)
-  }
+  } */
 }
 </script>
 

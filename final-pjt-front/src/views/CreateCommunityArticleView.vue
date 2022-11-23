@@ -51,9 +51,10 @@ export default {
       const badwords = this.$store.state.bad
       let flag = 1 
       badwords.forEach(word=>{
-        if (title.indexOf(`${word}`) > -1 || content.indexOf(`${word}`)){
+        if (title.indexOf(`${word}`) > -1 || content.indexOf(`${word}`)>-1){
           alert('바르고 고운말!')
           flag = 0
+          console.log(flag)
           return
         }
       })
