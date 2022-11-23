@@ -85,10 +85,6 @@ export default {
         // this.$router.go(this.$router.currentRoute)
       })
     },
-    replacing() {
-    console.log('잘못된링크')
-    this.imgpath = '/img/basic_profile.398bf1a4.png'
-    }
   }
 }
 </script>

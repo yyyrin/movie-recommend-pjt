@@ -1,12 +1,13 @@
 <template>
   <div id="ProfileView">
     <nav-bar></nav-bar>
-    <img :src="userInfo?.user.img_path" @error="replacing"  height="100">
+    <img :src="userInfo?.user.img_path" height="100">
     <!-- <p>유저 이미지 변경 나중에 : {{ userInfo?.user.img_path }}</p> -->
     <p>사용자: {{ userInfo?.user.username }}</p>
     <!-- 회원정보수정 -->
     <EditProfile
       :userInfo="userInfo"
+      :is_active1="is_active1"
     />
 
     <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="report">신고</button>
@@ -57,6 +58,7 @@ export default {
       .then((res) => {
         // console.log(res)
         this.userInfo = res.data
+        console.log(this.userInfo)
         if (this.userInfo.user.username === this.$store.state.username) {
           this.is_active = 0
           this.is_active1 = 1
@@ -84,10 +86,6 @@ export default {
         console.log(err)
       })      
     },
-      replacing() {
-      console.log('잘못된 링크')
-      this.imgpath = '/img/basic_profile.398bf1a4.png'
-    }
   },
 }
 </script>
