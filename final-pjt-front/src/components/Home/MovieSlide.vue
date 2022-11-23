@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Flicking :options="{ renderOnlyVisible: true }">
+    <!-- <Flicking :options="{ renderOnlyVisible: true }">
         <div v-for="idx in list" class="flicking-panel" :key="idx">{{ idx }}</div>
-      </Flicking>
+      </Flicking> -->
       <!-- <MovieSlideItem
         v-for="movie in movies"
         :key="movie.id"
@@ -30,22 +30,22 @@
 </template>
 
 <script>
-import { Flicking } from "@egjs/vue-flicking";
-import "@egjs/flicking-plugins/dist/flicking-plugins.css";
+// import { Flicking } from "@egjs/vue-flicking";
+// import "@egjs/flicking-plugins/dist/flicking-plugins.css";
 // import { Perspective } from "@egjs/flicking-plugins";
 // import MovieSlideItem from '@/components/Home/MovieSlideItem'
 
 export default {
   name: 'MovieSlide',
-  components: {
-    Flicking,
-    // MovieSlideItem,
-  },
-  data() {
-    return {
-      list: [0, 1, 2, 3, 4]
-    }
-  }
+  // components: {
+  //   Flicking,
+  //   // MovieSlideItem,
+  // },
+  // data() {
+  //   return {
+  //     list: [0, 1, 2, 3, 4]
+  //   }
+  // }
   // computed: {
   //   movies() {
   //     return this.$store.state.movies
