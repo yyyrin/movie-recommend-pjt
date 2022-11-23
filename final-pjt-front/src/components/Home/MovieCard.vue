@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="movie-card">
     <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
       <div class="col">
         <div class="card h-100">
@@ -41,8 +41,11 @@ export default {
   -webkit-box-orient: vertical;
 } */
 #main-poster-img {
-  height: 30rem;
+  height: 380px;
   /* width: 20rem; */
   object-fit: cover;
+}
+.movie-card {
+  min-width: 200px;
 }
 </style>
