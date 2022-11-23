@@ -1,9 +1,9 @@
 <template>
   <div id="movie-cards">
-    <!-- <div>
-      {{ movies }}
-    </div> -->
-    <div class="row row-cols-1 row-cols-md-5 g-3 center py-2">
+    <div>
+      <!-- {{ movies }} -->
+    </div>
+    <div class="movie-genres row row-cols-1 row-cols-md-5 g-3 center">
       <MovieCard
         v-for="movie in movies.slice(0, 5)"
         :key="movie.id"
@@ -34,8 +34,11 @@ export default {
 <style>
 #movie-cards {
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  border-style: none;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
-
+.movie-genres {
+  padding: 50;
+}
 </style>

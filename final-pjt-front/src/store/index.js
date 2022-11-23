@@ -22,7 +22,8 @@ export default new Vuex.Store({
     communities: [],
     articles: [],
     comments: [],
-    bad: ['애플', 'apple', 'APPLE', '사과', '멍청이', '바보', '리중딱']
+    bad: ['애플', 'apple', 'APPLE', '사과', '멍청이', '바보', '리중딱'],
+    genres: ['애니메이션', '드라마', '스릴러', '모험', '판타지', '공포', '액션', '코미디', '역사', '서부', '범죄', '다큐멘터리', 'SF', '미스터리', '음악', '로맨스', '가족', '전쟁', 'TV 영화']
   },
   getters: {
     isLogIn(state) {
