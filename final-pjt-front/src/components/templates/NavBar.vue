@@ -43,7 +43,7 @@
           <!-- 프로필 dropdown -->
           <li class="nav-item dropdown">     
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img :src="imgpath" @error="replacing"  height="30">
+              <img :src="imgpath" height="30">
             </a>
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
               <!-- MY 프로필 이동 -->
@@ -75,12 +75,6 @@ export default {
       imgpath: this.$store.state.imgpath
     }
   },
-  methods: {
-    replacing() {
-      console.log('잘못된링크?')
-      this.imgpath = '/img/basic_profile.398bf1a4.png'
-    }
-  }
 }
 </script>
 
