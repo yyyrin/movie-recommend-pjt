@@ -12,6 +12,7 @@
     "@egjs/vue-flicking": "^4.10.2",
     "axios": "^1.1.3",
     "core-js": "^3.8.3",
+    "hammerjs": "^2.0.8",
     "lodash": "^4.17.21",
     "sass": "^1.56.1",
     "sass-loader": "^10.4.1",
@@ -20,6 +21,8 @@
     "vue-awesome-swiper": "^3.1.3",
     "vue-carousel-3d": "^1.0.1",
     "vue-router": "^3.5.1",
+    "vue2-hammer": "^2.1.2",
+    "vuetify": "^2.6.0",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.1.0"
   },
@@ -33,7 +36,11 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "vue-template-compiler": "^2.6.14"
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.7.0"
   },
   "eslintConfig": {
     "root": true,

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #000000;">
+  <nav class="navbar fixed-top navbar-dark navbar-expand-lg" style="background-color: #000000;">
     <div class="container-fluid">
       <!-- 로고 - 홈 연결 -->
       <router-link class="nav-link active" :to="{ name: 'home' }">
@@ -79,4 +79,10 @@ export default {
 </script>
 
 <style>
+/* .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+} */
 </style>

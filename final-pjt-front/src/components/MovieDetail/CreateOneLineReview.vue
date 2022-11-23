@@ -1,7 +1,7 @@
 <template id="create-one-line-review">
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create-review-modal">
+    <button id="create-review" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create-review-modal">
       리뷰 등록
     </button>
 
@@ -93,5 +93,9 @@ export default {
 <style>
 #create-one-line-review {
   color: black;
+}
+#create-review {
+  position: fixed;
+  bottom: 15px;
 }
 </style>
