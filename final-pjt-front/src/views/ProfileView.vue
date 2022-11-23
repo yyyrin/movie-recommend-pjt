@@ -40,6 +40,7 @@ export default {
     return {
       userInfo: null,
       is_active: 1,
+      is_active1: 0,
     }
   },
   created() {
@@ -59,6 +60,7 @@ export default {
         this.userInfo = res.data
         if (this.userInfo.user.username === this.$store.state.username) {
           this.is_active = 0
+          this.is_active1 = 1
         }
         // console.log(this.myInfo.reviews)
       })
