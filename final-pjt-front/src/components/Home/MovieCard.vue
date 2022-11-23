@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
       <div class="col">
         <div class="card h-100">
-          <img :src="movieURL" class="card-img-top" alt="...">
+          <img :src="movieURL" class="card-img-top" alt="movie poster" id="main-poster-img">
           <!-- 마우스 오버시 title 보이게 할 계획
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
@@ -33,11 +33,16 @@ export default {
 </script>
 
 <style>
-.card-text {
+/* .card-text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+} */
+#main-poster-img {
+  height: 30rem;
+  /* width: 20rem; */
+  object-fit: cover;
 }
 </style>

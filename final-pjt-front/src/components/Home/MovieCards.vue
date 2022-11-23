@@ -1,8 +1,11 @@
 <template>
   <div id="movie-cards">
+    <div>
+      <!-- {{ movies }} -->
+    </div>
     <div class="row row-cols-1 row-cols-md-5 g-3 center p-5">
       <MovieCard
-        v-for="movie in movies"
+        v-for="movie in movies.slice(0, 5)"
         :key="movie.id"
         :movie="movie"
       />
@@ -12,6 +15,7 @@
 
 <script>
 import MovieCard from '@/components/Home/MovieCard.vue'
+import _ from 'lodash'
 
 export default {
   name: 'MovieCards',
@@ -20,7 +24,8 @@ export default {
   },
   computed: {
     movies() {
-      return this.$store.state.movies
+      // return this.$store.state.movies
+      return _.orderBy(this.$store.state.movies, 'vote_average', 'desc')
     }
   }
 }
