@@ -14,7 +14,7 @@ from rest_framework.permissions import IsAuthenticated
 #@permission_classes([IsAuthenticated])
 def community_list(request):
     if request.method == 'GET':
-        communities = get_list_or_404(Community)
+        communities = Community.objects.all()
         serializer = CommunityListSerializer(communities, many=True)
         return Response(serializer.data)
 
@@ -28,7 +28,6 @@ def community_list(request):
 @api_view(['GET', 'DELETE', 'PUT'])
 #@permission_classes([IsAuthenticated])
 def community_detail(request, community_pk):
-    print(request)
     community = get_object_or_404(Community, pk=community_pk)
 
     if request.method == 'GET':

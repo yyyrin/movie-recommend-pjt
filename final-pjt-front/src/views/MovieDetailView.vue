@@ -7,13 +7,13 @@
       <p>장르 번호 : {{ movie?.genres }}</p>
       <p>배우 번호 : {{ movie?.actors }}</p>
       <div v-for="(genre, index) in genres" :key="`g-${index}`">
-        <p> {{genre.name}}</p>
+        <router-link :to="{ name: 'search', params: {keyword: `${genre.name}`} }">{{genre.name}}</router-link>
       </div>
-      <div v-for="(actor, index1) in actors" :key="`a-${index1}`">
-        <p> {{actor.name}}</p>
+      <div v-for="(actor, index) in actors" :key="`a-${index}`">
+        <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">{{actor.name}}</router-link>
       </div>
-      <div v-for="(director, index2) in directors" :key="`d-${index2}`">
-        <p> {{director.name}}</p>
+      <div v-for="(director, index) in directors" :key="`d-${index}`">
+        <router-link :to="{ name: 'search', params: {keyword: `${director.name}`} }">{{director.name}}</router-link>
       </div>
       <p>감독 번호 : {{ movie?.director }}</p>
       <p>제목 : {{ movie?.title }}</p>
@@ -23,12 +23,13 @@
       <div>
         <img :src="movieURL" alt="movie_poster">
       </div>
+      <div v-show=movie.trailer>
+        <iframe :src=movie?.trailer frameborder="0"></iframe> 
+      </div>
     </div>
     <!-- 한줄리뷰 리스트 -->
     <div class="one-line-review-list">
-    <OneLineReviewView
-      :movie_id = "movie?.id"
-    />
+    <OneLineReviewView :movie_id = "movie?.id"/>
     </div>
   </div>
 </template>
@@ -39,6 +40,8 @@ import axios from 'axios'
 import OneLineReviewView from '@/views/OneLineReviewView'
 
 const API_URL = 'http://127.0.0.1:8000'
+//const API_KEY = 'API_KEY 입력 필요'
+//const API_URL = 'https://www.googleapis.com/youtube/v3/search'
 
 export default {
   name: 'MovieDetailView',
