@@ -8,10 +8,9 @@
       <span @click="change(actor.name)">{{actor.name}}      </span>
     </span>
     <hr>
-      <div v-for="(direct, index) in director" :key="`d-${index}`">
+      <span v-for="(direct, index) in director" :key="`d-${index}`">
         <span @click="change(direct.name)">{{direct.name}}      </span>
-        <br>
-      </div>
+      </span>
     <hr>
     <span v-for="(movie, index) in movies" :key="`m-${index}`">
       <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">|{{movie.title}}|</router-link>

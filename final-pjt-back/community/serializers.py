@@ -22,7 +22,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = get_user_model()
-            fields = ('pk', 'username')
+            fields = ('pk', 'username','img_path')
     comment_set = CommentSerializer(many=True, read_only=True)
     user = UserSerializer(read_only=True)
     community = CommunityListSerializer(read_only= True)
@@ -36,7 +36,7 @@ class CommuntiySerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = get_user_model()
-            fields = ('pk', 'username')
+            fields = ('pk', 'username','img_path')
     article_set = ArticleSerializer(many=True, read_only=True)
     user = UserSerializer(read_only=True)
 

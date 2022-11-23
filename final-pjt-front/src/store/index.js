@@ -16,6 +16,7 @@ export default new Vuex.Store({
   state: {
     token: null,
     username: null,
+    imgpath: '/img/basic_profile.398bf1a4.png',
     movies: [],
     // reviews: [],
     communities: [],
@@ -52,6 +53,10 @@ export default new Vuex.Store({
     GET_COMMENTS(state, comments) {
       state.comments = comments
     },
+    GET_IMG_PATH(state, img_path) {
+      console.log(img_path)
+      state.imgpath = img_path
+    }
   },
   actions: {
     signUp(context, payload) {
@@ -80,12 +85,25 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
-        // console.log(res)
         const data = { token: res.data.key, username: payload.username }
         context.commit('SAVE_TOKEN', data)
       })
       .catch(() => {
         alert('일치하지 않는 회원 정보입니다.')
+      })
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/profile/${payload.username}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then((res) => {
+        context.commit('GET_IMG_PATH', res.data.user.img_path)
+        // console.log(this.myInfo.reviews)
+      })
+      .catch((err) => {
+        console.log(err)
       })
     },
     getMovies(context) {
