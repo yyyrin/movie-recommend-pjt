@@ -25,7 +25,6 @@ const routes = [
     name: 'login',
     component: LogInView
   },
-
   // Signup
   {
     path: '/signup',
@@ -35,7 +34,7 @@ const routes = [
 
   // 홈
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView
   },

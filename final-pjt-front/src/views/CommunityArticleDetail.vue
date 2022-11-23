@@ -8,9 +8,12 @@
     <p>작성시간: {{ articleCreatedAt }}</p>
     <p>수정시간: {{ articleUpdatedAt }}</p>
     <p>작성자: <router-link :to="{ name: 'profile', params: { username: article?.user.username } }">{{ article?.user.username }}</router-link></p>
+    <router-link  :to="{ name: 'profile', params: { username: article?.user.username } }">
+        <img :src=article?.user.img_path height="50"></router-link>
 
     <!-- 삭제 -->
-    <button class="btn btn-outline-danger waves-effect mb-4" @click="deleteArticle">삭제</button>
+    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="deleteArticle">삭제</button>
+    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active1" @click="reportArticle">신고</button>
 
     <p>내용: {{ article?.content }}</p>
     <p>이미지: {{ article?.imagepath }}</p>
@@ -53,6 +56,7 @@ export default {
     }
   },
   created() {
+    console.log('11')
     this.getArticleDetail()
   },
   methods: {
@@ -102,7 +106,24 @@ export default {
         }
         // this.$router.go(this.$router.currentRoute)
       })
-    }
+    },
+    reportArticle() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/report/${this.article.user.pk}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then((res) => {
+        // console.log(res)
+        console.log(res.data)
+        // console.log(this.myInfo.reviews)
+      })
+      .catch((err) => {
+        console.log(err)
+      })      
+    },
   },
   computed: {
     articleCreatedAt() {
@@ -112,6 +133,20 @@ export default {
     articleUpdatedAt() {
       const updatedAt = new Date(this.article?.updated_at).toLocaleString()
       return updatedAt
+    },
+    is_active() {
+      if (this.article.user.pk === this.$store.state.pk) {
+        return 1
+      }else{
+        return 0
+      }
+    },
+    is_active1() {
+      if (this.article.user.pk != this.$store.state.pk) {
+        return 1
+      }else {
+        return 0
+      }
     }
   },
 }

@@ -3,7 +3,6 @@
     <!-- {{ comment }} -->
     <p>댓글 내용: {{ comment.content }}</p>
     <p>작성자 id: {{ comment.user }}</p>
-
     <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="deleteComment">삭제</button>
     <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active1" @click="reportComment">신고</button>
     <hr>
