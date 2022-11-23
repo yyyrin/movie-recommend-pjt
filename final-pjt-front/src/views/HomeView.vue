@@ -1,21 +1,21 @@
 <template>
   <div id="home">
     <nav-bar></nav-bar>
-    <MovieSlide/>
+<!--     <MovieSlide/> -->
     <MovieCards/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/templates/NavBar'
-import MovieSlide from '@/components/Home/MovieSlide'
+//import MovieSlide from '@/components/Home/MovieSlide'
 import MovieCards from '@/components/Home/MovieCards'
 
 export default {
   name: 'HomeView',
   components: {
     NavBar,
-    MovieSlide,
+    //MovieSlide,
     MovieCards,
   },
   computed: {
