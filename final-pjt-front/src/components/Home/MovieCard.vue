@@ -2,8 +2,8 @@
   <div class="movie-card">
     <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
       <div class="col">
-        <div class="card h-100">
-          <img :src="movieURL" class="card-img-top" alt="movie poster" id="main-poster-img">
+        <div class="card embed-responsive embed-responsive-5by3">
+          <img :src="movieURL" class="card-img-top embed-responsive-item" alt="movie poster" id="main-poster-img">
           <!-- 마우스 오버시 title 보이게 할 계획
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
@@ -46,8 +46,14 @@ export default {
   object-fit: cover;
 }
 .movie-card {
-  min-width: 200px;
-  border-style: none;
+  min-width: 230px;
+  /* border-style: none; */
   border: 0px;
+  transition: all 0.2s linear;
+  overflow: hidden;
+}
+.movie-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 </style>

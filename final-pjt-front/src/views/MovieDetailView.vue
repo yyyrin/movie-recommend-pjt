@@ -1,78 +1,89 @@
 <template>
   <div id="movie-detail-view">
     <nav-bar></nav-bar>
+    <!-- 1. movie detail section -->
     <section class="movie-detail">
+      <div id="movie-detail-carousel" class="carousel slide" data-bs-touch="false">
+        <div class="carousel-inner">
+          <!-- Carousel-기본 -->
+          <div class="carousel-item active" data-bs-interval="false">
+            <!-- movie detail -->
+            <article class="d-flex justify-content-between mx-5 my-4 px-5 py-3">
+              <!-- 포스터 제외 -->
+              <br>
+              <div style="margin:80px; text-align:left;">
+                <div style="font-size: 60px">{{ movie?.title }}</div>
+                <br><br><br>
+                <!-- tag button -->
+                <span>
+                  <button type="button" class="btn btn-outline-secondary btn-sm m-1" disabled>{{ movie?.release_date.substr(0, 4) }}</button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm m-1" disabled>{{ movie?.runtime }}분</button>
+                  <span v-for="(genre, index) in genres" :key="`g-${index}`">
+                    <router-link :to="{ name: 'search', params: {keyword: `${genre.name}`} }">
+                      <button type="button" class="btn btn-outline-secondary btn-sm m-1">
+                        {{genre?.name}}
+                      </button>
+                    </router-link>
+                  </span>
+                </span>
 
-      <!-- movie detail -->
-      <article class="d-flex justify-content-between mx-5 my-4 px-5 py-3">
-        <!-- 포스터 제외 -->
-        <br>
-        <div style="margin:80px; text-align:left;">
-          <div style="font-size: 60px">{{ movie?.title }}</div>
-          <br><br><br>
-          <!-- tag button -->
-          <span>
-            <button type="button" class="btn btn-outline-secondary btn-sm" disabled>{{ movie?.release_date.substr(0, 4) }}</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" disabled>{{ movie?.runtime }}분</button>
-            <span v-for="(genre, index) in genres" :key="`g-${index}`">
-              <router-link :to="{ name: 'search', params: {keyword: `${genre.name}`} }">
-                <button type="button" class="btn btn-outline-secondary btn-sm">
-                  {{genre?.name}}
-                </button>
-              </router-link>
-            </span>
-          </span>
-
-          <br><br>
-          <!-- director, actor info -->
-          <div>
-            감독 &nbsp; &nbsp;
-            <span v-for="(director, index) in directors" :key="`d-${index}`">
-                <router-link :to="{ name: 'search', params: {keyword: `${director.name}`} }">
-                  {{director?.name}} &nbsp;
-                </router-link>
-              </span>
+                <br><br>
+                <!-- director, actor info -->
+                <div>
+                  감독 &nbsp; &nbsp;
+                  <span v-for="(director, index) in directors" :key="`d-${index}`">
+                      <router-link :to="{ name: 'search', params: {keyword: `${director.name}`} }">
+                        {{director?.name}} &nbsp;
+                      </router-link>
+                    </span>
+                </div>
+                <div>
+                  출연 &nbsp; &nbsp;
+                  <span v-for="(actor, index) in actors" :key="`a-${index}`">
+                    <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">
+                      {{ actor?.name }} &nbsp;
+                    </router-link>
+                  </span>
+                </div>
+                <br>
+                <!-- 줄거리 -->
+                <p style="width:600px; word-break:keep-all;">
+                  {{ movie?.overview }}
+                </p>
+              </div>
+              <!-- movie poster -->
+              <div>
+                <img :src="movieURL" alt="movie_poster" style="height: 700px; ">
+              </div>
+            </article>
           </div>
-          <div>
-            출연 &nbsp; &nbsp;
-            <span v-for="(actor, index) in actors" :key="`a-${index}`">
-              <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">
-                {{ actor?.name }} &nbsp;
-              </router-link>
-            </span>
+          <!-- Carousel trailer -->
+          <div class="carousel-item" data-bs-interval="false">
+            <div v-show=movie.trailer>
+              <iframe :src=movie?.trailer style="display:block; width:100vw; height: 100vh"></iframe> 
+            </div>
           </div>
-          <br>
-          <!-- 줄거리 -->
-          <p style="width:600px; word-break:keep-all;">
-            {{ movie?.overview }}
-          </p>
         </div>
-        <!-- movie poster -->
-        <div>
-          <img :src="movieURL" alt="movie_poster" style="height: 80">
-        </div>
-        
-      </article>
-        <!-- <div v-for="(genre, index) in genres" :key="`g-${index}`">
-          <router-link :to="{ name: 'search', params: {keyword: `${genre.name}`} }">{{genre.name}}</router-link>
-        </div> -->
-        <!-- <div v-for="(actor, index) in actors" :key="`a-${index}`">
-          <router-link :to="{ name: 'search', params: {keyword: `${actor.name}`} }">{{actor.name}}</router-link>
-        </div> -->
-        <!-- <div v-for="(director, index) in directors" :key="`d-${index}`">
-          <router-link :to="{ name: 'search', params: {keyword: `${director.name}`} }">{{director.name}}</router-link>
-        </div> -->
-      
-      <hr>
-      <div v-show=movie.trailer>
-        <iframe :src=movie?.trailer frameborder="0"></iframe> 
+        <!-- Carousel button -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#movie-detail-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#movie-detail-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
+    </section>
 
-      <!-- 한줄리뷰 리스트 -->
-      <div class="one-line-review-list">
-      <OneLineReviewView :movie_id = "movie?.id"/>
-      </div>
-    </section> 
+    <br><br>
+    <hr>
+    <br><br>
+
+    <!-- 2. 한줄리뷰 리스트 -->
+    <div class="one-line-review-list">
+    <OneLineReviewView :movie_id = "movie?.id"/>
+    </div>
   </div>
 </template>
 
@@ -191,7 +202,7 @@ a {
   text-decoration: none;
   color: white;
 }
-a:hover {
+#movie-detail-view a:hover {
   color: #FF6800;
 }
 img {
