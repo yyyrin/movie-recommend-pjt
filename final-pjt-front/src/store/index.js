@@ -23,7 +23,6 @@ export default new Vuex.Store({
     articles: [],
     comments: [],
     bad: ['애플', 'apple', 'APPLE', '사과', '멍청이', '바보', '리중딱']
-
   },
   getters: {
     isLogIn(state) {

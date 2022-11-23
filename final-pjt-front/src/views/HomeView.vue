@@ -2,10 +2,32 @@
   <div id="home">
     <nav-bar></nav-bar>
     <!-- <MovieSlide/> -->
-    <div id="recommend-cards">
-      <p>추천 영화</p>
-      <MovieCards/>
-    </div>
+    <!-- 1. 추천영화 -->
+    <section>
+      <div id="recommend-cards" style="background-color: rgb(27, 27, 27)">
+        <div class="title d-flex justify-content-between mx-5">
+          <h1 tabindex="0" class="title-area">
+            <span class="label">추천 영화</span>
+          </h1>
+          <a href="">더보기</a>
+        </div>
+        <MovieCards/>
+      </div>
+    </section>
+
+    <!-- 2.  -->
+    <section>
+      <div id="recommend-cards" style="background-color: rgb(27, 27, 27)">
+        <div class="title d-flex justify-content-between mx-5">
+          <h1 tabindex="0" class="title-area">
+            <span class="label">추천 영화</span>
+          </h1>
+          <a href="">더보기</a>
+        </div>
+        <MovieCards/>
+      </div>
+    </section>
+
   </div>
 </template>
 
@@ -49,6 +71,12 @@ export default {
 }
 
 #recommend-cards {
-  margin: 20px;
+  margin: 30px 180px 30px 180px;
+  padding: 20px;
+}
+
+.title {
+  padding-left: 50;
+  padding-right: 50;
 }
 </style>
