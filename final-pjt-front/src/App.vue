@@ -16,11 +16,14 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
 #app {
+  /* background-color: black; */
+  background-image: url("assets/lionking.png");
+  background-size: cover;
   font-family: 'IBM Plex Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  /* color: black; */
 }
 /* font-family: 'Roboto Condensed', sans-serif;
 @font-face {

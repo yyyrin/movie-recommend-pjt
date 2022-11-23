@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import LogInView from '@/views/LogInView'
+import CheckPreferenceView from '@/views/CheckPreferenceView'
 import SignUpView from '@/views/SignUpView'
 import HomeView from '@/views/HomeView'
 import MovieDetailView from '@/views/MovieDetailView'
@@ -24,6 +25,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LogInView
+  },
+  // 선호 영화 check
+  {
+    path: '/ckeck',
+    name: 'check',
+    components: CheckPreferenceView
   },
 
   // Signup
