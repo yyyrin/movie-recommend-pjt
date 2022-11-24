@@ -21,7 +21,6 @@ export default {
   },
   computed: {
     comments() {
-      // console.log(this.$store.state.comments.comment_set)
       return this.$store.state.comments.comment_set.filter((comment) => {
         return comment.article === this.article_id;
       })

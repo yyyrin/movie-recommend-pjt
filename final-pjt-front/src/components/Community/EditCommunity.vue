@@ -70,7 +70,6 @@ export default {
         }
       })
       .then(() => {
-        // console.log(res)
         alert('삭제가 완료되었습니다.')
         this.$router.push({ name: 'community' })
         // 새로고침하지 않으면 창이 이상함..왜 이러지
@@ -108,8 +107,7 @@ export default {
             Authorization: `Token ${this.$store.state.token}`
           }
         })
-        .then((res) => {
-          console.log(res)
+        .then(() => {
         })
         .catch((err) => {
           console.log(err)
