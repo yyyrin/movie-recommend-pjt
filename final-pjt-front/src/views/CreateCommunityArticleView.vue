@@ -1,16 +1,32 @@
 <template>
   <div id="create-community-article-view">
     <nav-bar></nav-bar>
-    <h1>CreateCommunityArticleView</h1>
-    <form @submit.prevent="createArticle">
-      <label for="title">제목 : </label>
-      <input type="text" id="title" v-model.trim="title"><br>
-      <label for="content">내용 : </label>
-      <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
-      <label for="imagepath">이미지 : </label>
-      <textarea id="imagepath" cols="30" rows="10" v-model="imagepath"></textarea><br>
-      <input type="submit" id="submit">
-    </form>
+
+    <div id="create-community-article-body" class="my-3">
+      <form @submit.prevent="createArticle">
+        <!-- title -->
+        <div class="row mt-2" style="display:block;">
+          <div class="FlexableTextArea" style="font-size-adjust:none; font-weight:400;">
+            <textarea placeholder="제목을 입력해 주세요." style="height:40px;"></textarea>
+          </div>
+        </div>
+        <!-- img -->
+        <div class="row mt-2" style="display:block;">
+          <div class="FlexableTextArea" style="font-size-adjust:none; font-weight:400;">
+            <textarea placeholder="제목을 입력해 주세요." style="height:40px;"></textarea>
+          </div>
+        </div>
+        <!-- content -->
+        
+        <label for="title">제목 : </label>
+        <input type="text" id="title" v-model.trim="title"><br>
+        <label for="content">내용 : </label>
+        <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
+        <label for="imagepath">이미지 : </label>
+        <textarea id="imagepath" cols="30" rows="10" v-model="imagepath"></textarea><br>
+        <input type="submit" id="submit">
+      </form>
+    </div>
   </div>
 </template>
 
@@ -87,5 +103,15 @@ export default {
 <style>
 #create-community-article-view {
   padding-top: 90px;
+  color: white;
 }
+#create-community-article-body {
+  width: 900px;
+  margin: 0 auto;
+  display: block;
+  background-color: rgb(27, 27, 27);
+  /* border: white; */
+  border-radius: 2%;
+}
+
 </style>
