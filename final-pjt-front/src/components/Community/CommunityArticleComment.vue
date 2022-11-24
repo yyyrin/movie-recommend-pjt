@@ -1,11 +1,27 @@
 <template>
-  <div>
+  <div id="community-comment">
+    <div class="bubble sb14">
+      <div class="d-flex">
+        <div class="m-2 d-flex justify-content-around">
+          <div>
+            <div style="text-align: center;">{{ comment.content }}</div>
+            <div>
+              <button class="btn btn-danger waves-effect mb-1 btn-sm" v-show="is_active" @click="deleteComment">삭제</button>
+              <button class="btn btn-danger waves-effect mb-1 btn-sm" v-show="is_active1" @click="reportComment">신고</button>
+            </div>
+          </div>
+            <!-- <router-link  :to="{ name: 'profile', params: { username: comment?.user.username } }">
+              <p style="text-align:center; color: white;">{{ comment?.user.username }}</p>
+            </router-link><br> -->
+        </div>
+      </div>
+    </div>
+
     <!-- {{ comment }} -->
-    <p>댓글 내용: {{ comment.content }}</p>
-    <p>작성자 id: {{ comment.user }}</p>
-    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="deleteComment">삭제</button>
-    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active1" @click="reportComment">신고</button>
-    <hr>
+    <!-- <p>댓글 내용: {{ comment.content }}</p>
+    <p>작성자 id: {{ comment.user }}</p> -->
+    <!-- <button class="btn btn-outline-danger waves-effect mb-1 btn-sm" v-show="is_active" @click="deleteComment">삭제</button>
+    <button class="btn btn-outline-danger waves-effect mb-1 btn-sm" v-show="is_active1" @click="reportComment">신고</button> -->
   </div>
 </template>
 
@@ -69,5 +85,7 @@ export default {
 </script>
 
 <style>
-
+/* #community-comment {
+  background-color: rgb(19, 17, 17);
+} */
 </style>
