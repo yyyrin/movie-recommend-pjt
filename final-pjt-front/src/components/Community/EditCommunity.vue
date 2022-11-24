@@ -1,35 +1,42 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-community-modal" @click="getOriginalCommunity">
-      수정
-    </button>
+    <div style="margin-right:5px;">
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#edit-community-modal" @click="getOriginalCommunity">
+        :
+      </button>
+    </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="edit-community-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade right" id="edit-community-modal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" data-backdrop="false">
       <div class="modal-dialog">
+        <!-- content -->
         <div class="modal-content">
-          <div class="modal-header">
+          <!--Header-->
+          <div class="modal-header p-3">
             <h1 class="modal-title fs-5" id="exampleModalLabel">커뮤니티 수정</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-          <div class="modal-body">
-            <!-- 썸네일 -->
-            <p>썸네일 수정 가능할 공간</p>
-            <label for="community-thumbnail">썸네일 주소</label>
-            <input type="text" id="community-thumbnail" v-model="thumbnail">
-            <hr>
-            <!-- <p>{{ community }}</p> -->
+          <!-- Body -->
+          <div class="modal-body d-flex flex-column mb-3">
             <!-- 커뮤니티명 -->
-            <label for="community-name" class="col-form-label">커뮤니티명</label>
-            <input class="form-control" type="text" aria-label="default input example" id="community-name" v-model.trim="name">
+            <div class="mb-3">
+              <label style="font-size: 18px;" for="community-name" class="col-form-label d-flex justify-content-start">커뮤니티명</label>
+              <input class="form-control" type="text" aria-label="default input example" id="community-name" style="width:466px;" placeholder="커뮤니티명을 입력해주세요" v-model.trim="name">
+            </div>
+            <!-- 썸네일 -->
+            <div class="mb-3">
+              <label style="font-size: 18px;" for="community-thumbnail" class="col-form-label d-flex justify-content-start">썸네일 주소</label>
+              <input type="text" class="form-control" style="width:466px;" id="community-thumbnail" placeholder="이미지 주소를 입력해주세요" v-model="thumbnail">
+            </div>
           </div>
-
-          <div class="modal-footer">
-            <button class="btn btn-outline-danger waves-effect mb-4" @click="deleteCommunity">삭제</button>
+    
+          <!-- Footer -->
+          <div class="modal-footer justify-content-between">
+            <button class="btn btn-outline-danger waves-effect" @click="deleteCommunity">삭제</button>
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <button type="button" class="btn btn-primary" @click="putCommunity">저장</button>
+            <button type="button" class="btn btn-warning" style="color:white;" @click="putCommunity">저장</button>
           </div>
         </div>
       </div>
