@@ -7,6 +7,7 @@
       :community_id="this.community_id"
       :article_id="this.article_id"
     />
+    
   </div>
 </template>
 
@@ -41,6 +42,11 @@ export default {
 
 <style>
 #community-article-comment-view {
-  padding-top: 90px;
+  background-color:rgb(27, 27, 27);
+  width: 1080px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 40px;
+  border-radius: 5px;
 }
 </style>

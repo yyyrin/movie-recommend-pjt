@@ -4,18 +4,18 @@
 
     <div id="create-community-article-body" class="my-3">
       <form @submit.prevent="createArticle">
-        <!-- title -->
+        <!-- title
         <div class="row mt-2" style="display:block;">
           <div class="FlexableTextArea" style="font-size-adjust:none; font-weight:400;">
             <textarea placeholder="제목을 입력해 주세요." style="height:40px;"></textarea>
           </div>
-        </div>
+        </div> -->
         <!-- img -->
-        <div class="row mt-2" style="display:block;">
+        <!-- <div class="row mt-2" style="display:block;">
           <div class="FlexableTextArea" style="font-size-adjust:none; font-weight:400;">
             <textarea placeholder="제목을 입력해 주세요." style="height:40px;"></textarea>
           </div>
-        </div>
+        </div> -->
         <!-- content -->
         
         <label for="title">제목 : </label>
