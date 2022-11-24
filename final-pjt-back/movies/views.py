@@ -124,6 +124,15 @@ def search(request, query):
 
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
+def check(request):
+    if Preference_movies.objects.filter(user_id=request.user.pk):
+        return Response({'result': 0} , status=status.HTTP_200_OK)
+    else:
+        return Response({'result': 1}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+#@permission_classes([IsAuthenticated])
 def director_profile(request, query):
     directors = get_list_or_404(Director)
     result = []
@@ -159,9 +168,9 @@ def preference(request, query):
 def recommand(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
-        reviews = get_list_or_404(Review)
+        reviews = Review.objects.all()
         users = get_list_or_404(get_user_model())
-        #preferences = get_list_or_404(Preference_movies)
+        preferences = get_list_or_404(Preference_movies)
         movie_id_arr =[]
         user_id_arr =  []
         for movie in movies:
@@ -174,16 +183,24 @@ def recommand(request):
         user_pick = [0] *M 
         #선호 영화에서 점수 반영
         relation_table = [[0] *M for _ in range(N)]
-        """ for preference in preferences:
+        for preference in preferences:
             n = user_id_arr.index(preference.user_id)
             m = movie_id_arr.index(preference.movie1)
             relation_table[n][m] = 1
+            if n == origin:
+                user_pick[m] = 1
             m = movie_id_arr.index(preference.movie2)
             relation_table[n][m] = 1
+            if n == origin:
+                user_pick[m] = 1
             m = movie_id_arr.index(preference.movie3)
             relation_table[n][m] = 1
+            if n == origin:
+                user_pick[m] = 1
             m = movie_id_arr.index(preference.movie4)
-            relation_table[n][m] = 1 """
+            relation_table[n][m] = 1
+            if n == origin:
+                user_pick[m] = 1
         #리뷰에서 점수 반영
         for review in reviews:
             n = user_id_arr.index(review.user.pk)
@@ -202,7 +219,9 @@ def recommand(request):
                 if user_pick[m]:
                     vec1 += relation_table[n][m]**2
                     vec2 += relation_table[origin][m]**2
-            ratio_table[n] = (temp/((vec1**0.5)*(vec2**0.5)))/2 +0.5
+            if vec1 * vec2 != 0:
+                ratio_table[n] = (temp/((vec1**0.5)*(vec2**0.5)))/2 +0.5
+        print(ratio_table)
         #예상점수 계산(평균 기준)
         predict = [0] * M
         for m in range(M):

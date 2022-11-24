@@ -39,7 +39,23 @@ export default {
       return this.$store.state.movies
     }
   },
+  created() {
+    this.check()
+  },
   methods: {
+    check() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/check/`,
+        headers: {Authorization: `Token ${this.$store.state.token}`}
+      })
+        .then((res) => {
+          if (res.data.result === 0) {
+            this.$router.push('home')
+          }
+        })
+        .catch(()=> {})
+    },
     getData: function(movie){
       if (this.choosen.indexOf(movie.id)> -1) {
         this.choosen.splice(this.movies.indexOf(movie.id),1)
@@ -56,12 +72,12 @@ export default {
           }
         })
         .then(() => {
-          this.$router.push({ name: 'home' })
         })
         .catch((err) => {
           console.log(err)
         })
         alert('선호 영화 조사완료!')
+        this.$router.push({ name: 'home' })
       }
       console.log(this.choosen)
     }

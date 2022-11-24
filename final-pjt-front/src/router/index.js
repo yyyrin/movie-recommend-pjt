@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import LogInView from '@/views/LogInView'
-// import CheckPreferenceView from '@/views/CheckPreferenceView'
 import SignUpView from '@/views/SignUpView'
 import HomeView from '@/views/HomeView'
 import MovieDetailView from '@/views/MovieDetailView'
