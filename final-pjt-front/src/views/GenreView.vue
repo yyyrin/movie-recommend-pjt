@@ -73,5 +73,6 @@ export default {
  #genre-view {
   background-color: black;
   color: white;
+  padding-top: 90px;
  }
 </style>

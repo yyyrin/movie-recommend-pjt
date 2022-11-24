@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style>
+#carouselExampleControls {
+  padding-top: 90px;
+}
 .slide-img {
   text-align:center;
   object-fit: cover;

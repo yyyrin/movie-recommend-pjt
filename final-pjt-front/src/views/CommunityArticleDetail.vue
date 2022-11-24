@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="community-article-detail">
     <nav-bar></nav-bar>
     <!-- {{ article }} -->
     <h1>CommunityArticleDetail</h1>
@@ -153,5 +153,7 @@ export default {
 </script>
 
 <style>
-
+#community-article-detail {
+  padding-top: 90px;
+}
 </style>
