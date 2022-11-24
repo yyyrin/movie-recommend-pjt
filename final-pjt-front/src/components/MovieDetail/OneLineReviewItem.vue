@@ -108,9 +108,15 @@ export default {
 </script>
 
 <style>
+#one-line-review-item {
+  height: 140px;
+}
+
 .bubble {
   width: 600px;
-  margin: 50px auto;
+  margin-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   border-radius: 15px;
   background: #FF6800;
   color: black;
