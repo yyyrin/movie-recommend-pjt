@@ -3,6 +3,7 @@
     <OneLineReviewList
       :movie_id="movie_id"
       :reviews="reviews"
+      :movie="movie"
     />
     <CreateOneLineReview
       :movie="movie"

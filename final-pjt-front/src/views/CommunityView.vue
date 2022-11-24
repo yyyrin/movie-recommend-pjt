@@ -1,7 +1,7 @@
 <template>
   <div id="community-view">
     <nav-bar></nav-bar>
-    <h1>Community</h1>
+    <!-- <h1>Community</h1> -->
     <br><br>
     <CreateCommunity/>
     <br><br>
