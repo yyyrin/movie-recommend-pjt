@@ -1,6 +1,5 @@
 <template>
   <div class="article-list">
-    <h1>Article List</h1>
     <!-- <router-link :to="{ name: my_profile }"><h1>My ArticleList</h1></router-link> -->
       <div v-if="articles" class="row row-cols-1 row-cols-md-5 g-3 center py-2">
         <ArticleItem

@@ -70,7 +70,6 @@ export default {
         if (title.indexOf(`${word}`) > -1 || content.indexOf(`${word}`)>-1){
           alert('바르고 고운말!')
           flag = 0
-          console.log(flag)
           return
         }
       })

@@ -56,7 +56,6 @@ export default {
     }
   },
   created() {
-    console.log('11')
     this.getArticleDetail()
   },
   methods: {
@@ -66,7 +65,6 @@ export default {
         url: `${API_URL}/api/v1/community/${this.$route.params.community_id}/article/${this.$route.params.article_id}/`,
       })
       .then((res) => {
-        // console.log(res)
         this.article = res.data
         this.count = this.article?.like_users.length
       })
@@ -116,8 +114,6 @@ export default {
         }
       })
       .then(() => {
-        // console.log(res)
-        // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
         console.log(err)

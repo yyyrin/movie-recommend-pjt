@@ -22,6 +22,7 @@
           <h1 tabindex="0" class="title-area">
             <span class="label">{{ genre }} 추천 영화</span>
           </h1>
+          <router-link :to="{ name: 'search', params: {keyword: `${genre}`} }">더보기 ></router-link>
         </div>
         <MovieGenreCards
           :genre="genre"

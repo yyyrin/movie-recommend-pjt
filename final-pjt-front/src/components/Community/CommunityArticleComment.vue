@@ -57,8 +57,6 @@ export default {
         }
       })
       .then(() => {
-        // console.log(res)
-        // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
         console.log(err)
