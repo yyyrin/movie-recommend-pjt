@@ -1,17 +1,36 @@
 <template>
-  <div>
-    <router-link  :to="{ name: 'profile', params: { username: article?.user.username } }">
+  <tr>
+    <!-- username -->
+    <td>
+      <router-link  :to="{ name: 'profile', params: { username: article?.user.username } }">
+        <img :src=article?.user.img_path height="50" class="my-2">
+        <p>{{ article?.user.username }}</p>
+      </router-link>
+    </td>
+    <!-- title -->
+    <td>
+      <router-link
+        :to="{ name: 'community_article_detail',
+        params: { community_id: community_id, article_id: article.id } }">
+          <span>
+            <span style="font-size:18px;">{{ article.title }}</span>
+          </span>
+      </router-link>
+    </td>
+    <!-- 삭제 -->
+    <td>
+      <button class="btn btn-outline-danger btn-sm waves-effect" v-show="is_active" @click="deleteArticle">X</button>
+    </td>
+
+    <!-- <router-link  :to="{ name: 'profile', params: { username: article?.user.username } }">
         <img :src=article?.user.img_path height="50"></router-link>
-    <p>작성자: <router-link :to="{ name: 'profile', params: { username: article?.user.username } }">{{ article?.user.username }}</router-link></p>
-    <router-link
+    <p>작성자: <router-link :to="{ name: 'profile', params: { username: article?.user.username } }">{{ article?.user.username }}</router-link></p> -->
+    <!-- <router-link
       :to="{ name: 'community_article_detail',
       params: { community_id: community_id, article_id: article.id } }">
-      <li class="list-group-item">
         <p>{{ article.title }}</p>
-      </li>
-    </router-link>
-    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="deleteArticle">삭제</button>
-  </div>
+    </router-link> -->
+  </tr>
 </template>
 
 <script>
@@ -59,5 +78,4 @@ export default {
 </script>
 
 <style>
-
 </style>

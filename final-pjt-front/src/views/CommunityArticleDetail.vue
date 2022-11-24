@@ -154,5 +154,6 @@ export default {
 <style>
 #community-article-detail {
   padding-top: 90px;
+  color: white;
 }
 </style>
