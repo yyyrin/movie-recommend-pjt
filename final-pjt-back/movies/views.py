@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
-from .serializers import MovieListSerializer, ReviewSerializer, MovieDetailSerializer, ActorProfileSerializer, DirectorProfileSerializer, GerneSerializer
+from .serializers import MovieListSerializer, ReviewSerializer, MovieDetailSerializer, ActorProfileSerializer, DirectorProfileSerializer, GerneSerializer, MovieRateSerializer
 from .models import Movie, Review, Genre, Actor, Director, Preference_movies
 from django.contrib.auth import get_user_model
 
@@ -49,13 +49,23 @@ def review_detail(request, movie_pk, review_pk):
         return Response(serializer.data)
 
     elif request.method == 'DELETE' and review.user == request.user:
+        data1 = (movie.vote_average*movie.vote_count-review.rate)/(movie.vote_count-1)
+        data2 = movie.vote_count-1
+        serializer2 = MovieRateSerializer(movie, data={'vote_average':data1,'vote_count':data2})
+        if serializer2.is_valid(raise_exception=True):
+            serializer2.save()
         review.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     elif request.method == 'PUT' and review.user == request.user:
         serializer = ReviewSerializer(review, data=request.data)
         if serializer.is_valid(raise_exception=True):
+            data1 = (movie.vote_average*movie.vote_count-review.rate+request.data['rate'])/(movie.vote_count)
+            data2 = movie.vote_count
+            serializer2 = MovieRateSerializer(movie, data={'vote_average':data1,'vote_count':data2})
             serializer.save()
+            if serializer2.is_valid(raise_exception=True):
+                serializer2.save()
             return Response(serializer.data)
 
 
@@ -66,6 +76,11 @@ def review_create(request, movie_pk):
     serializer = ReviewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user, movie=movie)
+        data1 = (movie.vote_average*movie.vote_count+request.data['rate'])/(movie.vote_count+1)
+        data2 = movie.vote_count+1
+        serializer2 = MovieRateSerializer(movie, data={'vote_average':data1,'vote_count':data2})
+        if serializer2.is_valid(raise_exception=True):
+            serializer2.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

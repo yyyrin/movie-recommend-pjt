@@ -50,6 +50,28 @@
                 <p style="width:600px; word-break:keep-all;">
                   {{ movie?.overview }}
                 </p>
+                <p>평점{{movie?.vote_average}}</p>
+                <!-- 별점 -->
+                <div class="my-3">
+                  <!-- 별점 & 리뷰 -->
+                  <div class="mx-2">
+                      <span
+                        class="star"
+                        v-for="index in 5"
+                        :key="index"
+                      >
+                        <span v-if="index < (movie?.vote_average)/2+0.5">
+                          <img src="@/assets/full3.png" alt="" height="30px;">
+                        </span>
+                        <span v-if="index >= (movie?.vote_average)/2+1">
+                          <img src="@/assets/empty3.png" alt="" height="30px;">
+                        </span>
+                        <span v-if="index*2 >(movie?.vote_average) && (index-1)*2 <(movie?.vote_average)">
+                          <img src="@/assets/middle3.png" alt="" height="30px;">
+                        </span>
+                      </span>
+                  </div>
+                </div>
               </div>
               <!-- movie poster -->
               <div>
