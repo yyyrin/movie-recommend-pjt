@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="community-comment-list" class="py-3">
     <CommunityArticleComment
       v-for="comment in comments"
       :comment="comment"
@@ -30,5 +30,9 @@ export default {
 </script>
 
 <style>
-
+#community-comment-list {
+  width: 950px;
+  margin: 0 auto;
+  display: block;
+}
 </style>

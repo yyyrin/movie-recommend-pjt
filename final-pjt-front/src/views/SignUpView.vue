@@ -1,13 +1,13 @@
 <template>
   <div id="signup">
 
-    <div class="container">
-      <div class="card">
-        <div class="card_title">
+    <div class="container1">
+      <div class="card1">
+        <div class="card_title1">
           <h1>Sign Up</h1>
           <span>이미 계정이 있으신가요? <router-link :to="{ name: 'login' }">Login</router-link></span>
         </div>
-        <div class="form">
+        <div class="form1">
         <form @submit.prevent="signUp">
           <input type="text" name="username" id="username" placeholder="UserName" v-model="username" required/>
           <input type="password" name="password1" placeholder="Password" id="password1" v-model="password1" required/>
@@ -84,7 +84,7 @@ export default {
   font-family: "Poppins", sans-serif;
 }
 
-.container {
+.container1 {
   height: 100vh;
   width: 100%;
   align-items: center;
@@ -97,7 +97,7 @@ export default {
   );
 }
 
-.card {
+.card1 {
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
   width: 400px;
@@ -106,17 +106,17 @@ export default {
   padding: 10px 30px;
 }
 
-.card_title {
+.card_title1 {
   text-align: center;
   padding: 10px;
 }
 
-.card_title h1 {
+.card_title1 h1 {
   font-size: 26px;
   font-weight: bold;
 }
 
-.form input {
+.form1 input {
   margin: 10px 0;
   width: 100%;
   background-color: #e2e2e2;
@@ -126,7 +126,7 @@ export default {
   border-radius: 4px;
 }
 
-.form button {
+.form1 button {
   background-color: #4796ff;
   color: #ffffff;
   font-size: 16px;
@@ -137,22 +137,22 @@ export default {
   width: 100%;
 }
 
-.card_terms {
+.card_terms1 {
   display: flex;
   align-items: center;
   padding: 10px;
 }
 
-.card_terms input[type="checkbox"] {
+.card_terms1 input[type="checkbox"] {
   background-color: #e2e2e2;
 }
 
-.card_terms span {
+.card_terms1 span {
   margin: 5px;
   font-size: 13px;
 }
 
-.card a {
+.card1 a {
   color: #4796ff;
   text-decoration: none;
 }

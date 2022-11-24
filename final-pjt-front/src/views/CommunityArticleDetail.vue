@@ -2,32 +2,50 @@
   <div id="community-article-detail">
     <nav-bar></nav-bar>
     <!-- {{ article }} -->
-    <h1>CommunityArticleDetail</h1>
-    <p>글 번호: {{ article?.id }}</p>
-    <p>제목: {{ article?.title }}</p>
-    <p>작성시간: {{ articleCreatedAt }}</p>
-    <p>수정시간: {{ articleUpdatedAt }}</p>
-    <p>작성자: <router-link :to="{ name: 'profile', params: { username: article?.user.username } }">{{ article?.user.username }}</router-link></p>
-    <router-link  :to="{ name: 'profile', params: { username: article?.user.username } }">
-        <img :src=article?.user.img_path height="50"></router-link>
 
-    <!-- 삭제 -->
-    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="deleteArticle">삭제</button>
-    <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active1" @click="reportArticle">신고</button>
+    <div id="whole-body" class="py-1">
+      <!-- article -->
+      <div id="article-body">
+        <!-- article-head -->
+        <div class="post-tit-info">
+          <h2 class="article-title py-5">{{ article?.title }}</h2>
+          <!-- username, img -->
+          <div class="writer mx-5" style="">
+            <div class="d-flex justify-content-between">
+              <span>
+                <router-link  :to="{ name: 'profile', params: { username: article?.user.username } }" height="10px;">
+                  <img :src=article?.user.img_path height="30">
+                </router-link>
+                <p id="article-detail-username"><router-link :to="{ name: 'profile', params: { username: article?.user.username } }" style="font-size:11px; color: #999;">{{ article?.user.username }}</router-link></p>
+              </span>
 
-    <p>내용: {{ article?.content }}</p>
-    <p>이미지: {{ article?.imagepath }}</p>
-
-    <!-- 좋아요 button -->
-    <div style="float: right; margin-top:15px;">
-      <button class=" btn btn-outline-danger waves-effect mb-4" :count= count @click="likeArticle">
-        <!-- {{ count }} 이렇게 하면 값이 안 나옴.. 왜지 -->
-        좋아요 ♥ {{ count }}
-      </button>
+              <div class="d-flex flex-column">
+                <!-- 삭제 or 신고 -->
+                <button class="btn btn-outline-danger btn-sm waves-effect mb-4" v-show="is_active" @click="deleteArticle">삭제</button>
+                <button class="btn btn-outline-danger btn-sm waves-effect mb-4" v-show="is_active1" @click="reportArticle">신고</button>
+                <span class="date d-flex align-items-end" style="font-size:11px; color: #999; margin-left=5px;">{{ articleCreatedAt }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- article-content -->
+        <div class="posting">
+          <div style="font-size: 15px; line-height: 1.3;">
+            <div class="p-5">
+              <img :src="`${ article?.imagepath }`" alt="">
+              <div id="contentArea" class="my-3">{{ article?.content }}</div>
+            </div>
+          </div>
+          <!-- 좋아요 -->
+          <div style="float: right; margin-top:15px; margin-right: 15px;">
+            <button class=" btn btn-outline-danger waves-effect mb-4" :count= count @click="likeArticle">
+              <!-- {{ count }} 이렇게 하면 값이 안 나옴.. 왜지 -->
+              좋아요 ♥ {{ count }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <br><br><br>
-    <hr>
-    <hr>
 
     <CommunityArticleCommentView
       :article_id="article?.id"
@@ -151,5 +169,39 @@ export default {
 #community-article-detail {
   padding-top: 90px;
   color: white;
+}
+#whole-body {
+  width: 1080px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 70px;
+}
+#article-body {
+  background-color: rgb(27, 27, 27);
+  border-radius: 5px;
+  display: block;
+}
+#article-detail-username {
+  margin-bottom: -1px;
+}
+.post-tit-info {
+  position: relative;
+  width: 1080px;
+  padding: 34px 0 14px 0;
+  border-bottom: 1px solid #e5e5e5;
+  clear: both;
+}
+.article-title {
+  padding: 11px 0 0 0;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+.writer {
+  position: relative;
+  padding: 8px 0 0;
+  font-size: 13px;
+  color: #999;
+  z-index: 2;
 }
 </style>
