@@ -194,7 +194,6 @@ export default {
     },
     logic() {
       if (this.movie?.trailer==="[]") {
-        console.log('00')
         return 0
       }else {
         return 1

@@ -24,12 +24,11 @@
                     class="star"
                     v-for="index in 5"
                     :key="index"
-                    @click="check(index)"
                   >
-                    <span v-if="index < (review?.rate)/2-0.5">
+                    <span v-if="index < (review?.rate)/2+0.5">
                       <img src="@/assets/full2.png" alt="" height="30px;">
                     </span>
-                    <span v-if="index >= (review?.rate)/2">
+                    <span v-if="index >= (review?.rate)/2+1">
                       <img src="@/assets/empty2.png" alt="" height="30px;">
                     </span>
                     <span v-if="index == (review?.rate)/2-0.5">
@@ -51,6 +50,7 @@
               </li>
               <li><a class="dropdown-item" @click="deleteReview">삭제</a></li>
             </ul>
+            <p v-if="is_active==0" @click="reportReview">신고</p>
           </div>
 
           <!-- 수정 Modal -->
@@ -235,7 +235,22 @@ export default {
         } else if (res.data.result === 0) {
           this.count -= 1
         }
+        console.log(this.review.user)
         // this.$router.go(this.$router.currentRoute)
+      })
+    },
+    reportReview() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/report/${this.review.user.pk}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then(() => {
+      })
+      .catch((err) => {
+        console.log(err)
       })
     },
     getOriginalReview() {
@@ -251,6 +266,15 @@ export default {
     this.getOriginalReview()
     // console.log('created!')
   },
+  computed: {
+    is_active() {
+        if (this.$store.state.pk === this.review?.user.pk) {
+          return 1
+      }else {
+        return 0 
+      }
+    } 
+  }
 }
 </script>
 
