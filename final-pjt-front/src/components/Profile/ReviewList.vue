@@ -3,13 +3,13 @@
     <h1>Review List</h1>
     <hr>
     <!-- {{ myInfo }} -->
-    <ol class="list-group list-group-numbered">
-      <ReviewItem
-        v-for="review in reviews"
-        :key="review.id"
-        :review="review"
-      />
-    </ol>
+      <div v-if="reviews" class="row row-cols-1 row-cols-md-5 g-3 center py-2">
+        <ReviewItem
+          v-for="review in reviews"
+          :key="review.id"
+          :review="review"
+        />
+      </div>
   </div>
 </template>
 

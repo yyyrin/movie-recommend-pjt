@@ -2,13 +2,13 @@
   <div class="article-list">
     <h1>Article List</h1>
     <!-- <router-link :to="{ name: my_profile }"><h1>My ArticleList</h1></router-link> -->
-    <ol class="list-group list-group-numbered">
-      <ArticleItem
-        v-for="article in articles"
-        :key="article.id"
-        :article="article"
+      <div v-if="articles" class="row row-cols-1 row-cols-md-5 g-3 center py-2">
+        <ArticleItem
+          v-for="article in articles"
+          :key="article?.id"
+          :article="article"
       />
-    </ol>
+    </div>      
   </div>
 </template>
 
