@@ -31,22 +31,21 @@
                     <span v-if="index >= (review?.rate)/2+1">
                       <img src="@/assets/empty2.png" alt="" height="30px;">
                     </span>
-                    <span v-if="index == (review?.rate)/2-0.5">
+                    <span v-if="index*2 == (review.rate+1)">
                       <img src="@/assets/middle2.png" alt="" height="30px;">
                     </span>
                   </span>
           <p style="font-size:25px;">{{ review.content }}</p>
         </div>
-
         <!-- 수정, 삭제, 좋아요 -->
         <div class="ms-auto mx-3 my-1">
           <div class="btn-group dropend d-flex flex-column mb-5" style="text-align:center;">
-            <button type="button" class="btn btn-link dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+            <button v-if="is_active==1" type="button" class="btn btn-link dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
               EDIT
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li>
-                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#put-one-line-review-modal">수정</a>
+                <a class="dropdown-item" data-bs-toggle="modal" :data-bs-target="`#put-one-line-review-modal${review.id}`">수정</a>
               </li>
               <li><a class="dropdown-item" @click="deleteReview">삭제</a></li>
             </ul>
@@ -54,7 +53,7 @@
           </div>
 
           <!-- 수정 Modal -->
-          <div class="modal fade right" id="put-one-line-review-modal" tabindex="-1" aria-labelledby="putModalLabel" aria-hidden="true">
+          <div class="modal fade right" :id="`put-one-line-review-modal${review.id}`" tabindex="-1" aria-labelledby="putModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <!-- content -->
               <div class="modal-content">
@@ -164,8 +163,7 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((res) => {
-        console.log(res)
+      .then(() => {
         alert('삭제가 완료되었습니다.')
         this.$router.go(this.$router.currentRoute)
       })
@@ -235,7 +233,6 @@ export default {
         } else if (res.data.result === 0) {
           this.count -= 1
         }
-        console.log(this.review.user)
         // this.$router.go(this.$router.currentRoute)
       })
     },
@@ -255,7 +252,6 @@ export default {
     },
     getOriginalReview() {
       this.rate = this.review.rate
-      // console.log(this.rate)
       this.content = this.review.content
       // this.rate = (this.score-1)*2
       // 값이 제대로 안 나옴.. 뭐지
@@ -264,7 +260,6 @@ export default {
   },
   created() {
     this.getOriginalReview()
-    // console.log('created!')
   },
   computed: {
     is_active() {
@@ -273,7 +268,7 @@ export default {
       }else {
         return 0 
       }
-    } 
+    },
   }
 }
 </script>
