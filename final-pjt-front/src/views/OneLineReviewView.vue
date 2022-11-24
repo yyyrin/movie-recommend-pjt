@@ -4,7 +4,9 @@
       :movie_id="movie_id"
       :reviews="reviews"
     />
-    <CreateOneLineReview/>
+    <CreateOneLineReview
+      :movie="movie"
+    />
   </div>
 </template>
 
@@ -19,6 +21,7 @@ export default {
   name: 'OneLineReviewView',
   props: {
     movie_id: Number,
+    movie: Object,
   },
   data() {
     return {

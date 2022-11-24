@@ -1,5 +1,5 @@
 <template>
-  <div class="one-line-reveiw-list">
+  <div class="one-line-reveiw-list" style="background-color: rgb(27, 27, 27)">
     <OneLineReviewItem
       v-for="review in reviews"
       :review="review"
@@ -39,5 +39,8 @@ export default {
 </script>
 
 <style>
-
+.one-line-reveiw-list {
+  margin: 30px 180px 30px 180px;
+  padding: 20px;
+}
 </style>
