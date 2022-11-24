@@ -82,7 +82,10 @@
 
     <!-- 2. 한줄리뷰 리스트 -->
     <div class="one-line-review-list">
-    <OneLineReviewView :movie_id = "movie?.id"/>
+    <OneLineReviewView
+      :movie_id = "movie?.id"
+      :movie = "movie"
+    />
     </div>
   </div>
 </template>
@@ -120,7 +123,7 @@ export default {
         url: `${API_URL}/api/v1/movies/${this.$route.params.id}`
       })
         .then((res) => {
-          // console.log(res)
+          // console.log(res.data)
           this.movie = res.data
           for (const id of res.data.genres){
             axios({
@@ -186,7 +189,7 @@ export default {
       if (!posterPath && typeof posterPath === 'object') {
         return '@/assets/basic_profile.png'
       } else {
-        return `https://image.tmdb.org/t/p/w500/${posterPath}`  // 여기서 get 오류가 나는데..?
+        return `https://image.tmdb.org/t/p/w500/${posterPath}`
       }
     }
   }
