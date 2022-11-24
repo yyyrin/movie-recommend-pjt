@@ -5,7 +5,7 @@ from movies.models import Review
 from community.models import Article
 
 class User(AbstractUser):
-    img_path = models.TextField(default='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGTscNJlgpTAHrwG6kBOgIN10pNW3RX35ByBdzxwQExmQ5-Y_HQq_gMJEdDn8Jc9DIDyA&usqp=CAU')
+    img_path = models.TextField(default='https://emojigraph.org/media/microsoft/honeybee_1f41d.png')
     reported = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='reporting')
 
 class Profile(models.Model):

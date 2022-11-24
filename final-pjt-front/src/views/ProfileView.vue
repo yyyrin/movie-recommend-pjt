@@ -48,6 +48,7 @@ export default {
   },
   methods: {
     getUserInfo() {
+      console.log(this.$route.params.username)
       axios({
         method: 'get',
         url: `${API_URL}/accounts/profile/${this.$route.params.username}/`,
@@ -58,7 +59,6 @@ export default {
       .then((res) => {
         // console.log(res)
         this.userInfo = res.data
-        console.log(this.userInfo)
         if (this.userInfo.user.username === this.$store.state.username) {
           this.is_active = 0
           this.is_active1 = 1

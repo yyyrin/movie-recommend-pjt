@@ -70,9 +70,9 @@
 <script>
 export default {
   name: 'NavBar',
-  data() {
-    return {
-      imgpath: this.$store.state.imgpath
+  computed: {
+    imgpath() {
+      return this.$store.state.imgpath
     }
   },
 }
