@@ -97,6 +97,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: black;
+  padding-top: 90px;
 }
 
 nav {

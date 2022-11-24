@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="create-community-article-view">
     <nav-bar></nav-bar>
     <h1>CreateCommunityArticleView</h1>
     <form @submit.prevent="createArticle">
@@ -85,5 +85,7 @@ export default {
 </script>
 
 <style>
-
+#create-community-article-view {
+  padding-top: 90px;
+}
 </style>
