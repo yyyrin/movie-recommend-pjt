@@ -56,9 +56,8 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((res) => {
+      .then(() => {
         // console.log(res)
-        console.log(res.data)
         // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
