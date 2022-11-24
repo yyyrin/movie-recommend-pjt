@@ -1,5 +1,5 @@
 <template>
-  <div class="community-article-view">
+  <div id="community-article-view">
     <nav-bar></nav-bar>
     <p>이름: {{ community?.name }}</p>
     <p>썸네일 넣을 자리: {{ community?.thumbnail }}</p>
@@ -81,5 +81,7 @@ export default {
 </script>
 
 <style>
-
+#community-article-view {
+  padding-top: 90px;
+}
 </style>
