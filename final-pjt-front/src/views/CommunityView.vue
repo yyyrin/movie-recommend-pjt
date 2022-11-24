@@ -2,7 +2,6 @@
   <div id="community-view">
     <nav-bar></nav-bar>
     <h1>CommunityView</h1>
-    <router-link :to="{ name: 'check' }">임시 선호영화 링크</router-link>
     <CreateCommunity/>
     <CommunityCards/>
   </div>
