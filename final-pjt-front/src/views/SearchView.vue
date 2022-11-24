@@ -5,7 +5,7 @@
     <div id="search-view">
 
       <!-- 1. search bar -->
-      <div id="search-bar" class="my-5 mx-5 d-flex justify-content-center" style="width:1300px; padding-left:400px;">
+      <div id="search-bar" class="my-5 mx-5 d-flex justify-content-center" style="width:900px;">
         <img src="@/assets/search.png" height="50px" class="mx-2" alt="">
         <input class="form-control form-control-lg" type="text" placeholder="장르, 감독, 배우로 찾아보세요" aria-label=".form-control-lg example" id="search" @input="search" v-model="keyword" autocomplete="off">
         <!-- <input type="search" id="search" @input="search" v-model="keyword" autocomplete="off" class="input-search"> -->
@@ -52,26 +52,6 @@
             :movie="movie"
           />
         </div>
-
-        <!-- <span v-for="(movie, index) in movies" :key="`m-${index}`">
-          <div class="movie-card">
-            <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
-              <div class="col">
-                <div class="card">
-                  <img :src="movie?.poster_path" class="card-img-top" alt="movie poster" width="100px" height="100px"> -->
-                  <!-- 마우스 오버시 title 보이게 할 계획
-                  <div class="card-body">
-                    <h5 class="card-title">{{ movie.title }}</h5>
-                  </div> -->
-                <!-- </div>
-              </div>
-            </router-link>
-          </div> -->
-
-          <!-- <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
-            |{{movie.title}}|
-          </router-link> -->
-        <!-- </span> -->
       </div>
 
     </div>
@@ -210,6 +190,8 @@ export default {
 
 #search-view {
   padding-top: 90px;
+  width: 1080px;
+  margin: 0 auto;
 }
 #search-bar {
   border-color: white;
@@ -217,7 +199,7 @@ export default {
 .search-results {
   margin: 30px 120px 30px 120px;
   color: white;
-  width: 1500px;
+  width: 1200px;
   /* text-align: center; */
 }
 #actor-search-results {
