@@ -82,12 +82,10 @@ export default {
     getOriginalProfile() {
       // this.img_path = this.user.img_path
       this.img_path = this.userInfo?.user.img_path
-      console.log(this.img_path)
     },
   },
   created() {
   this.getOriginalProfile()
-  console.log(this.img_path)
   }
 }
 </script>

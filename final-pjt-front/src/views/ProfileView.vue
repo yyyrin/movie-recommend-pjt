@@ -13,7 +13,7 @@
     <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="report">신고</button>
     <hr>
     <span @click="Article_Review1" style="font-size:40px">Article</span>
-    <span>----------------</span>
+    <span style="font-size:40px">|</span>
     <span @click="Article_Review2" style="font-size:40px">Review</span>
     <ArticleList v-if="logic == 1" :userInfo="userInfo"/>
     <ReviewList v-if="logic == 0" :userInfo="userInfo"/>
@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     getUserInfo() {
-      console.log(this.$route.params.username)
       axios({
         method: 'get',
         url: `${API_URL}/accounts/profile/${this.$route.params.username}/`,
@@ -59,7 +58,6 @@ export default {
         }
       })
       .then((res) => {
-        // console.log(res)
         this.userInfo = res.data
         if (this.userInfo.user.username === this.$store.state.username) {
           this.is_active = 0
@@ -79,10 +77,7 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((res) => {
-        // console.log(res)
-        console.log(res.data)
-        // console.log(this.myInfo.reviews)
+      .then(() => {
       })
       .catch((err) => {
         console.log(err)
@@ -104,7 +99,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  color: white;
   padding-top: 90px;
 }
 

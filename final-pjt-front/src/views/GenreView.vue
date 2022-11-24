@@ -79,7 +79,6 @@ export default {
         alert('선호 영화 조사완료!')
         this.$router.push({ name: 'home' })
       }
-      console.log(this.choosen)
     }
   }
 }

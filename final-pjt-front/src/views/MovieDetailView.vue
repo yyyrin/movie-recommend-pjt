@@ -50,7 +50,7 @@
                 <p style="width:600px; word-break:keep-all;">
                   {{ movie?.overview }}
                 </p>
-                <p>평점{{movie?.vote_average}}</p>
+                <p>평점{{movie?.vote_average.toFixed(2)}}({{movie?.vote_count}}명이 평가했습니다.)</p>
                 <!-- 별점 -->
                 <div class="my-3">
                   <!-- 별점 & 리뷰 -->
@@ -195,9 +195,7 @@ export default {
         url: `${API_URL}/api/v1/urname/${Number(query)}`
       })
         .then((res) => {
-          console.log(res.data)
           this.genres.push(res.data)
-          console.log(this.genres)
         })
         .catch((err) => {
           console.log(err)
