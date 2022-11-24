@@ -12,10 +12,11 @@
 
     <button class="btn btn-outline-danger waves-effect mb-4" v-show="is_active" @click="report">신고</button>
     <hr>
-    <!-- <router-link :to="{ name: 'my_article' }"><h3>My Article List</h3></router-link> -->
-    <ArticleList :userInfo="userInfo"/>
-    <ReviewList :userInfo="userInfo"/>
-    <router-view/>
+    <span @click="Article_Review1" style="font-size:40px">Article</span>
+    <span>----------------</span>
+    <span @click="Article_Review2" style="font-size:40px">Review</span>
+    <ArticleList v-if="logic == 1" :userInfo="userInfo"/>
+    <ReviewList v-if="logic == 0" :userInfo="userInfo"/>
   </div>
 </template>
 
@@ -41,6 +42,7 @@ export default {
       userInfo: null,
       is_active: 1,
       is_active1: 0,
+      logic: 1,
     }
   },
   created() {
@@ -86,6 +88,12 @@ export default {
         console.log(err)
       })      
     },
+    Article_Review1() {
+      this.logic = 1
+    },
+    Article_Review2() {
+      this.logic = 0
+    }
   },
 }
 </script>

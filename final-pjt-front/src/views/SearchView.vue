@@ -19,7 +19,7 @@
           <span v-for="(actor, index) in actors" :key="`a-${index}`">
             <div class="mx-4" @click="change(actor.name)">
             <!-- <span @click="change(actor.name)"> -->
-              <img :src="`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`" alt="actor_img" style="height: 150px; overflow: hidden;"><br>
+              <img :src="`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`" @error="change_path" style="height: 150px; overflow: hidden;"><br>
               <button type="button" class="btn btn-light btn-sm m-1">
                 {{ actor?.name }}
               </button>      
@@ -34,7 +34,7 @@
         <div id="director-search-results" class="d-flex justify-content-center">
           <span v-for="(direct, index) in director" :key="`d-${index}`">
             <div class="mx-4" @click="change(direct.name)">
-              <img :src="`https://image.tmdb.org/t/p/w500/${direct?.profile_path}`" alt="director_img" style="height: 150px; overflow: hidden;">    
+              <img :src="`https://image.tmdb.org/t/p/w500/${direct?.profile_path}`" @error="change_path" style="height: 150px; overflow: hidden;">    
               <button type="button" class="btn btn-light btn-sm m-1">
                 {{ direct?.name }}
               </button>
@@ -198,6 +198,10 @@ export default {
         this.director = res.data
       })
     },
+    change_path(e) {
+      e.target.src =""
+      e.target.style = "  width=100px;"
+    }
   },
 }
 </script>
