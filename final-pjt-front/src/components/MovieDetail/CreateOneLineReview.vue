@@ -1,7 +1,7 @@
 <template id="create-one-line-review">
   <div>
     <!-- Button trigger modal -->
-    <button id="create-review" type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#create-review-modal">
+    <button id="create-review" type="button" class="btn btn-warning m-3" data-bs-toggle="modal" data-bs-target="#create-review-modal">
       리뷰 등록
     </button>
 
@@ -11,9 +11,9 @@
         <!-- content -->
         <div class="modal-content">
           <!--Header-->
-          <div class="modal-header p-2" style="background-color: #FF6800;">
+          <div class="modal-header p-2" >
             <p class="heading px-2" style="font-size:30px; center; color: white; padding-top: 16px;">
-              한줄리뷰 작성
+              <!-- 한줄리뷰 작성 -->
             </p>
             <button type="button" class="btn-close mx-2" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -27,26 +27,28 @@
               </div>
 
               <!-- 별점 -->
-          <label for="text">별점 : </label>
-              <input type="number" min="1" max="10" id="rate" v-model="rate">
-              <div class="inner">
-                <div class="star-rating">
-                  <span
-                    class="star"
-                    v-for="index in 5"
-                    :key="index"
-                    @click="check(index)"
-                  >
-                    <span v-if="index < score-0.5">
-                      <img src="@/assets/full1.png" alt="" height="30px;">
+              <div class="my-3">
+                <!-- <label for="text">별점 : </label> -->
+                <input class="d-none" type="number" min="1" max="10" id="rate" v-model="rate">
+                <div class="inner">
+                  <div class="star-rating">
+                    <span
+                      class="star"
+                      v-for="index in 5"
+                      :key="index"
+                      @click="check(index)"
+                    >
+                      <span v-if="index < score-0.5">
+                        <img src="@/assets/full1.png" alt="" height="30px;">
+                      </span>
+                      <span v-if="index >= score">
+                        <img src="@/assets/empty1.png" alt="" height="30px;">
+                      </span>
+                      <span v-if="index == score-0.5">
+                        <img src="@/assets/middle1.png" alt="" height="30px;">
+                      </span>
                     </span>
-                    <span v-if="index >= score">
-                      <img src="@/assets/empty1.png" alt="" height="30px;">
-                    </span>
-                    <span v-if="index == score-0.5">
-                      <img src="@/assets/middle1.png" alt="" height="30px;">
-                    </span>
-                  </span>
+                  </div>
                 </div>
               </div>
               <!-- 별점 함수 끝-->
@@ -61,7 +63,7 @@
           <!-- Footer -->
           <div class="modal-footer justify-content-center">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <button type="button" class="btn btn-primary reveiw-save-button" style="color:white;" @click="createReview">등록</button>
+            <button type="button" class="btn btn-warning reveiw-save-button" style="color:white;" @click="createReview">등록</button>
           </div>
         </div>
         <!--/.Content-->
