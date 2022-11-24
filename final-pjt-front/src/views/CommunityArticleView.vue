@@ -1,22 +1,28 @@
 <template>
   <div id="community-article-view">
     <nav-bar></nav-bar>
-    <p>이름: {{ community?.name }}</p>
-    <p>썸네일 넣을 자리: {{ community?.thumbnail }}</p>
-    <router-link :to="{ name: 'create_community_article' }">
-      [CREATE]
-    </router-link>
 
-    <!-- community 수정 및 삭제 modal -->
-    <EditCommunity
-      :community="community"
-    />
+    <div id="community-body" class="py-1">
+      <div id="front-img">
+        <img :src="`${ community?.thumbnail }`" alt="커뮤니티명" width="1080px" height="280px" style="vertical-align:top; object-fit:cover">
+      </div>
 
-    <ul class="list-group list-group-flush">
-      <CommunityArticleList
-        :community="community"
-      />
-    </ul>
+      <div id="community-info" class="py-1 d-flex">
+        <div class="p-2 w-100">{{ community?.name }}</div>
+        <div class="p-2 flex-shrink-1">
+          <EditCommunity :community="community"/>
+        </div>
+      </div>
+      <CommunityArticleList :community="community"/>
+      <!-- article create -->
+      <div id="create-article-btn" class="d-flex justify-content-end">
+        <router-link :to="{ name: 'create_community_article' }">
+          <v-btn fab x-large>
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -82,6 +88,30 @@ export default {
 
 <style>
 #community-article-view {
+  color: white;
   padding-top: 90px;
+}
+#community-body {
+  width: 1080px;
+  margin: 0 auto;
+  display: block;
+}
+#front-img {
+  position: relative;
+  width: 1080px;
+  max-height: 400px;
+}
+#community-info {
+  width: 1080px;
+  margin: 20px auto 20px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  font-size: 28px;
+  font-weight: bold;
+}
+#create-article-btn {
+  margin-left: 75%;
+  position: fixed;
+  bottom: 40px;
 }
 </style>

@@ -1,31 +1,39 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <div class="d-inline d-flex justify-content-end mx-5">
-      <button type="button" class="create-community-btn btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        새로 만들기
+    <div>
+      <button type="button" class="create-community-btn btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#create-community-modal">
+        생성
       </button>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade right" id="create-community-modal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true" data-backdrop="false">
       <div class="modal-dialog">
+        <!-- content -->
         <div class="modal-content">
-          <div class="modal-header">
+          <!--Header-->
+          <div class="modal-header p-2">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+
+          <!-- Body -->
+          <div class="modal-body d-flex flex-column mb-3">
+            <!-- 커뮤니티명 -->
             <div class="mb-3">
-              <label for="name" class="col-form-label">커뮤니티명:</label>
-              <input type="text" class="form-control" id="name" v-model.trim="name">
+              <label for="name" class="col-form-label d-flex justify-content-start">커뮤니티명</label>
+              <input type="text" class="form-control" style="width:466px;" id="name" placeholder="커뮤니티명을 입력해주세요" v-model.trim="name">
             </div>
+            <!-- 썸네일 -->
             <div class="mb-3">
-              <label for="community-thumbnail" class="col-form-label">썸네일:</label>
-              <input type="text" class="form-control" id="community-thumbnail" v-model.trim="thumbnail">
+              <label for="community-thumbnail" class="col-form-label d-flex justify-content-start">썸네일</label>
+              <input type="text" class="form-control" style="width:466px;" id="community-thumbnail" placeholder="이미지 주소를 입력해주세요" v-model.trim="thumbnail">
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-warning" @click="createCommunity">생성</button>
+
+          <!-- Footer -->
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-warning" style="color:white;" @click="createCommunity">생성</button>
           </div>
         </div>
       </div>

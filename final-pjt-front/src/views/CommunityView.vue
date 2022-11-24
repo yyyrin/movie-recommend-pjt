@@ -36,7 +36,6 @@ export default {
 #community-view {
   background-image: url("../assets/lionking.png");
   padding-top: 90px;
-  /* background-color: black; */
   color: white;
 }
 h1 {
