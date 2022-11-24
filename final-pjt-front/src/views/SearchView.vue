@@ -20,7 +20,7 @@
             <div class="mx-4" @click="change(actor.name)">
             <!-- <span @click="change(actor.name)"> -->
               <img :src="`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`" alt="actor_img" style="height: 150px; overflow: hidden;"><br>
-              <button type="button" class="btn btn-outline-secondary btn-sm m-1">
+              <button type="button" class="btn btn-light btn-sm m-1">
                 {{ actor?.name }}
               </button>      
             </div>
@@ -35,7 +35,7 @@
           <span v-for="(direct, index) in director" :key="`d-${index}`">
             <div class="mx-4" @click="change(direct.name)">
               <img :src="`https://image.tmdb.org/t/p/w500/${direct?.profile_path}`" alt="director_img" style="height: 150px; overflow: hidden;">    
-              <button type="button" class="btn btn-outline-secondary btn-sm m-1">
+              <button type="button" class="btn btn-light btn-sm m-1">
                 {{ direct?.name }}
               </button>
             </div>
@@ -216,7 +216,19 @@ export default {
   width: 1500px;
   /* text-align: center; */
 }
+#actor-search-results {
+  margin: 30px 120px 30px 120px;
+  background-color: rgb(27, 27, 27);
+  padding: 20px;
+}
+#director-search-results {
+  margin: 30px 120px 30px 120px;
+  background-color: rgb(27, 27, 27);
+  padding: 20px; 
+}
 .movie-recommend {
   margin: 30px 120px 30px 120px;
+  background-color: rgb(27, 27, 27);
+  padding: 20px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="create-community-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       새로 만들기
     </button>
 
@@ -89,5 +89,9 @@ export default {
 </script>
 
 <style>
-
+.create-community-btn {
+  background-color: #FF6800;
+  border-color: #FF6800;
+  color: white;
+}
 </style>

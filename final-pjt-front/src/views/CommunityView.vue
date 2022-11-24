@@ -1,9 +1,10 @@
 <template>
   <div id="community-view">
     <nav-bar></nav-bar>
-    <h1>CommunityView</h1>
-    <router-link :to="{ name: 'check' }">임시 선호영화 링크</router-link>
+    <h1>Community</h1>
+    <br><br>
     <CreateCommunity/>
+    <br><br>
     <CommunityCards/>
   </div>
 </template>
@@ -33,8 +34,12 @@ export default {
 
 <style>
 #community-view {
+  background-image: url("../assets/lionking.png");
   padding-top: 90px;
-  background-color: black;
+  /* background-color: black; */
   color: white;
+}
+h1 {
+  font-size: 60px;
 }
 </style>
