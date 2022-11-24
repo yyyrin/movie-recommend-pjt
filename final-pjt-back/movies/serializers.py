@@ -8,6 +8,11 @@ class MovieListSerializer(serializers.ModelSerializer):
         model = Movie
         fields = '__all__'
 
+class MovieRateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = ('vote_average', 'vote_count')
 
 class ReviewSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
