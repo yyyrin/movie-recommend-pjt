@@ -10,7 +10,6 @@
           <h1 tabindex="0" class="title-area">
             <span class="label">추천 영화</span>
           </h1>
-          <router-link :to="{ name: 'search' }">더보기 ></router-link>
         </div>
         <MovieCards/>
       </div>
@@ -59,10 +58,28 @@ export default {
     },
   },
   created() {
+    this.usercheck()
     this.check()
     this.getMovies()
   },
   methods: {
+    usercheck() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/profile/${this.$store.state.username}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      })
+      .then((res) => {
+        console.log(res.data)
+        this.$store.commit('GET_IMG_PATH', [res.data.user.img_path, res.data.user.id])
+        // console.log(this.myInfo.reviews)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     check() {
       axios({
         method: 'get',

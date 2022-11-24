@@ -27,25 +27,28 @@
               </div>
 
               <!-- 별점 -->
-              <!-- <label for="text">별점 : </label>
-              <input type="number" min="1" max="10" id="rate" v-model="rate"> -->
-              <!-- <div class="inner">
+          <label for="text">별점 : </label>
+              <input type="number" min="1" max="10" id="rate" v-model="rate">
+              <div class="inner">
                 <div class="star-rating">
-                  <div
+                  <span
                     class="star"
                     v-for="index in 5"
                     :key="index"
                     @click="check(index)"
                   >
-                    <span v-if="index < score">
-                      <img src="@/assets/full1.png" alt="">
+                    <span v-if="index < score-0.5">
+                      <img src="@/assets/full1.png" alt="" height="30px;">
                     </span>
                     <span v-if="index >= score">
-                      <img src="@/assets/empty.png" alt="">
+                      <img src="@/assets/empty1.png" alt="" height="30px;">
                     </span>
-                  </div>
+                    <span v-if="index == score-0.5">
+                      <img src="@/assets/middle1.png" alt="" height="30px;">
+                    </span>
+                  </span>
                 </div>
-              </div> -->
+              </div>
               <!-- 별점 함수 끝-->
               
               <div class="mb-3">
@@ -76,9 +79,9 @@ export default {
   name: 'CreateOneLineReview',
   data() {
     return {
-      rate: null,
+      rate: 0,
       content: null,
-      // score: 0,
+      score: 0,
     }
   },
   props: {
@@ -123,9 +126,16 @@ export default {
         })
       }
     },
-    // check(index) {
-    //   this.score = index + 1;
-    // }
+    check(index) {
+      if (this.score == index+1) {
+        this.score = index + 0.5
+      } else if (this.score == index - 0.5) {
+        this.score = index + 0.5
+      } else {
+      this.score = index+1;
+      }
+      this.rate = (this.score-1)*2
+    }
   },
   computed: {
     movieURL() {

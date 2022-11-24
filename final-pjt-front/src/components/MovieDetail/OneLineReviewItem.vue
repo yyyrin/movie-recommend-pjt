@@ -6,17 +6,36 @@
           <!-- 프로필 사진 & username -->
           <div class="profile-box" style="background: white;">
             <router-link  :to="{ name: 'profile', params: { username: review?.user.username } }">
-              <img class="profile" style="height:50px; width: 50px;" :src=review?.user.img_path @error="replacing">
-              <p style="text-align:center;">{{ review?.user.username }}</p>
+              <img class="profile" style="height:50px; width: 50px;" :src=review?.user.img_path >
+              <p style="text-align:center; color: white;">{{ review?.user.username }}</p>
             </router-link><br>
           </div>
+            <router-link  :to="{ name: 'profile', params: { username: review?.user.username } }">
+              <p style="text-align:center; color: white;">{{ review?.user.username }}</p>
+            </router-link><br>
         </div>
           <!-- <div style="text-align:center">
             <router-link :to="{ name: 'profile', params: { username: review?.user.username } }">{{ review?.user.username }}</router-link>
           </div> -->
         <!-- 별점 & 리뷰 -->
         <div class="mx-2">
-          <span>{{ review.rate }}</span>
+          <label for="text">별점 : </label>
+                  <span
+                    class="star"
+                    v-for="index in 5"
+                    :key="index"
+                    @click="check(index)"
+                  >
+                    <span v-if="index < (review?.rate)/2-0.5">
+                      <img src="@/assets/full2.png" alt="" height="30px;">
+                    </span>
+                    <span v-if="index >= (review?.rate)/2">
+                      <img src="@/assets/empty2.png" alt="" height="30px;">
+                    </span>
+                    <span v-if="index == (review?.rate)/2-0.5">
+                      <img src="@/assets/middle2.png" alt="" height="30px;">
+                    </span>
+                  </span>
           <p style="font-size:25px;">{{ review.content }}</p>
         </div>
         <!-- 수정, 삭제, 좋아요 -->

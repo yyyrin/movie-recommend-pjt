@@ -115,9 +115,8 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((res) => {
+      .then(() => {
         // console.log(res)
-        console.log(res.data)
         // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
@@ -135,14 +134,14 @@ export default {
       return updatedAt
     },
     is_active() {
-      if (this.article.user.pk === this.$store.state.pk) {
+      if (this.article?.user.pk === this.$store.state.pk) {
         return 1
       }else{
         return 0
       }
     },
     is_active1() {
-      if (this.article.user.pk != this.$store.state.pk) {
+      if (this.article?.user.pk != this.$store.state.pk) {
         return 1
       }else {
         return 0
