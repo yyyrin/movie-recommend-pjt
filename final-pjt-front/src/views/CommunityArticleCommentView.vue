@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="community-article-comment-view">
     <CommunityArticleCommentList
       :article_id="article_id"
     />
@@ -40,5 +40,7 @@ export default {
 </script>
 
 <style>
-
+#community-article-comment-view {
+  padding-top: 90px;
+}
 </style>

@@ -33,6 +33,7 @@ export default {
 
 <style>
 #community-view {
+  padding-top: 90px;
   background-color: black;
   color: white;
 }

@@ -198,6 +198,7 @@ export default {
 
 <style>
 #movie-detail-view {
+  padding-top: 90px;
   background-color: black;
   color: white;
 }
