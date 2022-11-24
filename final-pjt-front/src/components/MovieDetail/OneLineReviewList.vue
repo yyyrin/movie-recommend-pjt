@@ -1,6 +1,7 @@
 <template>
   <div class="one-line-reveiw-list" style="background-color: rgb(27, 27, 27)">
     <OneLineReviewItem
+      :movie="movie"
       v-for="review in reviews"
       :review="review"
       :key="review.id"
@@ -22,8 +23,9 @@ export default {
     }
   },
   props: {
+    movie: Object,
     movie_id: Number,
-    reviews: Array
+    reviews: Array,
   },
 /*   computed: {
     getreviews(){

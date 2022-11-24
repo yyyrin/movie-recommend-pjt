@@ -1,9 +1,11 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="create-community-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      새로 만들기
-    </button>
+    <div class="d-inline d-flex justify-content-end mx-5">
+      <button type="button" class="create-community-btn btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        새로 만들기
+      </button>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -23,7 +25,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" @click="createCommunity">생성</button>
+            <button type="button" class="btn btn-warning" @click="createCommunity">생성</button>
           </div>
         </div>
       </div>
