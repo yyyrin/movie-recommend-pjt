@@ -23,7 +23,7 @@
           <h1 tabindex="0" class="title-area">
             <span class="label">{{ genre }} 추천 영화</span>
           </h1>
-          <router-link :to="{ name: 'search' }">더보기 ></router-link>
+          <router-link :to="{ name: 'search', params: {keyword: `${genre}`} }">더보기 ></router-link>
         </div>
         <MovieGenreCards
           :genre="genre"
@@ -39,6 +39,8 @@ import NavBar from '@/components/templates/NavBar'
 import MovieSlide from '@/components/Home/MovieSlide'
 import MovieCards from '@/components/Home/MovieCards'
 import MovieGenreCards from '@/components/Home/MovieGenreCards'
+import axios from 'axios'
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'HomeView',
@@ -57,9 +59,24 @@ export default {
     },
   },
   created() {
+    this.check()
     this.getMovies()
   },
   methods: {
+    check() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/check/`,
+        headers: {Authorization: `Token ${this.$store.state.token}`}
+      })
+        .then((res) => {
+          if (res.data.result === 1) {
+            this.$router.push('genre')
+          }
+        })
+        .catch(()=> {})
+
+    },
     getMovies() {
       if (this.isLogIn) {
         this.$store.dispatch('getMovies')

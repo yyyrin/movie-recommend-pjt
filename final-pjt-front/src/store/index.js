@@ -101,6 +101,7 @@ export default new Vuex.Store({
         }
       })
       .then((res) => {
+        console.log(res.data)
         context.commit('GET_IMG_PATH', [res.data.user.img_path, res.data.user.id])
         // console.log(this.myInfo.reviews)
       })

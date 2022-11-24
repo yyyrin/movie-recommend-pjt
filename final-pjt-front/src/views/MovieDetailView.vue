@@ -58,8 +58,8 @@
             </article>
           </div>
           <!-- Carousel trailer -->
-          <div class="carousel-item" data-bs-interval="false">
-            <div v-show=movie.trailer>
+          <div v-if="logic" class="carousel-item" data-bs-interval="false">
+            <div >
               <iframe :src=movie?.trailer style="display:block; width:100vw; height: 100vh"></iframe> 
             </div>
           </div>
@@ -187,6 +187,14 @@ export default {
         return '@/assets/basic_profile.png'
       } else {
         return `https://image.tmdb.org/t/p/w500/${posterPath}`  // 여기서 get 오류가 나는데..?
+      }
+    },
+    logic() {
+      if (this.movie?.trailer==="[]") {
+        console.log('00')
+        return 0
+      }else {
+        return 1
       }
     }
   }
