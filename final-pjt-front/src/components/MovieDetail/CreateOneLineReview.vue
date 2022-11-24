@@ -1,7 +1,7 @@
 <template id="create-one-line-review">
   <div>
     <!-- Button trigger modal -->
-    <button id="create-review" type="button" class="btn btn-warning m-3" data-bs-toggle="modal" data-bs-target="#create-review-modal">
+    <button v-if="is_active2" id="create-review" type="button" class="btn btn-warning m-3" data-bs-toggle="modal" data-bs-target="#create-review-modal">
       리뷰 등록
     </button>
 
@@ -91,7 +91,6 @@ export default {
   },
   methods: {
     createReview() {
-      console.log(this.movie)
       const rate = this.rate
       const content = this.content
       if (!content) {
@@ -148,6 +147,17 @@ export default {
       } else {
         return `https://image.tmdb.org/t/p/w500/${posterPath}` 
       }
+    },
+    is_active2() {
+      const reviews = this.movie?.review_set
+      if (reviews != null){
+        for (let review of reviews) {
+          if (review.user.pk===this.$store.state.pk) {
+            return 0
+          }
+        }
+      }
+      return 1
     }
   },
 

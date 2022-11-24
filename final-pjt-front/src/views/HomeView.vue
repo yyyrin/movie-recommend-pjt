@@ -72,9 +72,7 @@ export default {
         }
       })
       .then((res) => {
-        console.log(res.data)
         this.$store.commit('GET_IMG_PATH', [res.data.user.img_path, res.data.user.id])
-        // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
         console.log(err)
