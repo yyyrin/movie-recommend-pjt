@@ -2,44 +2,94 @@
   <div>
     <nav-bar></nav-bar>
 
-    <!-- search bar -->
-    <div class="search">
-      <svg version="1.1" viewBox="0 0 142.358 24.582">
-        <path id="search-path" fill="none" d="M131.597,14.529c-1.487,1.487-3.542,2.407-5.811,2.407
-        c-4.539,0-8.218-3.679-8.218-8.218s3.679-8.218,8.218-8.218c4.539,0,8.218,3.679,8.218,8.218
-        C134.004,10.987,133.084,13.042,131.597,14.529c0,0,9.554,9.554,9.554,9.554H0"/>
-      </svg>
-      <label for="search" class="search-label"></label>
-      <input type="search" id="search" @input="search" v-model="keyword" autocomplete="off" class="input-search">
-      <!-- <input type="text" id="search" autocomplete="off" class="input-search"/> -->
+    <div id="search-view">
+
+      <!-- 1. search bar -->
+      <div id="search-bar" class="my-5 mx-5 d-flex justify-content-center" style="width:1300px; padding-left:400px;">
+        <img src="@/assets/search.png" height="50px" class="mx-2" alt="">
+        <input class="form-control form-control-lg" type="text" placeholder="장르, 감독, 배우로 찾아보세요" aria-label=".form-control-lg example" id="search" @input="search" v-model="keyword" autocomplete="off">
+        <!-- <input type="search" id="search" @input="search" v-model="keyword" autocomplete="off" class="input-search"> -->
+        <!-- <input type="text" id="search" autocomplete="off" class="input-search"/> -->
+      </div>
+      
+      <!-- 2. 검색 결과 -->
+      <div id="search-results" class="m-5">
+        <!-- 2-1. 배우 검색 결과 -->
+        <div id="actor-search-results" class="d-flex justify-content-center">
+          <span v-for="(actor, index) in actors" :key="`a-${index}`">
+            <div class="mx-4" @click="change(actor.name)">
+            <!-- <span @click="change(actor.name)"> -->
+              <img :src="`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`" alt="actor_img" style="height: 150px; overflow: hidden;"><br>
+              <button type="button" class="btn btn-outline-secondary btn-sm m-1">
+                {{ actor?.name }}
+              </button>      
+            </div>
+          </span>
+        </div>
+
+        <hr>
+        <br><br>
+
+        <!-- 2-2. 감독 검색 결과 -->
+        <div id="director-search-results" class="d-flex justify-content-center">
+          <span v-for="(direct, index) in director" :key="`d-${index}`">
+            <div class="mx-4" @click="change(direct.name)">
+              <img :src="`https://image.tmdb.org/t/p/w500/${direct?.profile_path}`" alt="director_img" style="height: 150px; overflow: hidden;">    
+              <button type="button" class="btn btn-outline-secondary btn-sm m-1">
+                {{ direct?.name }}
+              </button>
+            </div>
+          </span>
+        </div>
+
+        <hr>
+        <br><br>
+
+        <div class="movie-recommend row row-cols-1 row-cols-md-6 g-3 center">
+          <MovieCard
+            v-for="(movie, index) in movies"
+            :key="`m-${index}`"
+            :movie="movie"
+          />
+        </div>
+
+        <!-- <span v-for="(movie, index) in movies" :key="`m-${index}`">
+          <div class="movie-card">
+            <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
+              <div class="col">
+                <div class="card">
+                  <img :src="movie?.poster_path" class="card-img-top" alt="movie poster" width="100px" height="100px"> -->
+                  <!-- 마우스 오버시 title 보이게 할 계획
+                  <div class="card-body">
+                    <h5 class="card-title">{{ movie.title }}</h5>
+                  </div> -->
+                <!-- </div>
+              </div>
+            </router-link>
+          </div> -->
+
+          <!-- <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">
+            |{{movie.title}}|
+          </router-link> -->
+        <!-- </span> -->
+      </div>
+
     </div>
-
-    <hr>
-
-    <span v-for="(actor, index) in actors" :key="`a-${index}`">
-      <span @click="change(actor.name)">{{actor.name}}      </span>
-    </span>
-    <hr>
-      <span v-for="(direct, index) in director" :key="`d-${index}`">
-        <span @click="change(direct.name)">{{direct.name}}      </span>
-      </span>
-    <hr>
-    <span v-for="(movie, index) in movies" :key="`m-${index}`">
-      <router-link :to="{ name: 'movie_detail', params: { id: movie.id } }">|{{movie.title}}|</router-link>
-    </span>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import NavBar from '@/components/templates/NavBar'
+import MovieCard from '@/components/Home/MovieCard.vue'
 
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'SearchView',
   components: {
-    NavBar
+    NavBar,
+    MovieCard
   },
   data() {
     return {
@@ -152,91 +202,21 @@ export default {
 }
 </script>
 
-<style lang="scss">
-$brand: #b3c33a;
-$speed: 0.5s;
+<style>
 
-body {
-    color: $brand;
-    background-color: #333;
+#search-view {
+  padding-top: 90px;
 }
-
-.search {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -300px;
-    margin-top: -54px;
-    width: 600px;
+#search-bar {
+  border-color: white;
 }
-
-svg {
-    position: absolute;
-    transform: translateX(-246px);
-    width: 600px;
-    height: auto;
-    stroke-width: 8px;
-    stroke: $brand;
-    stroke-width: 1px;
-    stroke-dashoffset: 0;
-    stroke-dasharray: 64.6 206.305;
-    transition: all 0.5s ease-in-out;
-    stroke-linejoin: round;
-    stroke-linecap: round;
+.search-results {
+  margin: 30px 120px 30px 120px;
+  color: white;
+  width: 1500px;
+  /* text-align: center; */
 }
-
-.input-search {
-    position: absolute;
-    width: calc(100% - 148px);
-    height: 64px;
-    top: 0;
-    right: 20px;
-    bottom: 0;
-    left: 0;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    padding: 20px;
-    font-size: 50px;
-    color: $brand;
-}
-
-.search-label {
-    position: absolute;
-    display: block;
-    width: 108px;
-    height: 108px;
-    top: 0;
-    left: 50%;
-    margin-left: -54px;
-    z-index: 100;
-    transition: $speed ease-in-out;
-}
-
-.isActive {
-    .search-label {
-        transform: translateX(246px);
-    }
-    svg {
-        stroke-dashoffset: -65;
-        stroke-dasharray: 141.305 66;
-        transform: translateX(0);
-    }
-    &.full svg {
-        stroke-dashoffset: -65;
-        stroke-dasharray: 141.305 66;
-        transform: translateX(0);
-    }
-}
-
-.full {
-    .search-label {
-        transform: translateX(246px);
-    }
-    svg {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 64.6 206.305;
-        transform: translateX(0);
-    }
+.movie-recommend {
+  margin: 30px 120px 30px 120px;
 }
 </style>
