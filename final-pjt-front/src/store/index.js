@@ -23,7 +23,7 @@ export default new Vuex.Store({
     communities: [],
     articles: [],
     comments: [],
-    bad: ['애플', 'apple', 'APPLE', '사과', '멍청이', '바보', '리중딱'],
+    bad: ['애플', 'apple', 'APPLE', '사과', '멍청이', '바보', '리중딱','ㅗ'],
     genres: ['애니메이션', '드라마', '스릴러', '모험', '판타지', '공포', '액션', '코미디', '역사', '서부', '범죄', '다큐멘터리', 'SF', '미스터리', '음악', '로맨스', '가족', '전쟁', 'TV 영화']
   },
   getters: {
@@ -92,21 +92,6 @@ export default new Vuex.Store({
       })
       .catch(() => {
         alert('일치하지 않는 회원 정보입니다.')
-      })
-      axios({
-        method: 'get',
-        url: `${API_URL}/accounts/profile/${payload.username}/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        }
-      })
-      .then((res) => {
-        console.log(res.data)
-        context.commit('GET_IMG_PATH', [res.data.user.img_path, res.data.user.id])
-        // console.log(this.myInfo.reviews)
-      })
-      .catch((err) => {
-        console.log(err)
       })
     },
     getMovies(context) {
