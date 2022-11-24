@@ -3,10 +3,10 @@
     <!-- <div>
       {{ movies }}
     </div> -->
-    <div class="row row-cols-1 row-cols-md-5 g-3 center py-2">
+    <div v-if="leng" class="row row-cols-1 row-cols-md-5 g-3 center py-2">
       <MovieCard
-        v-for="movie in movies.slice(0, 5)"
-        :key="movie.id"
+        v-for="movie in movies?.slice(0, leng)"
+        :key="movie?.id"
         :movie="movie"
       />
     </div>
@@ -45,6 +45,16 @@ export default {
     .then((res) => {
       this.movies = res.data
     })
+  },
+  computed: {
+    leng() {
+      if (this.movies?.length>5) {
+        return 5
+      }
+      else {
+        return this.movies?.length
+      }
+    }
   },
   // methods: {
   //   movies() {

@@ -5,8 +5,8 @@
     </div>
     <div class="movie-genres row row-cols-1 row-cols-md-5 g-3 center">
       <MovieCard
-        v-for="movie in movies.slice(0, 5)"
-        :key="movie.id"
+        v-for="movie in movies?.slice(0, leng)"
+        :key="movie?.id"
         :movie="movie"
       />
     </div>
@@ -15,17 +15,45 @@
 
 <script>
 import MovieCard from '@/components/Home/MovieCard.vue'
-import _ from 'lodash'
+
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'MovieCards',
   components: {
     MovieCard
   },
+  data() {
+    return {
+      movies: null
+    }
+  },
+  created() {
+    this.getmovies()
+  },
   computed: {
-    movies() {
-      // return this.$store.state.movies
-      return _.orderBy(this.$store.state.movies, 'vote_average', 'desc')
+    leng() {
+      if (this.movies?.length>5) {
+        return 5
+      }
+      else {
+        return this.movies?.length
+      }
+    }
+  },
+  methods: {
+    getmovies() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/recommand/`,
+        headers: {Authorization: `Token ${this.$store.state.token}`}
+      })
+        .then((res) => {
+          this.movies = res.data
+        })
+        .catch(()=> {})
     }
   }
 }
