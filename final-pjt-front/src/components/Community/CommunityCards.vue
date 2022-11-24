@@ -59,11 +59,11 @@ $grid-cell-height: ($block-size * 2) * 80 /100 + px;
 	justify-content: center;
 	font-weight: bold;
 	font-style: italic;
-	font-size: ($block-size/2) + px;
+	font-size: ($block-size/4) + px;
 	box-shadow: inset 0 0 $block-size + px ($block-size/2) + px #ff9a0073;
 	transition: clip-path 300ms, background-color 300ms;
 	&:hover {
-		background-color: tomato;
+		background-color: #FF6800;
 	}
 }
 
