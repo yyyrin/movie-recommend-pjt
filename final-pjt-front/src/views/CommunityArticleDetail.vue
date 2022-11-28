@@ -86,7 +86,10 @@ export default {
         this.article = res.data
         this.count = this.article?.like_users.length
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        this.$router.push('/404')
+        console.log(err)
+      })
     },
     deleteArticle() { 
       // this.$store.commit('DELETE_ARTICLE', this.article?.id)
@@ -103,6 +106,7 @@ export default {
         this.$router.push({ name: 'community_article' })
       })
       .catch((err) => {
+        this.$router.push('/404')
         console.log(err)
       })
     },
@@ -134,6 +138,7 @@ export default {
       .then(() => {
       })
       .catch((err) => {
+        this.$router.push('/404')
         console.log(err)
       })      
     },

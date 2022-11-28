@@ -91,6 +91,7 @@ export default {
             this.$router.push({ name: 'community_article' })
           })
           .catch((err) => {
+            this.$router.push('/404')
             console.log(err)
           })
       }

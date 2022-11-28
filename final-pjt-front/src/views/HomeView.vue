@@ -75,6 +75,7 @@ export default {
         this.$store.commit('GET_IMG_PATH', [res.data.user.img_path, res.data.user.id])
       })
       .catch((err) => {
+        this.$router.push('/404')
         console.log(err)
       })
     },
@@ -89,7 +90,10 @@ export default {
             this.$router.push('genre')
           }
         })
-        .catch(()=> {})
+        .catch((err)=> {
+          this.$router.push('/404')
+          console.log(err)
+        })
 
     },
     getMovies() {

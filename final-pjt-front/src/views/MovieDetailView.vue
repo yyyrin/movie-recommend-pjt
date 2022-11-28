@@ -156,6 +156,7 @@ export default {
                 this.genres.push(res.data)
               })
               .catch((err) => {
+                this.$router.push('/404')
                 console.log(err)
               })
             }
@@ -168,6 +169,7 @@ export default {
                 this.actors.push(res.data)
               })
               .catch((err) => {
+                this.$router.push('/404')
                 console.log(err)
               })
             }
@@ -180,11 +182,13 @@ export default {
                 this.directors.push(res.data)
               })
               .catch((err) => {
+                this.$router.push('/404')
                 console.log(err)
               })
             }
             })
             .catch((err) => {
+              this.$router.push('/404')
               console.log(err)
             })
       
@@ -198,6 +202,7 @@ export default {
           this.genres.push(res.data)
         })
         .catch((err) => {
+          this.$router.push('/404')
           console.log(err)
         })
     }

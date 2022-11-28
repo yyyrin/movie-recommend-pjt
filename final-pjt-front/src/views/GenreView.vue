@@ -74,6 +74,7 @@ export default {
         .then(() => {
         })
         .catch((err) => {
+          this.$router.push('/404')
           console.log(err)
         })
         alert('선호 영화 조사완료!')

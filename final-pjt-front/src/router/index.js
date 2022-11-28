@@ -12,6 +12,7 @@ import CreateCommunityArticleView from '@/views/CreateCommunityArticleView'
 import CommunityArticleDetail from '@/views/CommunityArticleDetail'
 import SearchView from '@/views/SearchView'
 import ProfileView from '@/views/ProfileView'
+import PageNotFound from '@/views/PageNotFound'
 // import MyArticleList from '@/components/Profile/MyArticleList'
 // import YourProfileView from '@/views/YourProfileView'
 
@@ -88,12 +89,16 @@ const routes = [
     name: 'profile',
     component: ProfileView
   },
-  // 타인 프로필
-  // {
-  //   path: '/profile',
-  //   name: 'profile',
-  //   component: YourProfileView
-  // },
+  // 404 Not Found
+  {
+    path: '/404',
+    name: 'NotFound404',
+    component: PageNotFound
+  },
+  {
+    path: '*',
+    redirect: '/404',
+  }
 ]
 
 const router = new VueRouter({

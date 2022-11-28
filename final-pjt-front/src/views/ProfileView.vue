@@ -77,6 +77,7 @@ export default {
         // console.log(this.myInfo.reviews)
       })
       .catch((err) => {
+        this.$router.push('/404')
         console.log(err)
       })
     },
@@ -91,6 +92,7 @@ export default {
       .then(() => {
       })
       .catch((err) => {
+        this.$router.push('/404')
         console.log(err)
       })      
     },

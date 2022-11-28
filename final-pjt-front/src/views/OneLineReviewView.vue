@@ -45,7 +45,10 @@ export default {
       .then((res) => {
         this.reviews = res.data.review_set
       })
-      .catch(err => console.log(err))
+      .catch((err) => {
+        this.$router.push('/404')
+        console.log(err)
+      })
     }
   }
 }
